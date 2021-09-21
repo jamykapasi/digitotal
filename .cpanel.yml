@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/bhejooo/public_html/
-    - /bin/cp  $DEPLOYPATH
+    - /bin/cp * $DEPLOYPATH
