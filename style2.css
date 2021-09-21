@@ -1,0 +1,43 @@
+body{
+	font-family:montserrat;
+	width:100%;
+}
+select{
+  width: 150px;
+  height: 30px;
+  padding: 5px;
+  color: cyan;
+}
+select option { color: black; }
+select option:first-child{
+  color: green;
+}
+#filter{
+	color:#153474;
+	border:none;
+	border-bottom: 1px solid cyan;
+	width:100%;
+	
+}
+
+.heading{
+	font-family:montserrat;
+	color:#153474;
+	letter-spacing:2em;
+}
+
+.operation{
+	display:flex;
+flex-direction:row;
+	
+}
+.filter1{
+	
+flex-direction:row;
+
+	
+	}
+
+.filter2{
+flex-direction:row;
+	}
