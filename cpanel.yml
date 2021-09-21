@@ -1,6 +1,0 @@
----
-deployment:
-  tasks:
-    - export DEPLOYPATH=/home/bhejooo/public_html/staging.bhejooo/portal/courier-aggregator
-    - /bin/cp * $DEPLOYPATH
-  
