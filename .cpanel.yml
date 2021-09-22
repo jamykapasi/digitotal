@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/bhejooo/staging.bhejooo.com/app
+    - export DEPLOYPATH=/home/bhejooo/staging.bhejooo.com/app/
     - /bin/cp * $DEPLOYPATH
