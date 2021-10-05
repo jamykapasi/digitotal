@@ -1,0 +1,226 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
+}
+
+.white-btn{
+  background-color: #fff !important;
+  border-radius: 0;
+  font-size: 0.8em;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 9px;
+  margin-right: 2rem;
+}
+
+.wallet-btn{
+  color:#9CE1D0;
+  border:2px solid;
+  border-image: linear-gradient(45deg, #1E67B4, #9CE1D0) 1;
+  /* box-shadow: inset 0px 0px 0px 2px #9CE1D0; */
+  /* border-image: linear-gradient(45deg, #9CE1D0, rgb(0,143,104)) 1; */
+  border-radius:0;
+}
+
+.navbar{
+  /* padding-top:0 !important;
+  padding-bottom:0 !important; */
+  background-image: linear-gradient(45deg, #001D61, #122F70);
+  /* background-image:linear-gradient(90deg, #001D61, #fff); */
+}
+a.navbar-brand{
+  width: 20%;
+}
+.container{
+  margin:0 auto;
+}
+
+span{
+  color:#fff;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+
+
+
+
+.container-fluid{
+  width: 116%;
+}
+.sidebar{
+  background-image: linear-gradient(275deg, #001D61, #122F70);
+  padding-left: 0 !important;
+
+}
+
+.channel{
+  width: 80%;
+  border: 2px solid;
+  border-image: linear-gradient(45deg, #1E67B4, #9CE1D0) 1;
+  margin-bottom: 1rem;
+}
+h6{
+  text-align:center;
+  margin: 0.8rem;
+  font-size: 0.7rem;
+  color:#9CE1D0;
+  letter-spacing: 0.2rem;
+  font-weight: 400;
+}
+
+
+
+/* .nav-item {
+    margin-bottom: 0.2rem;
+} */
+
+/* .collapse{
+  padding-bottom: 1rem;
+} */
+
+.sub-text{
+  font-size: 0.8rem;
+}
+
+.nav-pills .nav-link {
+    margin-bottom: 1.2rem;
+    line-height: 0.2rem !important;
+}
+
+.svg{
+  filter: brightness(0) invert(1);
+}
+
+
+
+.content{
+  background-color: #FBFBFD;
+}
+
+h3{
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+}
+.note{
+  font-size: 1rem;
+}
+.how-to{
+  font-size: 1.5rem;
+}
+
+.tg  {border-collapse:collapse;border-color:#ccc;border-spacing:0;}
+.tg td{background-color:#fff;border-color:#ccc;border-style:solid;border-width:1px;color:#333;
+font-size:12px;overflow:hidden;padding:15px 15px;word-break:normal;}
+.tg th{
+  background-color:#f0f0f0;border-color:#ccc;border-style:solid;border-width:1px;color:#333;
+  font-size:14px;font-weight:400;overflow:hidden;padding:10px 16px;word-break:normal; letter-spacing: 1px;
+}
+.tg .tg-ea2u{border-color:#9ce1d0;text-align:center;vertical-align:top}
+.tg .tg-62yf{background-color:#001d61;border-color:#9ce1d0;color:#f0f0f0;text-align:center;vertical-align:top}
+.tg .tg-9sut{background-color:#001d61;border-color:#9ce1d0;color:#ffffff;text-align:center;vertical-align:top}
+.tg .tg-3ob9{border-color:#9ce1d0;color:#989898;text-align:left;vertical-align:middle}
+.tg .tg-jgah{border-color:#9ce1d0;color:#989898;text-align:center;vertical-align:top}
+
+table {
+  border-collapse: collapse;
+  border-style: hidden;
+}
+
+.tg-0lax{
+  text-align:center;vertical-align:middle;
+}
+
+.btn-connect{
+  font-weight: 400;
+  letter-spacing: 2px;
+  font-size: 0.8rem;
+  border-radius: 0;
+  padding: 0.5rem 1rem;
+  background-color: #001D61;
+}
+
+.points{
+  color: #3e3e3e;
+  font-size: 0.7rem;
+  line-height: 5px;
+}
+.blue-logo{
+  width: 15%;
+}
+
+
+.timeline-wrapper {
+  position: relative;
+  width: 83%;
+  height: 200px;
+  background:#fff;
+}
+.timeline-wrapper .middle-line {
+  position: absolute;
+  width: 98%;
+  height: 2px;
+  top: 45%;
+  transform: translateY(-50%);
+  background: #d9d9d9;
+  margin: 0 10px;
+}
+.box {
+  width: 23%;
+  position: relative;
+  min-height: 300px;
+  float:left;
+  left: 5%;
+}
+.box .date {
+  position: absolute;
+  top: 30%;
+  left: 0px;
+  transform: translateY(-50%);
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+  background: #FBFBFD;
+  border: 1px solid #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #001D61;
+  font-weight: 600;
+}
+.date p {
+  text-align: center;
+  margin-top: 3px;
+  margin-bottom: 0px;
+}
+
+.box .box-content {
+  border-radius: 5px;
+  width: 250px;
+  position: absolute;
+  left: -77px;
+  padding: 15px;
+}
+.box-content p {
+  margin: 0;
+  color: #3e3e3e;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.box-bottom .box-content {
+  top: 40%;
+  padding-left: 0;
+  padding-right: 30px;
+}
+
+.first{
+  margin-left: 7%;
+}

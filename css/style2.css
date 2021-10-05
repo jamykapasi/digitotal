@@ -1,0 +1,901 @@
+@import url('https://rsms.me/inter/inter.css');
+
+body{
+	font-family:montserrat;
+	width:100%;
+	background-color: #eceeee4f;
+	
+}
+#filter{
+	color: #153474;
+    border: none;
+    border-bottom: 1px solid cyan;
+   
+   margin-left: -75%;
+    width: 250%;
+    font-family: montserrat;
+    font-size: 16px;
+    padding: 15% 5% 5% 5%;
+    position: relative; 
+    
+	
+}	
+
+.input-group.search_cust3 {
+    width: 400px;
+}
+#datepicker{
+	font-family:montserrat;
+	color:#153474;
+}
+.operation4{
+  margin-left: -70px;
+  display:flex;
+  flex-direction:row;
+  justify-content:space-around;
+  
+}
+.heading{
+	font-family:montserrat;
+	color:#000000;
+	
+	margin: 2%;
+	font-weight: bold;
+}
+
+.operation{
+	display:flex;
+	flex-direction:row;
+	justify-content:space-around;
+	width:100%;
+	
+}
+.filter1{
+	font-family:montserrat;
+	color:#153474;
+	border:none;
+}
+.scrollable-dropdown{
+    height: auto;
+    max-height:320px;  /* Increase / Decrease value as per your need */
+    overflow-x: hidden;
+}
+.input-group{
+	border-bottom:cyan solid 1px;
+	font-family: 'Montserrat';
+    	font-size: 16px;
+	color:#153474;	
+}
+.input-group:focus {
+        outline: none;
+    }
+.btn1{
+	font-family:montserrat;
+
+	color: white;
+
+	letter-spacing: 2px;
+	margin: 0;
+
+
+    font-weight: 400;
+  
+    font-size: 14px;
+    border-radius: 0;
+    padding: 0.5rem 2rem;
+    background-color: #001D61;
+}
+
+}
+li{
+font-family: 'Montserrat';
+    	font-size: 16px;
+	color:#153474;	
+
+}
+
+.search_concept{
+	font-family:montserrat;
+	color: white;
+}
+.form-control.filter1 {
+    border: none !important;
+    box-shadow: none;
+}
+.input-group.filter1{
+	border: none !important;
+    box-shadow: none;
+}
+.input-group-btn{
+border: none !important;
+    box-shadow: none;	
+}
+.record{
+	color:#153474;
+	border:none;
+	border-bottom: 1px solid cyan;
+	
+}
+.input-group-addon{
+	background-color: none;
+}
+
+.second-row{
+	
+	font-family:montserrat;
+	font-size: 16px;
+	color:#153474;
+	margin-left: 0;
+	
+    margin-right: 0%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+
+}
+.show{
+	margin: 2%;
+
+
+}
+.date4{
+  margin-left: -10px;
+}
+
+.pagination1{
+  
+  text-decoration: none;
+  transition: background-color .3s;
+  background-color: cyan;
+  color: white;
+  font-family:montserrat;
+	font-size: 16px;
+	margin: 5px;
+	padding: 5px;
+	padding-right: 10px;
+	padding-left:10px;
+
+}
+
+.pagination1:active {
+  background-color: dodgercyan;
+  color: white;
+}
+.form-control{
+	border: none;
+	box-shadow: none;
+	font-family: 'Montserrat';
+    	font-size: 16px;
+	color:#153474;	
+}
+.input-group.form-control{
+border: none;
+	box-shadow: none;
+	color: cyan;
+
+}
+
+.check{
+	border: 1px solid cyan ;
+	color: cyan;
+	font-size: 22px;
+
+}
+.checkmark {
+  
+  height: 25px;
+  width: 25px;
+  
+}
+/* Show the checkmark when checked */
+.check input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.check .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid cyan;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.btn2{
+	font-family:montserrat;
+	background-color:#001D61;
+	color: white;
+	font-size: 14px;
+	letter-spacing: 2px;
+	
+	
+	margin:2px;
+}
+.btn{
+	border: none;
+	box-shadow: none;
+	border-radius: 0px;
+
+}
+
+
+
+/*scrollbar----------------------------------------*/
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px cyan; 
+  border-radius: 2px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: cyan; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: cyan; 
+}
+
+
+/*-----------for right move icon ----------------> */
+
+
+.hide {
+    display: none;
+    visibility: hidden;
+    height: 0;
+}
+
+/*.pagination\:container {
+  display: flex;
+  align-items: center;
+}*/
+
+.arrow\:text {
+  display: block;
+  vertical-align: middle;
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+.pagination\:number {
+  --size: 32px;
+  
+ 
+  margin-top: 18px;
+  
+  max-width: auto;
+  min-width: var(--size);
+  height: var(--size);
+  
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0 6px;
+  
+  }
+  &:active {
+      background: lighten(#202020, 3%);
+  }
+}
+
+.pagination\:active {
+  background: lighten(#202020, 3%);
+  position: relative;
+}
+ 
+
+
+.searchbtn{
+    border: none;
+    box-shadow: none;
+    background-color:#ffffff;
+}
+.searchbtn:hover{
+    border: none;
+    box-shadow: none;
+    background-color:#ffffff;
+}
+.filter_img{
+color:white;
+}
+
+.calendar {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    color: cyan;
+    text-align: center;
+    background-color: #ffffff;
+    border: none;
+    
+}
+.caret_style{
+
+	color:white;
+	background-color:cyan;
+	height: 12px;
+    width: 12px;
+    margin-top: px;
+    border-radius: 10px;
+    padding: 0px 2px 2px 2px;
+}
+.search_icon{
+	color:cyan;
+	background:none;
+}
+
+
+input[type=checkbox] {
+  box-shadow: inset 0px 0px 0px 2px #9CE1D0;
+  /* outline: 2px solid #c00; */
+}
+a.cross-icon{
+	border-radius: 7px;
+   
+    color: #d90417;
+	padding:2px;
+}
+.search_cust3{
+    margin-right: -60px;
+    margin-left: 0px;
+    background-color: #ffffff;
+}
+.circle-cross{
+padding-top:5px;
+}
+
+.search_cust{
+	width: 30%;
+    	margin-right: -100px;
+	background-color: #ffffff;
+}
+.search_cust:hover{
+	
+	background-color: #ffffff;
+}
+a.view {
+    color: #000000;
+    font-weight: bold;
+}
+
+
+/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$Create order page css $$$$$$$$$$$$$$$$$  */
+
+
+body{
+	background-color: #eceeee4f;
+}
+.head1{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.bulk{
+
+	padding: 5px 15px 5px 15px;
+	height: 40px;
+    margin: 2%;
+font-weight: 400;
+  letter-spacing: 2px;
+  font-size: 14px;
+  border-radius: 0;
+  padding: 0.5rem 2rem;
+  background-color: #001D61;
+
+}
+.part1{
+	color: white;
+	font-family: montserrat;
+	background-color:#001D61; 
+	padding: 10px;
+	width: 100%;
+	position: relative;
+}
+.container{
+	margin: 0px;
+}
+.order-details{
+	width: 100%;
+}
+.data{
+	border: none;
+	color: #153474;
+	margin-left: 10px;
+	padding-bottom: 5%;
+
+}
+.sub-heading{
+	margin-left: 15px;
+}
+.input{
+	border: none;
+    border-bottom: 1px solid cyan;
+    display: flex;
+    justify-content: space-between;
+    width: 340px;
+    padding-top: 5%;
+    
+    
+}
+.form-style{
+	background-color: #ffffff;
+	padding-bottom: 20px;
+}
+.qty{
+	width: 35px;
+	padding-top: 5%;
+	border: none;
+    border-bottom: 1px solid cyan;
+}
+.qty-label{
+	width: 9%;
+	font-family: montserrat;
+	font-weight: normal;
+	padding-top: 5%;
+}
+.sku{
+	
+    padding-top: 5%;
+    border: none;
+	font-family: montserrat;
+	font-weight: normal;
+    border-bottom: 1px solid cyan;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.payment-label{
+	width: 35%;
+	font-family: montserrat;
+	font-weight: normal;
+	padding-top: 5%;
+}
+.cod{
+	color: #000000;
+	padding-right: 10px;
+}
+.btn-next{
+	margin: 5%;
+
+}
+.address-label{
+	width: 90px;
+	font-family: montserrat;
+	font-weight: normal;
+	padding-top: 5%;
+	color: #153474;
+}
+select-btn{
+	padding: 2px 10px 2px 10px;
+	margin-bottom: 5%;
+}
+
+.package-label{
+	width: 170px;
+	font-family: montserrat;
+	font-weight: normal;
+	padding-top: 5%;
+	color: #153474;
+}
+.pickup{
+	margin-left: 0%;
+    width: 360px;
+    padding-top: 5px;
+    
+}
+.cm-label{
+	font-family: montserrat;
+	font-weight: normal;
+
+	padding-top: 5%;
+}
+.input2{
+	border: none;
+	font-family: montserrat;
+	padding-top: 5px;
+	color: #153474;
+	padding-top: 10%;
+	text-align: left;
+    	background-color: #ffffff;
+   	 margin-right: 10px;
+}
+.summary{
+	color: #000000;
+	font-family: montserrat;
+	font-weight: bold;
+	font-size: 16px;
+	padding: 3% 0% 3% 0%;
+
+}
+.cust-details{
+	width: 520px;
+	margin-right: -50%;
+	border: none;
+	font-family: montserrat;
+	
+	color: #153474;
+
+	text-align: center;
+    background-color: #ffffff;
+  
+
+}
+hr{
+	
+	width: 95%;
+	border: 1px solid cyan;
+	
+}
+.order-btn{
+	padding: 5px 10px 5px 10px;
+	margin-bottom: 5%;
+}
+.ext{
+margin-left:-50px;
+}
+.ext2{
+margin-left:110px;
+}
+.qty2{
+
+display:flex;
+flex-direction:row;
+justify-content:space-around;
+
+}
+
+.for-column{
+	padding: 15px;
+}
+
+/* $$$$$$$$$$$$$$$$$$$$ css of weight-discrepancy page $$$$$$$$$$$$$$$  */
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  margin: 0% 2% 0% 2%;
+  
+  
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  font-weight: bold;
+  border-radius:40px 40px 2px 2px;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 25px;
+  transition: 0.3s;
+  font-size: 17px;
+background-color: #525a5240;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #153474;
+  color: #ffffff;
+}
+.table1{
+	display:block;
+}
+/* Style the tab content 
+.dispute-content {
+  display: none;
+  
+} */
+
+#dispute-content2{
+
+display:none;
+
+}
+
+.tablinks{
+	background-color:#525a5240;
+	border:none;
+}
+
+.operation2{
+
+display:flex;
+  flex-direction:row;
+  justify-content:space-around;
+  margin: 0% 2% 0% 2%;
+  padding-top: 2%;
+}
+.input-group{
+  width: 25%;
+
+
+}
+
+.table-style{
+  border: 1px solid #33ffddb3;
+  
+}
+
+
+.table-style td {
+  border: 1px solid cyan;
+}
+
+.table-style tr:first-child td {
+  border-top: none;
+}
+
+.table-style tr:last-child td {
+  border-bottom: none;
+}
+
+.table-style tr td:first-child{
+  border-left: none;
+}
+.table-style tr th:first-child{
+  border-left: none;
+}
+
+
+.table-style tr td:last-child {
+  border-right: none;
+}
+.table-style tr th:last-child {
+  border-right: none;
+}
+
+.table-style tr:first-child th {
+  border-top: none;
+}
+
+.table-style tr:last-child th{
+  border-bottom: none;
+}
+.pad {
+  
+  padding: 20px;
+}
+.table-heading{
+  background-color: #001D61;
+  color: white;
+  padding: 5px;
+  padding-bottom: 20px;
+  margin: 5px;
+  font-family:montserrat;
+  font-size: 16px;
+  text-align: center;
+  height: 55px;
+
+  
+}
+.row:nth-child{
+    
+    font-size: 16;
+    padding:10px 15px 10px  15px;
+
+}
+.table2{  
+  width: 96%;
+  text-align: center;
+  padding: 5%;
+   font-family:'Montserrat';
+   font-size: 16;
+   justify-content: center;
+   height:auto;  
+   text-align: center;
+   margin: 2%;
+    margin-top: 0;
+    background-color: #ffffff;
+    border: hidden;
+}
+
+.pagination-style{
+  font-family: montserrat;
+    font-size: 16px;
+    color: #153474;
+    margin-left: 2%;
+    margin-right: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+.search_cust {
+    width: 30%;
+    /*margin-right: 150px;*/
+    background-color: #ffffff;
+}
+.search_cust2 {
+    
+    margin-right: 150px;
+    background-color: #ffffff;
+
+}
+.date2{
+	margin: 0% 5% 0% 5%; 
+}
+
+/* $$$$$$$$$$$$$$$$$$$$$$ css of credit summary page $$$$$$$$$$$$$$$ */
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  margin: 0% 2% 0% 2%;
+  
+  
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  font-weight: bold;
+  border-radius:40px 40px 2px 2px;
+  outline: none;
+  cursor: pointer;
+  padding: 15px 50px;
+  transition: 0.3s;
+  font-size: 17px;
+background-color: #525a5240;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #001D61;
+  color: #ffffff;
+}
+
+/* Style the tab content */
+.credit-content2 {
+  display:hidden;
+  padding: 4% 2%;
+  
+}
+
+#cod{
+	display:none;
+}
+
+
+.tablinks{
+	background-color:#525a5240;
+	border:none;
+}
+
+.operation3{
+
+  display:flex;
+  flex-direction:row;
+  justify-content:flex-start;
+  margin: 0% 2% 0% 2%;
+  padding-top: 2%;
+  
+}
+
+.pagination-style{
+  font-family: montserrat;
+    font-size: 16px;
+    color: #153474;
+    margin-left: 2%;
+    margin-right: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+.search_cust{
+	width: 20%;
+    	margin-right: -100px;
+	margin-left:0px;
+	background-color: #ffffff;
+}
+.search_cust:hover{
+	
+	background-color: #ffffff;
+}
+.date{
+	border-radius:0px;
+	margin-left:5%;
+	/*width:15%;*/
+}
+
+.caret_style {
+    margin: 5% 0% 0% 10%;
+    color: white;
+    background-color: cyan;
+    height: 15px;
+    width: 15px;
+    padding: 0px 2px 2px 2px;
+    border-radius: 10px;
+}
+.searchbtn{
+  color: #153474;
+  font-size: 16px;
+  font-family: montserrat;
+}
+.final-label{
+  font-family: montserrat;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 1px;
+  margin: 5% 5% 0% 5%;
+  
+}
+.final-sublabel{
+  font-style: italic;
+  font-size: 14px;
+  font-family: montserrat;
+  color: #153474;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin: 0% 0% 0% 5%;
+}
+.total-label{
+
+  font-size: 16px;
+  font-family: montserrat;
+  color: #153474;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin: 20px;
+    width: 100%;
+
+}
+.input-final{
+
+  font-size: 14px;
+  font-family: montserrat;
+  color: #153474;
+  background-color: #ffffff;
+  letter-spacing: 1px;
+  border: none;
+  text-align: right;
+  width: 70%;
+  margin: 5%;
+}
+.ship-charges{
+  font-weight: bold;
+
+}
+.final{
+  border: hidden;
+
+}
+#final{
+  background-color: #ffffff;
+  display:none;
+  margin: 0% 2% 2% 2%;
+}
+
+.search2{
+  margin: 0% 5% 0% 5%;
+}
+.cod-final{
+  margin: 5%;
+}
+.pickup-date{
+  width: 100%;
+}
