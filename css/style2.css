@@ -7,32 +7,37 @@ body{
 	
 }
 #filter{
-	color: #153474;
+	ccolor: #153474;
     border: none;
     border-bottom: 1px solid cyan;
-   
-   margin-left: -75%;
-    width: 250%;
+    margin-left: -1%;
+    width: 40%;
     font-family: montserrat;
     font-size: 16px;
-    padding: 15% 5% 5% 5%;
-    position: relative; 
-    
-	
+    padding: 4%;
+    /* position: relative;*/
 }	
-
-.input-group.search_cust3 {
-    width: 400px;
-}
+#managefilter{
+	ccolor: #153474;
+    border: none;
+    border-bottom: 1px solid cyan;
+    margin-left: -1%;
+    width: 47%;
+    font-family: montserrat;
+    font-size: 16px;
+    padding: 3.5%;
+    /* position: relative;*/
+}	
 #datepicker{
 	font-family:montserrat;
 	color:#153474;
+	
 }
 .operation4{
-  margin-left: -70px;
+  
   display:flex;
   flex-direction:row;
-  justify-content:space-around;
+  justify-content: space-between;
   
 }
 .heading{
@@ -42,7 +47,9 @@ body{
 	margin: 2%;
 	font-weight: bold;
 }
-
+.input-group.search_cust3.col-lg-2 {
+    width: 16%;
+}
 .operation{
 	display:flex;
 	flex-direction:row;
@@ -54,6 +61,8 @@ body{
 	font-family:montserrat;
 	color:#153474;
 	border:none;
+	margin: 0;
+	padding-bottom: 0;
 }
 .scrollable-dropdown{
     height: auto;
@@ -65,6 +74,7 @@ body{
 	font-family: 'Montserrat';
     	font-size: 16px;
 	color:#153474;	
+	height: 3rem;
 }
 .input-group:focus {
         outline: none;
@@ -75,16 +85,12 @@ body{
 	color: white;
 
 	letter-spacing: 2px;
-	margin: 0;
-
-
+	margin: 6px 0px 6px 10px;
     font-weight: 400;
-  
     font-size: 14px;
     border-radius: 0;
-    padding: 0.5rem 2rem;
+    padding: 5px 10px;
     background-color: #001D61;
-}
 
 }
 li{
@@ -350,8 +356,8 @@ a.cross-icon{
 	padding:2px;
 }
 .search_cust3{
-    margin-right: -60px;
-    margin-left: 0px;
+    
+    margin-left: -200px;
     background-color: #ffffff;
 }
 .circle-cross{
@@ -370,6 +376,8 @@ padding-top:5px;
 a.view {
     color: #000000;
     font-weight: bold;
+    font-size: 12px;
+    font-family: montserrat;
 }
 
 
@@ -382,20 +390,22 @@ body{
 .head1{
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	/*justify-content: center;*/
 }
 
 .bulk{
 
 	padding: 5px 15px 5px 15px;
-	height: 40px;
-    margin: 2%;
-font-weight: 400;
-  letter-spacing: 2px;
-  font-size: 14px;
-  border-radius: 0;
-  padding: 0.5rem 2rem;
-  background-color: #001D61;
+    height: 40px;
+    margin: 2% 0% 0% 6%;
+    /* margin-right: 2%; */
+    width: 14%;
+    font-weight: 400;
+    letter-spacing: 2px;
+    font-size: 14px;
+    border-radius: 0;
+    /* padding: 0.5rem 2rem; */
+    background-color: #001D61;
 
 }
 .part1{
@@ -404,31 +414,36 @@ font-weight: 400;
 	background-color:#001D61; 
 	padding: 10px;
 	width: 100%;
+	font-size: 16px;
 	position: relative;
 }
 .container{
 	margin: 0px;
+	padding: 0% 1%;
 }
 .order-details{
 	width: 100%;
+	margin-left: -5px;
 }
 .data{
 	border: none;
 	color: #153474;
 	margin-left: 10px;
 	padding-bottom: 5%;
-
+	width:100%;
 }
 .sub-heading{
-	margin-left: 15px;
+
+	font-size: 15px;
+	margin-bottom: 0;
 }
 .input{
 	border: none;
     border-bottom: 1px solid cyan;
     display: flex;
     justify-content: space-between;
-    width: 340px;
-    padding-top: 5%;
+    width: 240px;
+    
     
     
 }
@@ -443,7 +458,7 @@ font-weight: 400;
     border-bottom: 1px solid cyan;
 }
 .qty-label{
-	width: 9%;
+	width: 6px;
 	font-family: montserrat;
 	font-weight: normal;
 	padding-top: 5%;
@@ -458,12 +473,14 @@ font-weight: 400;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+	width: 60%;
 }
 .payment-label{
-	width: 35%;
+	width: 130px;
 	font-family: montserrat;
 	font-weight: normal;
 	padding-top: 5%;
+	color:#000000;
 }
 .cod{
 	color: #000000;
@@ -486,7 +503,7 @@ select-btn{
 }
 
 .package-label{
-	width: 170px;
+	width: 190px;
 	font-family: montserrat;
 	font-weight: normal;
 	padding-top: 5%;
@@ -512,7 +529,8 @@ select-btn{
 	padding-top: 10%;
 	text-align: left;
     	background-color: #ffffff;
-   	 margin-right: 10px;
+   	 /*margin-right: 10px;*/
+	width: 140px;
 }
 .summary{
 	color: #000000;
@@ -546,10 +564,7 @@ hr{
 	margin-bottom: 5%;
 }
 .ext{
-margin-left:-50px;
-}
-.ext2{
-margin-left:110px;
+margin-left:-80px;
 }
 .qty2{
 
@@ -568,7 +583,7 @@ justify-content:space-around;
 /* Style the tab */
 .tab {
   overflow: hidden;
-  margin: 0% 2% 0% 2%;
+  
   
   
 }
@@ -581,7 +596,7 @@ justify-content:space-around;
   border-radius:40px 40px 2px 2px;
   outline: none;
   cursor: pointer;
-  padding: 10px 25px;
+ padding: 10px 40px;
   transition: 0.3s;
   font-size: 17px;
 background-color: #525a5240;
@@ -600,11 +615,12 @@ background-color: #525a5240;
 .table1{
 	display:block;
 }
-/* Style the tab content 
+
 .dispute-content {
-  display: none;
-  
-} */
+  background-color: #ffffff;
+    width: 82%;
+  padding-bottom:1px;
+} 
 
 #dispute-content2{
 
@@ -621,12 +637,12 @@ display:none;
 
 display:flex;
   flex-direction:row;
-  justify-content:space-around;
-  margin: 0% 2% 0% 2%;
+  justify-content:flex-start;
+  width:82%;
   padding-top: 2%;
 }
 .input-group{
-  width: 25%;
+  width: 15%;
 
 
 }
@@ -673,7 +689,9 @@ display:flex;
 }
 .pad {
   
-  padding: 20px;
+  padding: 10px 15px;
+    width: 10%;
+
 }
 .table-heading{
   background-color: #001D61;
@@ -688,7 +706,7 @@ display:flex;
 
   
 }
-.row:nth-child{
+.row1:nth-child{
     
     font-size: 16;
     padding:10px 15px 10px  15px;
@@ -709,16 +727,7 @@ display:flex;
     border: hidden;
 }
 
-.pagination-style{
-  font-family: montserrat;
-    font-size: 16px;
-    color: #153474;
-    margin-left: 2%;
-    margin-right: 2%;
-    display: flex;
-    flex-direction: row;
-    justify-content: right;
-}
+
 .search_cust {
     width: 30%;
     /*margin-right: 150px;*/
@@ -726,7 +735,9 @@ display:flex;
 }
 .search_cust2 {
     
-    margin-right: 150px;
+    
+    margin-left: -10%;
+    width:32%;
     background-color: #ffffff;
 
 }
@@ -736,43 +747,13 @@ display:flex;
 
 /* $$$$$$$$$$$$$$$$$$$$$$ css of credit summary page $$$$$$$$$$$$$$$ */
 
-/* Style the tab */
-.tab {
-  overflow: hidden;
-  margin: 0% 2% 0% 2%;
-  
-  
-}
-
-/* Style the buttons inside the tab */
-.tab button {
-  background-color: inherit;
-  float: left;
-  font-weight: bold;
-  border-radius:40px 40px 2px 2px;
-  outline: none;
-  cursor: pointer;
-  padding: 15px 50px;
-  transition: 0.3s;
-  font-size: 17px;
-background-color: #525a5240;
-}
-
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #001D61;
-  color: #ffffff;
-}
 
 /* Style the tab content */
 .credit-content2 {
   display:hidden;
   padding: 4% 2%;
+  width:82%;
+	
   
 }
 
@@ -785,23 +766,32 @@ background-color: #525a5240;
 	background-color:#525a5240;
 	border:none;
 }
+.credit-content{
+	background-color: #ffffff;
+  
+    	width: 82%;
+	padding-bottom: 1px;
+
+}
 
 .operation3{
 
   display:flex;
   flex-direction:row;
   justify-content:flex-start;
-  margin: 0% 2% 0% 2%;
+  
   padding-top: 2%;
+  width:82%;
   
 }
 
 .pagination-style{
   font-family: montserrat;
     font-size: 16px;
+   
     color: #153474;
-    margin-left: 2%;
-    margin-right: 2%;
+    padding: 0% 2% 0% 2%;
+    width: 82%;
     display: flex;
     flex-direction: row;
     justify-content: right;
@@ -818,7 +808,7 @@ background-color: #525a5240;
 }
 .date{
 	border-radius:0px;
-	margin-left:5%;
+	margin-left:2%;
 	/*width:15%;*/
 }
 
@@ -887,7 +877,7 @@ background-color: #525a5240;
 #final{
   background-color: #ffffff;
   display:none;
-  margin: 0% 2% 2% 2%;
+  
 }
 
 .search2{
@@ -898,4 +888,137 @@ background-color: #525a5240;
 }
 .pickup-date{
   width: 100%;
+}
+.ship1{
+	margin-right: 122px;
+}
+.search3{
+	margin:0;
+}
+.input-group.search_cust3.col-lg-3 {
+    width: 28%;
+    margin-right: 20px;
+}
+#search_concept{
+
+	 font-size: 14px;
+  font-family: montserrat;
+  color: #153474;
+  background-color: #ffffff;
+}
+
+.input-group2{
+
+	width:50%;
+}
+.date-time{
+
+	width:190px;
+}
+
+/* $$$$$$$$$$$$$ css of notifications page $$$$$$$$$$$ */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+    cursor: pointer;
+    top: 0;
+    width: 70px;
+    height: 27px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #9aa1a073;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+    width: 28px;
+    /* left: 1px; */
+    
+  background-color: #001D61;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #00f6c7;
+  
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(41px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.notification{
+
+	padding:15px;
+	color:#000000;
+	font-family:montserrat;
+}
+
+
+
+/* $$$$$$$$$$$$$$$$$end of notification css $$$$$$$$$$$$$$$$$$$$$$$$$$   */
+
+
+.filter2{
+
+	margin-left: 1%;
+	width:30%;
+}
+.date5 {
+    width: 30%;
+}
+#filter2{
+    color: #153474;
+    border: none;
+    border-bottom: 1px solid cyan;
+    margin-left: -1%;
+    width: 60%;
+    font-family: montserrat;
+    font-size: 16px;
+    padding: 13px;
+    /* position: relative; */
+}
+.date6{
+	width:25%;
+}
+.manage-table{
+	width: 81%;
+    margin: 0% 1%;
+}
+.date_manage{
+
+	width:20%;
 }
