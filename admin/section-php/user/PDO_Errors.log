@@ -1,0 +1,1 @@
+2021-10-04 10:10:03 :: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'is_completed_profile' in 'where clause': 340

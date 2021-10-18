@@ -1,0 +1,15 @@
+.registerForm .input-group>div {
+    flex: 1 1 auto;
+    width: 1%;
+    padding-right: 80px;
+}
+
+.loginForm .input-group>div {
+    width: 100%;
+    padding-right: 80px;
+}
+
+.error{
+	font-size: 15px;
+	color: red;
+}
