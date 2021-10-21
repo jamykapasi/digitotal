@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <title>LOGIN</title>
+
+  <link rel="stylesheet" href="css/login-register.css">
 </head>
 
 <body>
@@ -22,27 +22,27 @@
     <div class="col-lg-6 bgImage">
       <div class="row Main-img-text">
         <div class="col-lg-6 verti-align">
-          <h1 class="main-text one-line-text  txt-color">BHEJOOO</h1>
+          <h1 class="main-text-bhejooo one-line-text  txt-color">BHEJOOO</h1>
         </div>
         <div class="col-lg-6 verti-align">
-          <p class="sub-text one-line-text txt-color">THis is new content</p>
+          <p class="sub-text-login one-line-text txt-color">Your favourite courier partner</p>
         </div>
       </div>
     </div>
 
     <div class="col-lg-6">
 
-      <div class="container-fluid">
-        <img src="https://www.staging.bhejooo.com/wp-content/uploads/2021/09/Bhejooo-Logo.png" class="logo" alt="">
+      <div class="container-fluid main-area-login">
+        <img class="logo-login" src="https://www.staging.bhejooo.com/wp-content/uploads/2021/09/Bhejooo-Logo.png" class="logo" alt="">
         <h1 class="login-title">LOGIN</h1>
 
         <!-- Input-Groups -->
 
         <div class="input-group mb-3 top-input">
-          <input type="email" class="form-control" placeholder="Email Address*">
+          <input type="email" class="form-control input-login calc-input" placeholder="Email Address*">
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password*">
+          <input type="password" class="form-control input-login calc-input" placeholder="Password*">
         </div>
 
         <!-- Remember-Checkbox -->
@@ -56,9 +56,9 @@
           <p class="forgot-pass">Forgot your password?</p>
         </div>
 
-        <button type="button" class="btn btn-primary">LOGIN</button> <br>
+        <button type="button" class="btn btn-primary main-login-btn">LOGIN</button> <br>
 
-        <a class="create-acc top-spacing" href="/app/register.html">Create Account</a>
+        <p class="create-acc top-spacing" href="">Create Account</p>
 
       </div>
 
