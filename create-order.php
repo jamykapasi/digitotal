@@ -17,9 +17,9 @@
 
     
 
-  <link rel="stylesheet" href="css/channel-styles.css">
+  <link rel="stylesheet" href="css/styles.css">
 	
-<link rel="stylesheet" type="text/css" href="css/style2.css">	
+	
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -29,12 +29,12 @@
 
     <title>Create New Order</title>
 </head>
-<body>
+<body class="overflow-page">
 <?php  include("inc/header.php"); ?> 
 
   <?php  include("inc/sidebar.php"); ?>
 
-<div class="col content">
+<div class="col content" id="content">
 
 
     <div class="head1">
@@ -44,7 +44,7 @@
     <div class="container col-lg-8">
         <div class="form-style form-popup">
             <form >
-                <h4 class="part1">1.Create Order</h4>
+                <h4 class="part1">1. Create Order</h4>
             
         
             
@@ -83,9 +83,12 @@
                         </select>
                     </td>
                     
-                    <td class="for-column"><label class="payment-label">Payment Mode*</label><input type="radio" name="payment" value="COD"><label class="cod">COD</label>
+                    <td class="for-column"><label class="payment-label">Payment Mode*</label>
+			</td>
 
-                    <input type="radio" name="payment" value="Prepaid"><label class="cod">Prepaid</label>
+			<td class="radio">
+			<input type="radio" name="payment" value="COD"><label class="cod">COD</label>
+			<input type="radio" name="payment" value="Prepaid"><label class="cod">Prepaid</label>
                     </td>
                     
                 </tr>
@@ -99,15 +102,15 @@
 <!--##############part 1 end #####################-->
 
         <div class="form-style">
-            <h4 class="part1">2.Select Pickup Address</h4>
+            <h4 class="part1">2. Select Pickup Address</h4>
             
 
-            <h4 class="heading">PICKUP DETAILS</h4>
+            <h4 class="heading sub-heading">PICKUP DETAILS</h4>
               <table class="data">
 
               <tr>
                   <td class="for-column">
-                      <label class="address-label">Address*</label><button class="btn2 select-btn">SELECT</button>
+                      <label class="address-label">Address*</label><button class="btn2 btn-next">SELECT</button>
                   </td>
               </tr> 
 
@@ -116,7 +119,7 @@
 <!----------########### part 2 end ##############----------->
 
         <div class="form-style">
-            <h4 class="part1">3.Create Shipment</h4>
+            <h4 class="part1">3. Create Shipment</h4>
 
         
               <table class="data">
@@ -128,8 +131,8 @@
                       <label class="qty-label">Kgs</label>
                     </td>
                     <td class="for-column">
-                      <span style="font-style: italic;font-weight: bold; width: 80%;color: #153474;padding-top: 10px;">The minimum chargeable weight is 0.50kgs</span>
-                  </td>
+                      <span style="font-style: italic;font-weight: bold; width: 80%;color: #153474;padding-top: 10px;font-size: 12px;">The minimum chargeable weight is 0.50kgs</span>
+                   </td>
               </tr> 
               <tr>
                   <td class="for-column" style="display: flex;">
@@ -148,8 +151,8 @@
                     
                     <td class="for-column pickup-date">
                         <div id="datepicker" class="input-group input-group2 date pickup datepicker " data-date-format="dd-mm-yyyy">
-                        <input class="form-control filter1 " type="text" value="Pickup Date*" />
-                        <span class="input-group-addon calendar"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <input class="form-control pickup_date " type="text" value="Pickup Date*" />
+                       <span class="input-group-addon calendar2"><i class="fas fa-calendar-alt"></i></span>
                       </div>
                   </td>
              </tr>
