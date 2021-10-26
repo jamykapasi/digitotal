@@ -9,7 +9,7 @@ if($sessUserId == ""){
 	redirectPage(SITE_URL);
 }
 
-$styles = array(array("dashboard.css",SITE_CSS));
+//$styles = array(array("dashboard.css",SITE_CSS));
 
 
 $tab_title =  SITE_NAME;

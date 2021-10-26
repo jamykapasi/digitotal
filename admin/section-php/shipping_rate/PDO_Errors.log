@@ -1,0 +1,5 @@
+2021-10-26 11:10:49 :: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'digital.tbl_shipping_rate' doesn't exist: 340
+2021-10-26 11:10:39 :: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'digital.tbl_shipping_rate' doesn't exist: 340
+2021-10-26 11:10:43 :: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'digital.tbl_shipping_rate' doesn't exist: 340
+2021-10-26 11:10:05 :: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'digital.tbl_shiping_rate' doesn't exist: 340
+2021-10-26 11:10:07 :: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'digital.tbl_shiping_rate' doesn't exist: 340

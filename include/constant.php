@@ -14,10 +14,11 @@ $request_uri = $_SERVER['REQUEST_URI'];
 $canonical_url = "http://" . $host . $request_uri;
 define('CANONICAL_URL', $canonical_url);
 
-define("API_TOKEN","123456789");
+
+define('ORDER_FORMAT', 'ORDER');
 
 
-define('YEAR', date("Y"));
+
 
 define('MEND_SIGN', '<font color="#FF0000">*</font>');
 
