@@ -1,0 +1,69 @@
+Options -Indexes
+Options +FollowSymLinks -MultiViews
+RewriteEngine On
+AddDefaultCharset UTF-8
+
+RewriteRule \.(digital)$ - [F]
+
+##########      HOME      #########
+
+RewriteRule ^/?$ section-php/login/index.php [L]
+
+RewriteRule ^admin/?$ admin/section-php/login/index.php [L]
+RewriteRule ^admin?$ admin/section-php/login/index.php [L]
+
+###REGISTER###
+
+RewriteRule ^register/?$ section-php/register/index.php [L]
+RewriteRule ^register?$ section-php/register/index.php [L]
+
+RewriteRule ^login/?$ section-php/login/index.php [L]
+RewriteRule ^login?$ section-php/login/index.php [L]
+
+RewriteRule ^forgot_password/?$ section-php/forgot_password/index.php [L]
+RewriteRule ^forgot_password?$ section-php/forgot_password/index.php [L]
+
+
+RewriteRule ^dashboard/?$ section-php/home/index.php [L]
+RewriteRule ^dashboard?$ section-php/home/index.php [L]
+
+RewriteRule ^create_order/?$ section-php/create_order/index.php [L]
+RewriteRule ^create_order?$ section-php/create_order/index.php [L]
+
+RewriteRule ^manage_order/?$ section-php/manage_order/index.php [L]
+RewriteRule ^manage_order?$ section-php/manage_order/index.php [L]
+
+RewriteRule ^weight_discrepancy/?$ section-php/weight_discrepancy/index.php [L]
+RewriteRule ^weight_discrepancy?$ section-php/weight_discrepancy/index.php [L]
+
+RewriteRule ^report/?$ section-php/report/index.php [L]
+RewriteRule ^report?$ section-php/report/index.php [L]
+
+RewriteRule ^shipping_rate/?$ section-php/shipping_rate/index.php [L]
+RewriteRule ^shipping_rate?$ section-php/shipping_rate/index.php [L]
+
+RewriteRule ^credits_summary/?$ section-php/credits_summary/index.php [L]
+RewriteRule ^credits_summary?$ section-php/credits_summary/index.php [L]
+
+RewriteRule ^shipping_rate_calculator/?$ section-php/shipping_rate_calculator/index.php [L]
+RewriteRule ^shipping_rate_calculator?$ section-php/shipping_rate_calculator/index.php [L]
+
+RewriteRule ^courier_partner_priority/?$ section-php/courier_partner_priority/index.php [L]
+RewriteRule ^courier_partner_priority?$ section-php/courier_partner_priority/index.php [L]
+
+RewriteRule ^notification/?$ section-php/notification/index.php [L]
+RewriteRule ^notification?$ section-php/notification/index.php [L]
+
+
+RewriteRule ^product_details/([0-9]+)?$ section-php/product_details/index.php?product_id=$1 [L]
+RewriteRule ^product_details/([0-9]+)?$ section-php/product_details/index.php?product_id=$1 [L]
+
+
+RewriteRule ^logout?$ include/logout.php [L]
+RewriteRule ^admin_logout?$ include/admin_logout.php [L]
+
+
+RewriteRule ^verify/([0-9]+)/(.*)?$ section-php/register/verifiy_email.php?user_id=$1&token=$2&action=verifiyEmail
+
+
+

@@ -27,4 +27,4 @@
 
 
 
-<a href="{SITE_URL}logout">Logout</a>
+

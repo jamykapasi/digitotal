@@ -10,7 +10,6 @@ if($sessUserId != ""){
 
 $token = (isset($_GET['token']) AND $_GET['token'] != "") ? $_GET['token'] : '';
 
-$styles = array(array("styles.css",SITE_CSS));		
 $scripts = array(array("jquery.validate.min.js",SITE_JS));
 
 $tab_title = "Register";

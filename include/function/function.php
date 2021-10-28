@@ -48,139 +48,6 @@ function APIerror($msg = NRF, $data = array())
     exit;
 }
 
-function getUserProfile($user_id = 0)
-{
-    global $db;
-
-    $return_array = array();
-
-    $res = $db->pdoQuery("SELECT * FROM tbl_users WHERE id = '".$user_id."' ")->result();
-    
-    $return_array = array(
-        "user_id"              => $res['id'],
-        "first_name"           => $res['first_name'],
-        "last_name"            => $res['last_name'],
-        "age"                  => $res['age'],
-        "birthday"             => $res['birthday'],
-        "gender_id"            => $res['gender_id'],
-        "gender"               => getGenderName($res['gender_id']),
-        "interest_id"          => $res['interest_id'],
-        "interest_name"        => getInterestName($res['interest_id']),
-        "religion_id"          => $res['religion_id'],
-        "religion_name"        => getReligionName($res['religion_id']),
-        "country_code"         => $res['country_code'],
-        "mobile_no"            => $res['mobile_no'],
-        "email"                => $res['email'], 
-        "job_title"            => $res['job_title'],
-        "company_name"         => $res['company_name'],
-        "school_name"          => $res['school_name'],
-        "current_location"     => $res['current_location'],
-        "show_my_age"          => $res['show_my_age'],
-        "show_my_distance"     => $res['show_my_distance'],
-        "is_mobile_verfied"    => $res['is_mobile_verfied'],
-        "is_completed_profile" => $res['is_completed_profile'],
-        "status"               => $res['status'],
-        "platform"             => $res['platform'], 
-        "user_image"           => getUserImage($res['id']),
-        "sexual_option"        => getUserSexualOption($res['id']),
-        "user_filter"          => getUserFilter($res['id']),
-    );
-
-    return $return_array;
-    
-}
-
-function getUserImage($user_id = 0)
-{
-    global $db;
-    $return_array = array();
-
-    $res = $db->pdoQuery("SELECT * FROM tbl_user_image WHERE user_id = '".$user_id."' ORDER BY id ASC ")->results();
-    
-    if(count($res) > 0)
-    {
-        foreach ($res as $key => $value) 
-        {
-            $image = file_exists( DIR_UPD.'profile/'.$value['user_id']."/".$value['image']) ?  SITE_UPD.'profile/'.$value['user_id']."/".$value['image'] : SITE_UPD."profile/no_image.jpg";
-
-            $return_array[] = array(
-                "id"               => $value['id'],
-                "image_name"       => $image,
-            );
-        }
-    }
-    return $return_array;
-}
-
-function getUserFilter($user_id = 0)
-{
-    global $db;
-    $return_array = array();
-
-    $res = $db->pdoQuery("SELECT * FROM tbl_user_filter WHERE user_id = '".$user_id."' ")->results();
-    
-    if(count($res) > 0)
-    {
-        foreach ($res as $key => $value) 
-        {
-            $return_array[] = array(
-                "id"               => $value['id'],
-                "interested_id"    => $value['interested_id'],
-                "interested_name"  => getInterestName($value['interested_id']),
-                "religion_id"      => $value['religion_id'],
-                "religion_name"    => getReligionName($value['religion_id']),
-                "age"              => $value['age'],
-                "start_age"        => $value['start_age'],
-                "end_age"          => $value['end_age'],
-                "sexual_id"        => $value['sexual_id'],
-                "distance"         => $value['distance'],
-                "start_distance"   => $value['start_distance'],
-                "end_distance"     => $value['end_distance'],
-            );
-        }
-    }
-    return $return_array;
-}
-
-
-function getUserSexualOption($user_id = 0)
-{
-    global $db;
-    $return_array = array();
-
-    $res = $db->pdoQuery("SELECT * FROM tbl_user_sexual WHERE user_id = '".$user_id."' ")->results();
-    
-    if(count($res) > 0)
-    {
-        foreach ($res as $key => $value) 
-        {
-            $name = getTableValue("tbl_sexual","name",array("id"=>$value['sexual_id']));
-
-            $return_array[] = array(
-                "id"            => $value['id'],
-                "name"          => $name,
-            );
-        }
-    }
-    return $return_array;
-}
-
-
-function getGenderName($gender_id)
-{
-    return getTableValue("tbl_gender","name",array("id"=>$gender_id));
-}
-
-function getInterestName($interest_id)
-{
-    return getTableValue("tbl_interest","interest",array("id"=>$interest_id));
-}
-
-function getReligionName($religion_id)
-{
-    return getTableValue("tbl_religion","name",array("id"=>$religion_id));
-}
-
 function getTableValue($table, $field, $wherecon = array()) {
     global $db;
     $qrySel   = $db->select($table, array($field), $wherecon);
@@ -228,7 +95,7 @@ function getDateFormat($date="" , $is_time = 'n')
 {
     if($is_time=="n")
     {
-        return date('d F Y',strtotime($date));
+        return date('d M Y',strtotime($date));
     } else {
         return date('d F Y h:i a',strtotime($date));
     }
@@ -638,7 +505,7 @@ function genrateRandom($length = 8, $seeds = 'alphanum') {
     $str = '';
     $seeds_count = strlen($seeds);
     for ($i = 0; $length > $i; $i++) {
-        $str .= $seeds{mt_rand(0, $seeds_count - 1)};
+        $str .= $seeds[mt_rand(0, $seeds_count - 1)];
     }
     return $str;
 }

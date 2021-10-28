@@ -1,0 +1,1024 @@
+@import url('https://rsms.me/inter/inter.css');
+
+body{
+	font-family:montserrat;
+	width:100%;
+	background-color: #eceeee4f;
+	
+}
+#filter{
+	ccolor: #153474;
+    border: none;
+    border-bottom: 1px solid cyan;
+    margin-left: -1%;
+    width: 40%;
+    font-family: montserrat;
+    font-size: 16px;
+    padding: 4%;
+    /* position: relative;*/
+}	
+#managefilter{
+	ccolor: #153474;
+    border: none;
+    border-bottom: 1px solid cyan;
+    margin-left: -1%;
+    width: 47%;
+    font-family: montserrat;
+    font-size: 16px;
+    padding: 3.5%;
+    /* position: relative;*/
+}	
+#datepicker{
+	font-family:montserrat;
+	color:#153474;
+	
+}
+.operation4{
+  
+  display:flex;
+  flex-direction:row;
+  justify-content: space-between;
+  
+}
+.heading{
+	font-family:montserrat;
+	color:#000000;
+	
+	margin: 2%;
+	font-weight: bold;
+}
+.input-group.search_cust3.col-lg-2 {
+    width: 16%;
+}
+.operation{
+	display:flex;
+	flex-direction:row;
+	justify-content:space-around;
+	width:100%;
+	
+}
+.filter1{
+	font-family:montserrat;
+	color:#153474;
+	border:none;
+	margin: 0;
+	padding-bottom: 0;
+}
+.scrollable-dropdown{
+    height: auto;
+    max-height:320px;  /* Increase / Decrease value as per your need */
+    overflow-x: hidden;
+}
+.input-group{
+	border-bottom:cyan solid 1px;
+	font-family: 'Montserrat';
+    	font-size: 16px;
+	color:#153474;	
+	height: 3rem;
+}
+.input-group:focus {
+        outline: none;
+    }
+.btn1{
+	font-family:montserrat;
+
+	color: white;
+
+	letter-spacing: 2px;
+	margin: 6px 0px 6px 10px;
+    font-weight: 400;
+    font-size: 14px;
+    border-radius: 0;
+    padding: 5px 10px;
+    background-color: #001D61;
+
+}
+li{
+font-family: 'Montserrat';
+    	font-size: 16px;
+	color:#153474;	
+
+}
+
+.search_concept{
+	font-family:montserrat;
+	color: white;
+}
+.form-control.filter1 {
+    border: none !important;
+    box-shadow: none;
+}
+.input-group.filter1{
+	border: none !important;
+    box-shadow: none;
+}
+.input-group-btn{
+border: none !important;
+    box-shadow: none;	
+}
+.record{
+	color:#153474;
+	border:none;
+	border-bottom: 1px solid cyan;
+	
+}
+.input-group-addon{
+	background-color: none;
+}
+
+.second-row{
+	
+	font-family:montserrat;
+	font-size: 16px;
+	color:#153474;
+	margin-left: 0;
+	
+    margin-right: 0%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+
+}
+.show{
+	margin: 2%;
+
+
+}
+.date4{
+  margin-left: -10px;
+}
+
+.pagination1{
+  
+  text-decoration: none;
+  transition: background-color .3s;
+  background-color: cyan;
+  color: white;
+  font-family:montserrat;
+	font-size: 16px;
+	margin: 5px;
+	padding: 5px;
+	padding-right: 10px;
+	padding-left:10px;
+
+}
+
+.pagination1:active {
+  background-color: dodgercyan;
+  color: white;
+}
+.form-control{
+	border: none;
+	box-shadow: none;
+	font-family: 'Montserrat';
+    	font-size: 16px;
+	color:#153474;	
+}
+.input-group.form-control{
+border: none;
+	box-shadow: none;
+	color: cyan;
+
+}
+
+.check{
+	border: 1px solid cyan ;
+	color: cyan;
+	font-size: 22px;
+
+}
+.checkmark {
+  
+  height: 25px;
+  width: 25px;
+  
+}
+/* Show the checkmark when checked */
+.check input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.check .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid cyan;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.btn2{
+	font-family:montserrat;
+	background-color:#001D61;
+	color: white;
+	font-size: 14px;
+	letter-spacing: 2px;
+	
+	
+	margin:2px;
+}
+.btn{
+	border: none;
+	box-shadow: none;
+	border-radius: 0px;
+
+}
+
+
+
+/*scrollbar----------------------------------------*/
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px cyan; 
+  border-radius: 2px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: cyan; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: cyan; 
+}
+
+
+/*-----------for right move icon ----------------> */
+
+
+.hide {
+    display: none;
+    visibility: hidden;
+    height: 0;
+}
+
+/*.pagination\:container {
+  display: flex;
+  align-items: center;
+}*/
+
+.arrow\:text {
+  display: block;
+  vertical-align: middle;
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+.pagination\:number {
+  --size: 32px;
+  
+ 
+  margin-top: 18px;
+  
+  max-width: auto;
+  min-width: var(--size);
+  height: var(--size);
+  
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0 6px;
+  
+  }
+  &:active {
+      background: lighten(#202020, 3%);
+  }
+}
+
+.pagination\:active {
+  background: lighten(#202020, 3%);
+  position: relative;
+}
+ 
+
+
+.searchbtn{
+    border: none;
+    box-shadow: none;
+    background-color:#ffffff;
+}
+.searchbtn:hover{
+    border: none;
+    box-shadow: none;
+    background-color:#ffffff;
+}
+.filter_img{
+color:white;
+}
+
+.calendar {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    color: cyan;
+    text-align: center;
+    background-color: #ffffff;
+    border: none;
+    
+}
+.caret_style{
+
+	color:white;
+	background-color:cyan;
+	height: 12px;
+    width: 12px;
+    margin-top: px;
+    border-radius: 10px;
+    padding: 0px 2px 2px 2px;
+}
+.search_icon{
+	color:cyan;
+	background:none;
+}
+
+
+input[type=checkbox] {
+  box-shadow: inset 0px 0px 0px 2px #9CE1D0;
+  /* outline: 2px solid #c00; */
+}
+a.cross-icon{
+	border-radius: 7px;
+   
+    color: #d90417;
+	padding:2px;
+}
+.search_cust3{
+    
+    margin-left: -200px;
+    background-color: #ffffff;
+}
+.circle-cross{
+padding-top:5px;
+}
+
+.search_cust{
+	width: 30%;
+    	margin-right: -100px;
+	background-color: #ffffff;
+}
+.search_cust:hover{
+	
+	background-color: #ffffff;
+}
+a.view {
+    color: #000000;
+    font-weight: bold;
+    font-size: 12px;
+    font-family: montserrat;
+}
+
+
+/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$Create order page css $$$$$$$$$$$$$$$$$  */
+
+
+body{
+	background-color: #eceeee4f;
+}
+.head1{
+	display: flex;
+	flex-direction: row;
+	/*justify-content: center;*/
+}
+
+.bulk{
+
+	padding: 5px 15px 5px 15px;
+    height: 40px;
+    margin: 2% 0% 0% 6%;
+    /* margin-right: 2%; */
+    width: 14%;
+    font-weight: 400;
+    letter-spacing: 2px;
+    font-size: 14px;
+    border-radius: 0;
+    /* padding: 0.5rem 2rem; */
+    background-color: #001D61;
+
+}
+.part1{
+	color: white;
+	font-family: montserrat;
+	background-color:#001D61; 
+	padding: 10px;
+	width: 100%;
+	font-size: 16px;
+	position: relative;
+}
+.container{
+	margin: 0px;
+	padding: 0% 1%;
+}
+.order-details{
+	width: 100%;
+	margin-left: -5px;
+}
+.data{
+	border: none;
+	color: #153474;
+	margin-left: 10px;
+	padding-bottom: 5%;
+	width:100%;
+}
+.sub-heading{
+
+	font-size: 15px;
+	margin-bottom: 0;
+}
+.input{
+	border: none;
+    border-bottom: 1px solid cyan;
+    display: flex;
+    justify-content: space-between;
+    width: 240px;
+    
+    
+    
+}
+.form-style{
+	background-color: #ffffff;
+	padding-bottom: 20px;
+}
+.qty{
+	width: 35px;
+	padding-top: 5%;
+	border: none;
+    border-bottom: 1px solid cyan;
+}
+.qty-label{
+	width: 6px;
+	font-family: montserrat;
+	font-weight: normal;
+	padding-top: 5%;
+}
+.sku{
+	
+    padding-top: 5%;
+    border: none;
+	font-family: montserrat;
+	font-weight: normal;
+    border-bottom: 1px solid cyan;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+	width: 60%;
+}
+.payment-label{
+	width: 130px;
+	font-family: montserrat;
+	font-weight: normal;
+	padding-top: 5%;
+	color:#000000;
+}
+.cod{
+	color: #000000;
+	padding-right: 10px;
+}
+.btn-next{
+	margin: 5%;
+
+}
+.address-label{
+	width: 90px;
+	font-family: montserrat;
+	font-weight: normal;
+	padding-top: 5%;
+	color: #153474;
+}
+select-btn{
+	padding: 2px 10px 2px 10px;
+	margin-bottom: 5%;
+}
+
+.package-label{
+	width: 190px;
+	font-family: montserrat;
+	font-weight: normal;
+	padding-top: 5%;
+	color: #153474;
+}
+.pickup{
+	margin-left: 0%;
+    width: 360px;
+    padding-top: 5px;
+    
+}
+.cm-label{
+	font-family: montserrat;
+	font-weight: normal;
+
+	padding-top: 5%;
+}
+.input2{
+	border: none;
+	font-family: montserrat;
+	padding-top: 5px;
+	color: #153474;
+	padding-top: 10%;
+	text-align: left;
+    	background-color: #ffffff;
+   	 /*margin-right: 10px;*/
+	width: 140px;
+}
+.summary{
+	color: #000000;
+	font-family: montserrat;
+	font-weight: bold;
+	font-size: 16px;
+	padding: 3% 0% 3% 0%;
+
+}
+.cust-details{
+	width: 520px;
+	margin-right: -50%;
+	border: none;
+	font-family: montserrat;
+	
+	color: #153474;
+
+	text-align: center;
+    background-color: #ffffff;
+  
+
+}
+hr{
+	
+	width: 95%;
+	border: 1px solid cyan;
+	
+}
+.order-btn{
+	padding: 5px 10px 5px 10px;
+	margin-bottom: 5%;
+}
+.ext{
+margin-left:-80px;
+}
+.qty2{
+
+display:flex;
+flex-direction:row;
+justify-content:space-around;
+
+}
+
+.for-column{
+	padding: 15px;
+}
+
+/* $$$$$$$$$$$$$$$$$$$$ css of weight-discrepancy page $$$$$$$$$$$$$$$  */
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  
+  
+  
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  font-weight: bold;
+  border-radius:40px 40px 2px 2px;
+  outline: none;
+  cursor: pointer;
+ padding: 10px 40px;
+  transition: 0.3s;
+  font-size: 17px;
+background-color: #525a5240;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #153474;
+  color: #ffffff;
+}
+.table1{
+	display:block;
+}
+
+.dispute-content {
+  background-color: #ffffff;
+    width: 82%;
+  padding-bottom:1px;
+} 
+
+#dispute-content2{
+
+display:none;
+
+}
+
+.tablinks{
+	background-color:#525a5240;
+	border:none;
+}
+
+.operation2{
+
+display:flex;
+  flex-direction:row;
+  justify-content:flex-start;
+  width:82%;
+  padding-top: 2%;
+}
+.input-group{
+  width: 15%;
+
+
+}
+
+.table-style{
+  border: 1px solid #33ffddb3;
+  
+}
+
+
+.table-style td {
+  border: 1px solid cyan;
+}
+
+.table-style tr:first-child td {
+  border-top: none;
+}
+
+.table-style tr:last-child td {
+  border-bottom: none;
+}
+
+.table-style tr td:first-child{
+  border-left: none;
+}
+.table-style tr th:first-child{
+  border-left: none;
+}
+
+
+.table-style tr td:last-child {
+  border-right: none;
+}
+.table-style tr th:last-child {
+  border-right: none;
+}
+
+.table-style tr:first-child th {
+  border-top: none;
+}
+
+.table-style tr:last-child th{
+  border-bottom: none;
+}
+.pad {
+  
+  padding: 10px 15px;
+    width: 10%;
+
+}
+.table-heading{
+  background-color: #001D61;
+  color: white;
+  padding: 5px;
+  padding-bottom: 20px;
+  margin: 5px;
+  font-family:montserrat;
+  font-size: 16px;
+  text-align: center;
+  height: 55px;
+
+  
+}
+.row1:nth-child{
+    
+    font-size: 16;
+    padding:10px 15px 10px  15px;
+
+}
+.table2{  
+  width: 96%;
+  text-align: center;
+  padding: 5%;
+   font-family:'Montserrat';
+   font-size: 16;
+   justify-content: center;
+   height:auto;  
+   text-align: center;
+   margin: 2%;
+    margin-top: 0;
+    background-color: #ffffff;
+    border: hidden;
+}
+
+
+.search_cust {
+    width: 30%;
+    /*margin-right: 150px;*/
+    background-color: #ffffff;
+}
+.search_cust2 {
+    
+    
+    margin-left: -10%;
+    width:32%;
+    background-color: #ffffff;
+
+}
+.date2{
+	margin: 0% 5% 0% 5%; 
+}
+
+/* $$$$$$$$$$$$$$$$$$$$$$ css of credit summary page $$$$$$$$$$$$$$$ */
+
+
+/* Style the tab content */
+.credit-content2 {
+  display:hidden;
+  padding: 4% 2%;
+  width:82%;
+	
+  
+}
+
+#cod{
+	display:none;
+}
+
+
+.tablinks{
+	background-color:#525a5240;
+	border:none;
+}
+.credit-content{
+	background-color: #ffffff;
+  
+    	width: 82%;
+	padding-bottom: 1px;
+
+}
+
+.operation3{
+
+  display:flex;
+  flex-direction:row;
+  justify-content:flex-start;
+  
+  padding-top: 2%;
+  width:82%;
+  
+}
+
+.pagination-style{
+  font-family: montserrat;
+    font-size: 16px;
+   
+    color: #153474;
+    padding: 0% 2% 0% 2%;
+    width: 82%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+.search_cust{
+	width: 20%;
+    	margin-right: -100px;
+	margin-left:0px;
+	background-color: #ffffff;
+}
+.search_cust:hover{
+	
+	background-color: #ffffff;
+}
+.date{
+	border-radius:0px;
+	margin-left:2%;
+	/*width:15%;*/
+}
+
+.caret_style {
+    margin: 5% 0% 0% 10%;
+    color: white;
+    background-color: cyan;
+    height: 15px;
+    width: 15px;
+    padding: 0px 2px 2px 2px;
+    border-radius: 10px;
+}
+.searchbtn{
+  color: #153474;
+  font-size: 16px;
+  font-family: montserrat;
+}
+.final-label{
+  font-family: montserrat;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 1px;
+  margin: 5% 5% 0% 5%;
+  
+}
+.final-sublabel{
+  font-style: italic;
+  font-size: 14px;
+  font-family: montserrat;
+  color: #153474;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin: 0% 0% 0% 5%;
+}
+.total-label{
+
+  font-size: 16px;
+  font-family: montserrat;
+  color: #153474;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin: 20px;
+    width: 100%;
+
+}
+.input-final{
+
+  font-size: 14px;
+  font-family: montserrat;
+  color: #153474;
+  background-color: #ffffff;
+  letter-spacing: 1px;
+  border: none;
+  text-align: right;
+  width: 70%;
+  margin: 5%;
+}
+.ship-charges{
+  font-weight: bold;
+
+}
+.final{
+  border: hidden;
+
+}
+#final{
+  background-color: #ffffff;
+  display:none;
+  
+}
+
+.search2{
+  margin: 0% 5% 0% 5%;
+}
+.cod-final{
+  margin: 5%;
+}
+.pickup-date{
+  width: 100%;
+}
+.ship1{
+	margin-right: 122px;
+}
+.search3{
+	margin:0;
+}
+.input-group.search_cust3.col-lg-3 {
+    width: 28%;
+    margin-right: 20px;
+}
+#search_concept{
+
+	 font-size: 14px;
+  font-family: montserrat;
+  color: #153474;
+  background-color: #ffffff;
+}
+
+.input-group2{
+
+	width:50%;
+}
+.date-time{
+
+	width:190px;
+}
+
+/* $$$$$$$$$$$$$ css of notifications page $$$$$$$$$$$ */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+    cursor: pointer;
+    top: 0;
+    width: 70px;
+    height: 27px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #9aa1a073;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+    width: 28px;
+    /* left: 1px; */
+    
+  background-color: #001D61;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #00f6c7;
+  
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(41px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.notification{
+
+	padding:15px;
+	color:#000000;
+	font-family:montserrat;
+}
+
+
+
+/* $$$$$$$$$$$$$$$$$end of notification css $$$$$$$$$$$$$$$$$$$$$$$$$$   */
+
+
+.filter2{
+
+	margin-left: 1%;
+	width:30%;
+}
+.date5 {
+    width: 30%;
+}
+#filter2{
+    color: #153474;
+    border: none;
+    border-bottom: 1px solid cyan;
+    margin-left: -1%;
+    width: 60%;
+    font-family: montserrat;
+    font-size: 16px;
+    padding: 13px;
+    /* position: relative; */
+}
+.date6{
+	width:25%;
+}
+.manage-table{
+	width: 81%;
+    margin: 0% 1%;
+}
+.date_manage{
+
+	width:20%;
+}
