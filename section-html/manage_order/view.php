@@ -102,31 +102,120 @@
   <!------------------code for table ----------------------- -->
 
 
-  <table id="t01" class="table2 table-style  manage-table col-lg-10">
-                  <tr class="row1">
-                    <th class=" table-style table-heading">ORDER ID</th>
-                    <th class=" table-style table-heading">ORDER DATE AND TIME</th>
-                    <th class=" table-style table-heading">CHANNEL INTEGRATION<span><a href=""><i class="fas fa-filter filter_img"></i></a></span></th>
+        <table id="t01" class="table2 table-style  manage-table col-lg-10">
+          <tr class="row1">
+            <th class=" table-style table-heading">ORDER ID</th>
+            <th class=" table-style table-heading">ORDER DATE AND TIME</th>
+            <th class=" table-style table-heading">CHANNEL INTEGRATION<span><a href=""><i class="fas fa-filter filter_img"></i></a></span></th>
 
-                    <th class=" table-style table-heading">PRODUCT DETAILS</th>
-                    <th class=" table-style table-heading">PAYMENT<span><a href=""><i class="fas fa-filter filter_img"></i></a></span></th>
-                    <th class=" table-style table-heading">CUSTOMER DETAILS<span><a href=""><i class="fas fa-filter filter_img"></i></a></span></th>
-                    <th class=" table-style table-heading">STATUS</th>
-                    <th class=" table-style table-heading">ACTIONS</th>
-                  </tr>
+            <th class=" table-style table-heading">PRODUCT DETAILS</th>
+            <th class=" table-style table-heading">PAYMENT<span><a href=""><i class="fas fa-filter filter_img"></i></a></span></th>
+            <th class=" table-style table-heading">CUSTOMER DETAILS<span><a href=""><i class="fas fa-filter filter_img"></i></a></span></th>
+            <th class=" table-style table-heading">STATUS</th>
+            <th class=" table-style table-heading">ACTIONS</th>
+          </tr>
 
-               %HTML%
-
-            
-            </table>
+           %HTML%
+        </table>
  <div>
-
+<div class="modal fade edit-record-modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="text-center">
+                        <h5 class="modal-title" id="exampleModalLongTitle">VIEW / EDIT ORDERS</h5>
+                        <p class="modal-description">Please preview you customer's address.</p>
+                        <p class="modal-description">Fix it to avoid delay/failure in delivery.</p>
+                         <form action="{SITE_URL}manage_order" method="post" enctype="multipart/form-data">
+                          <div class="customer-details-content">
+                              <div class="row">
+                                   <div class="col col-12 col-md-6">
+                                       <input type="text" id="customer_name" name="customer_name"class="form-control" placeholder="Customer Name*" value="">
+                                   </div>
+                                   <div class="col col-12 col-md-6">
+                                       <input type="text" id="customer_phone" name="customer_phone" class="form-control" placeholder="Customer Phone*" value="">
+                                   </div>
+                                   <div class="col col-12 col-md-6">
+                                       <input type="text" id="customer_email" name="customer_email" class="form-control" placeholder="Customer Email Address" value="">
+                                   </div>
+                                   <div class="col col-12 col-md-6">
+                                       <input type="text" id="customer_address" name="customer_address" class="form-control" placeholder="Address*" value="">
+                                   </div>
+                                   <div class="col col-12 col-md-6">
+                                       <input type="text" id="customer_pincode" name="customer_pincode" class="form-control" placeholder="Pincode*" value="">
+                                   </div>
+                                   <div class="col col-12 col-md-6">
+                                       <input type="text" id="customer_city" name="customer_city" class="form-control" placeholder="City*" value="">
+                                   </div>
+                                   <div class="col col-12 col-md-6">
+                                       <input type="text" id="customer_state" name="customer_state" class="form-control" placeholder="State*" value="">
+                                   </div>
+                                   <div class="col col-12 col-md-12">
+                                      <input type="hidden" id="customer_id" name="customer_id" class="form-control" value="">
+                                      <input type="hidden" id="action" name="action" class="form-control" value="editUser">
+                                      <button type="submit" id="edit" name="edit" class="btn2">UPDATE</button>
+                                   </div>
+                              </div>
+                          </div>
+                        </form>  
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
 <script>
-      $(function () {
-          $("#datepicker").datepicker({ 
-                autoclose: true, 
-                todayHighlight: true
-          })
-        });
+  $(function () {
+      $("#datepicker").datepicker({ 
+            autoclose: true, 
+            todayHighlight: true
+      })
+  });
+
+  $(document).on("click","#userData",function() {
+      var id = $(this).data('id');
+      $.ajax({
+          type:"POST",
+          dataType : 'json',
+          url: window.location,
+          data : {"action":"viewUser",id},
+          success: function(res)
+          {
+            $("#customer_name").val(res.customer_name);
+            $("#customer_phone").val(res.customer_phone);
+            $("#customer_email").val(res.customer_email);
+            $("#customer_address").val(res.customer_address);
+            $("#customer_pincode").val(res.customer_pincode);
+            $("#customer_city").val(res.customer_city);
+            $("#customer_state").val(res.customer_state);
+            $("#customer_id").val(res.customer_id);
+          }
+      });
+  });
+
+   $(document).on("click","#deleteOrder",function() {
+      var id = $(this).data('id');
+
+      var del = confirm("Are you sure you want to delete?");
+        if (del)
+        $.ajax({
+            type:"POST",
+            dataType : 'json',
+            url: window.location,
+            data : {"action":"deleteOrder",id},
+            success: function (response) 
+            {
+             if(response.status == 1)
+              { 
+                window.location = "{SITE_URL}manage_order";   
+              } 
+              else 
+              {
+                toastr['error'](response.message);
+              }
+            },
+        }); 
+   });
+
 </script>
 </div>

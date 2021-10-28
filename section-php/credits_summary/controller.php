@@ -10,39 +10,55 @@ class Controller extends Home {
 
 	function getHTML() {
 		
-		$html = "";
-		// $res = $this->db->pdoQuery("SELECT * FROM tbl_order WHERE 1=1 ORDER BY id DESC ")->results();
+		$prepaid = $cod ="";
+		$res = $this->db->pdoQuery("SELECT * FROM tbl_order WHERE 1=1 ANd payment_method='p' ORDER BY id DESC ")->results();
 
-		// foreach ($res as $key => $value) {
+		foreach ($res as $key => $value) {
 
-		// 	$payment_method = $value['payment_method'] == 'c' ? "COD" : "Prepaid";
-		// 	$order_status = $value['status'] == 'c' ? "Completed" : "Pending";
+			$order_status = $value['status'] == 'c' ? "Completed" : "Pending";
 
-		// 	$html.= '<tr class="row1">
-  //                   <td class="table-style pad"><input type="checkbox" class="check">
-  //                   <span class="checkmark"></span>'.ORDER_FORMAT.$value['order_id'].'</td>
-  //                   <td class="table-style pad">'.getDateFormat($value['created']).'</td>
-  //                   <td class="table-style pad">Channel Name</td>
-  //                   <td class="table-style pad">
-  //                     <p style="float:left">'.$value['product_name'].'</p>
-  //                     <img src="'.SITE_IMG.'dashboard.svg" style="float:right">
-  //                   </td>
-  //                   <td class="table-style pad">'.$payment_method.'</td>
-  //                   <td class="table-style pad">'.$value['customer_name'].'<br><a href="" class="view">VIEW</a>/<a href="" class="view">EDIT</a>
-  //                   </td>
-  //                   <td class="table-style pad">'.$order_status.'</td>
-  //                   <td class="table-style pad"><button class="btn2" style="float:left;">SHIP</button>
-  //                   <span style="float:right;" class="circle-cross">
-  //                   <a href="#" class="cross-icon"> 
-  //                   <i class="fas fa-times-circle"></i></a></span>
-  //                   </td>
-  //           </tr>';
-		// }
+			$prepaid.= '<tr class="row1">
+              <td class=" table-style pad">'.ORDER_FORMAT.$value['order_id'].'</td>
+              <td class=" table-style pad">'.$order_status.'</td>
+              <td class=" table-style pad">'.getDateFormat($value['created']).'</td>
+              <td class=" table-style pad">123456</td>
+              <td class=" table-style pad">'.$value['ship_pack_weight'].'kg</td>
+              <td class=" table-style pad">'.$value['shippment_charge'].'</td>
+            </tr>';
+		}
 
+		$res = $this->db->pdoQuery("SELECT * FROM tbl_order WHERE 1=1 ANd payment_method='c' ORDER BY id DESC ")->results();
 
+		foreach ($res as $key => $value) {
+
+			$order_status = $value['status'] == 'c' ? "Completed" : "Pending";
+
+			$cod.= '<tr class="row1">
+              <td class=" table-style pad">'.ORDER_FORMAT.$value['order_id'].'</td>
+              <td class=" table-style pad">'.$order_status.'</td>
+              <td class=" table-style pad">'.getDateFormat($value['created']).'</td>
+              <td class=" table-style pad">123456</td>
+              <td class=" table-style pad">'.$value['ship_pack_weight'].'kg</td>
+              <td class=" table-style pad">aaa</td>
+              <td class=" table-style pad">'.$value['shippment_charge'].'</td>
+            </tr>';
+		}
+
+		$TotalCod = $this->db->pdoQuery("SELECT SUM(cod_charges) as totalCod FROM tbl_order")->result();
+
+		$TotalShipCarge = $this->db->pdoQuery("SELECT SUM(shippment_charge) as ShipCharges FROM tbl_order")->result();
+
+		$shipmentCharges = $TotalShipCarge['ShipCharges'] + $TotalCod['totalCod'];
+
+		$netpayable = $TotalCod['totalCod'] + $shipmentCharges ;
+		
 		$mainHTML =  DIR_TMPL . "credits_summary/view.php";
 		$array = array(
-			
+			"%PREPAID%" =>$prepaid,
+			"%COD%"		=>$cod,
+			"%TOTALCOD%" =>'₹'.$TotalCod['totalCod'],
+			"%SHIPMENTCHARGES%" =>'₹'.$shipmentCharges,
+			"%NETPAYABLE%" =>'₹'.$netpayable,
  		);
 		return get_view($mainHTML,$array);
 	}

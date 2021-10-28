@@ -34,7 +34,7 @@
                   <label for="" class="form-control form-label label-text">Payment Mode:</label>
                 </div>
                 <div class="col-md-3 form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="payment_mode" id="option1" value="prepaid">
+                  <input class="form-check-input" type="radio" name="payment_mode" id="option1" value="cod">
                   <label class="form-check-label label-text" for="prepaid">COD</label>
                 </div>
                 <div class="col-md-3 form-check form-check-inline">
@@ -43,6 +43,9 @@
                 </div>
               </div>
               <button type="button" class="btn btn-primary btn-connect ms-4" id="calculte">CALCULATE</button> <br>
+              <div class="col-md-3 " id="finalCalculte" style="padding: 15px 30px; width: 100%">
+                  
+              </div>
             </div>
             <div class="col-auto instruction-rate-calc">
               <h3 class="heading-calc mt-4">DOWNLOAD SERVICABLE PINCODE LIST</h3>
@@ -70,12 +73,6 @@
 </html>
 
 <script type="text/javascript">
-  // $(document).on("click","#calculte",function() {
-  //   var pickup_pincode = $('#pickup_pincode').val();
-  //   var drop_pincode = $('#drop_pincode').val();
-
-  //   alert(getValue);
-  // });
 
   $(document).on('click','#calculte',function()
     {   
@@ -88,10 +85,10 @@
             type:"POST",
             dataType : 'json',
             url: window.location,
-            data : {"action":"shippingRateCalculate",pickup_pincode,drop_pincode,package_weight},
+            data : {"action":"shippingRateCalculate",pickup_pincode,drop_pincode,package_weight,payment_mode},
             success: function(res)
             {
-               //$(".main_div").append(res.InstructionText);
+              $("#finalCalculte").html(res.finalPrice);
             }
         });   
     });

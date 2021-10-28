@@ -1,76 +1,52 @@
 <body class="overflow-page notification-content" onload="pagi()">
-
 <div class="col py-3 content" id="content">
-
-
   <h2 class="heading" style="letter-spacing: 2px;">CREDITS SUMMARY</h2>
-<!--$$$$$$$$$$$$$$$$ tabs $$$$$$$$$$$$-->
-    
-
+  <!--$$$$$$$$$$$$$$$$ tabs $$$$$$$$$$$$-->
 <div class="tab">
   <button id="tab1" class="tablinks active" onclick="myfunction(event, 'prepaid')">PREPAID</button>
   <button  id="tab2" class="tablinks" onclick="myfunction(event, 'cod')">COD</button>
   <button  class="tablinks" onclick="myfunction(event, 'final')">FINAL</button>
-
 </div>
-
-
     <div class="operation3" id="operation2" style="background-color:#ffffff;">
-
       <div id="datepicker" class="input-group date col-lg-4 date6 " data-date-format="dd-mm-yyyy">
         <input class="form-control filter1" type="text" value="Filter by [ Date]" />
         <span class="input-group-addon calendar"><i class="fas fa-calendar-alt"></i></span>
       </div>
-  
-     
-  
-    <div class="input-group  search2 search_cust col-lg-5">
-     <div class="input-group-btn search-panel">
-      <button type="button" class="btn btn-default dropdown-toggle searchbtn dropdownbtn" data-toggle="dropdown">
-        <span id="search_concept">Filter By[ Type of Charges ]</span> <i class="fas fa-chevron-circle-down caret_style3"></i>
-      </button>
-      
-      <ul class="dropdown-menu scrollable-dropdown" role="menu">
-        <li><a href="#">Automotive Accesories</a></li>
-        <li><a href="#">Cell Phone Accesories</a></li>
-        <li><a href="#">Computer Accesories</a></li>
-        <li><a href="#">Health and Personal Care</a></li>
-      </ul>
-     </div>
-     
+      <div class="input-group  search2 search_cust col-lg-5">
+         <div class="input-group-btn search-panel">
+          <button type="button" class="btn btn-default dropdown-toggle searchbtn dropdownbtn" data-toggle="dropdown">
+            <span id="search_concept">Filter By[ Type of Charges ]</span> <i class="fas fa-chevron-circle-down caret_style3"></i>
+          </button>
+            <ul class="dropdown-menu scrollable-dropdown" role="menu">
+              <li><a href="#">Automotive Accesories</a></li>
+              <li><a href="#">Cell Phone Accesories</a></li>
+              <li><a href="#">Computer Accesories</a></li>
+              <li><a href="#">Health and Personal Care</a></li>
+            </ul>
+         </div>
+      </div>
+        <script>
+           $(document).ready(function(e){
+              $('.search-panel .dropdown-menu').find('a').click(function(e) {
+              e.preventDefault();
+              var param = $(this).attr("href").replace("#","");
+              var concept = $(this).text();
+              $('.search-panel span#search_concept').text(concept);
+              $('.input-group #search_param').val(param);
+              });
+              });
+          var a = document.getElementByTagName('a').item(0);
+          $(a).on('keyup', function(evt){
+          console.log(evt);
+          if(evt.keycode === 13){
+          
+          alert('search?');
+          } 
+        }); 
+        </script>
     </div>
-
-
-  <script>
-     $(document).ready(function(e){
-        $('.search-panel .dropdown-menu').find('a').click(function(e) {
-        e.preventDefault();
-        var param = $(this).attr("href").replace("#","");
-        var concept = $(this).text();
-        $('.search-panel span#search_concept').text(concept);
-        $('.input-group #search_param').val(param);
-        });
-        });
-    var a = document.getElementByTagName('a').item(0);
-    $(a).on('keyup', function(evt){
-    console.log(evt);
-    if(evt.keycode === 13){
-    
-    alert('search?');
-    } 
-  }); 
-  </script>
-
-   
-</div>
-
-
-      <!-----second main div start ---->
-
-              
-  <div id="table_box_bootstrap"></div>
-
-
+      <!-----second main div start ---->            
+    <div id="table_box_bootstrap"></div>
   <!------------------code for table ----------------------- -->
   <!------------------table of dispute found----------------------- -->
 <script>
@@ -81,202 +57,70 @@
           })
         });
 </script>
-<div id="content1">
-<div class="credit-content" id="prepaid">
+    <div id="content1">
+      <div class="credit-content" id="prepaid">
 
+          <table id="t01" class=" table-style table2">
+            <tr class="row1">
+              <th class=" table-style table-heading">ORDER ID</th>
+              <th class=" table-style table-heading">ORDER STATUS</th>
+              <th class=" table-style table-heading">DATE</th>
 
-    
-<table id="t01" class=" table-style table2">
-                  <tr class="row1">
-                    <th class=" table-style table-heading">ORDER ID</th>
-                    <th class=" table-style table-heading">ORDER STATUS</th>
-                    <th class=" table-style table-heading">DATE</th>
+              <th class=" table-style table-heading">AWB</th>
+              <th class=" table-style table-heading">CHARGED SHIPMENT WEIGHT</th>
+              <th class=" table-style table-heading">SHIPMENT CHARGES</th>
+            </tr>
 
-                    <th class=" table-style table-heading">AWB</th>
-                    <th class=" table-style table-heading">CHARGED SHIPMENT WEIGHT</th>
-                    <th class=" table-style table-heading">SHIPMENT CHARGES</th>
-                    
-                    
-                  </tr>
-
-                  <tr class="row1">
-                    <td class=" table-style pad">1234567890</td>
-                    <td class=" table-style pad">aaAA</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                  </tr>
-
-    <tr class="row1">
-                    <td class=" table-style pad">1234567890</td>
-                    <td class=" table-style pad">aaAA</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                  </tr>
-
-     <tr class="row1">
-                    <td class=" table-style pad">1234567890</td>
-                    <td class=" table-style pad">aaAA</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                  </tr>
-
-    <tr class="row1">
-                    <td class=" table-style pad">1234567890</td>
-                    <td class=" table-style pad">aaAA</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                  </tr>
-
-    <tr class="row1">
-                    <td class=" table-style pad">1234567890</td>
-                    <td class=" table-style pad">aaAA</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                  </tr>
-
-    <tr class="row1">
-                    <td class=" table-style pad">1234567890</td>
-                    <td class=" table-style pad">aaAA</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                  </tr>
-
-
-                 </table>
-  </div><!--    credit content div end  -->
-</div>
-
-
+            %PREPAID%
+           </table>
+      </div><!--    credit content div end  -->
+    </div>
  <!------------------table of dispute  action----------------------- -->
+    <div id="content1">
+      <div class="credit-content" id="cod">
+          <table id="t01" class="table2 table-style">
+              <tr class="row1">
+                <th class=" table-style table-heading">ORDER ID</th>
+                <th class=" table-style table-heading">ORDER STATUS</th>
+                <th class=" table-style table-heading">DATE</th>
+                <th class=" table-style table-heading">AWB</th>
+                <th class=" table-style table-heading">CHARGED SHIPMENT WEIGHT</th>
+                <th class=" table-style table-heading">REMARKS</th>
+                <th class=" table-style table-heading">SHIPMENT CHARGES</th>
+              </tr>
 
-<div id="content1">
-
-<div class="credit-content" id="cod">
-
-    
-<table id="t01" class="table2 table-style">
-                  <tr class="row1">
-                    <th class=" table-style table-heading">ORDER ID</th>
-                    <th class=" table-style table-heading">ORDER STATUS</th>
-                    <th class=" table-style table-heading">DATE</th>
-                    <th class=" table-style table-heading">AWB</th>
-                    <th class=" table-style table-heading">CHARGED SHIPMENT WEIGHT</th>
-                    <th class=" table-style table-heading">REMARKS</th>
-                    <th class=" table-style table-heading">SHIPMENT CHARGES</th>
-                    
-                  </tr>
-
-                  <tr class="row1">
-                    <td class=" table-style pad">1234567890</td>
-                    <td class=" table-style pad">aaAA</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                  </tr>
-
-                  <tr class="row1">
-                    <td class=" table-style pad">1234567890</td>
-                    <td class=" table-style pad">aaAA</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                  </tr>
-                  <tr class="row1">
-                    <td class=" table-style pad">1234567890</td>
-                    <td class=" table-style pad">aaAA</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                  </tr>
-                  <tr class="row1">
-                    <td class=" table-style pad">1234567890</td>
-                    <td class=" table-style pad">aaAA</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                  </tr>
-                  <tr class="row1">
-                    <td class=" table-style pad">1234567890</td>
-                    <td class=" table-style pad">aaAA</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                  </tr>
-                  <tr class="row1">
-                    <td class=" table-style pad">1234567890</td>
-                    <td class=" table-style pad">aaAA</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                  </tr>
-
-                 </table>
-  </div><!--    credit-content2 div end  -->
-
-</div>
+              %COD%
+          </table>
+      </div><!--  credit-content2 div end  -->
+    </div>
 <!-----------table of credit summary final  action----------------- -->
-<div class="credit-content2" id="final">
-
-    
-<table class="final">
+    <div class="credit-content2" id="final">    
+      <table class="final">
         <tr class="final  cod-final">
           <td class="final"><label class="final-label">COD Collected:</label></td>
-          <td class="final"><input type="text" name="cod" class="input-final" value="₹ 1,00,000" disabled></td>
+          <td class="final"><input type="text" name="cod" class="input-final" value="%TOTALCOD%" disabled></td>
         </tr>
-
         <tr class="final cod-final">
           <td class="final"><label class="final-label final">Shipment Charges:</label><br>
               <span class="final-sublabel">(Shipment Charges + COD Charges)</span></td>
-          <td class="final"><input type="text" name="shipment-charges" class="input-final" value="₹ 20,000" disabled></td>
+          <td class="final"><input type="text" name="shipment-charges" class="input-final" value="%SHIPMENTCHARGES%" disabled></td>
         </tr>
-
         <tr class="final cod-final">
           <td class="final"><label class="final-label">Net Payable:</label><br>
               <span class="final-sublabel">(Shipment Charges + COD Collected)</span></td>
-          <td class="final"><input type="text" name="shipment-charges" class="input-final" value="₹ 80,000" disabled></td>
+          <td class="final"><input type="text" name="shipment-charges" class="input-final" value="%NETPAYABLE%" disabled></td>
         </tr>
-
         <tr class="final cod-final">
           <td class="final"><label class="final-label">Weight Dispute(if any):</label></td>
           <td class="final"><input type="text" name="shipment-charges" class="input-final"  value="₹ 2000" disabled></td>
         </tr>
-
         <tr class="final cod-final">
           <td class="final"><label class="total-label">Total Payment after weight Dispute:</label></td>
           <td class="final"><input type="text" name="shipment-charges" class="input-final ship-charges" value="₹ 78,000" disabled></td>
         </tr>
-              
-              
-              
-                 </table>
-  </div><!--    credit-content3 div end  -->
-
-
-
+      </table>
+    </div>
+    <!--    credit-content3 div end  -->
 
 <script>
 function myfunction(evt, credits) {
@@ -323,56 +167,39 @@ function myfunction(evt, credits) {
 
 }
 </script>
-
-
 </div>
 <script>
  function  pagi()
 {
-    
-
-
-
 flag=1;
 
 var tablinks = document.getElementsByClassName("tablinks");
 var i=0;
-
-  
- 
-
   if(tablinks[0].classList.contains("active"))
    {
        
-  box1 = paginator({
-    table: document.getElementById("prepaid").getElementsByTagName("table")[0],
-    box_mode: "list",
-  });
-  box1.className = "box1";
-  box1.id="box1";
-  document.getElementById("table_box_bootstrap").appendChild(box1);
-document.getElementById("table_box_bootstrap").removeChild(box);
-
+    box1 = paginator({
+      table: document.getElementById("prepaid").getElementsByTagName("table")[0],
+      box_mode: "list",
+    });
+    box1.className = "box1";
+    box1.id="box1";
+    document.getElementById("table_box_bootstrap").appendChild(box1);
+    document.getElementById("table_box_bootstrap").removeChild(box);
   }
-else if(tablinks[1].classList.contains("active")){  
-
-  
-    
+  else if(tablinks[1].classList.contains("active")){    
   box = paginator({
     table: document.getElementById("cod").getElementsByTagName("table")[0],
     box_mode: "list",
   });
-box.className = "box1";
-box.id="box";
+  box.className = "box1";
+  box.id="box";
 
-document.getElementById("table_box_bootstrap").appendChild(box);
-document.getElementById("table_box_bootstrap").removeChild(box1);
+  document.getElementById("table_box_bootstrap").appendChild(box);
+  document.getElementById("table_box_bootstrap").removeChild(box1);
 
-}
-else{}
-
- 
-
+  }
+  else{}
 
 function paginator(config) {   
  // throw errors if insufficient parameters were given

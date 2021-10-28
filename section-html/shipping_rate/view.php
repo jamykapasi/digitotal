@@ -18,7 +18,7 @@
           <tbody>
             %HTML%
             <tr>
-              <td class="tg-0lax" colspan="8"><button type="button" class="btn btn-primary btn-connect mt-2">SHIP NOW</button></td>
+              <td class="tg-0lax" colspan="8"><a href="{SITE_URL}create_order" class="btn btn-primary btn-connect mt-2">SHIP NOW</a></td>
             </tr>
           </tbody>
         </table>
