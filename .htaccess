@@ -45,6 +45,9 @@ RewriteRule ^shipping_rate?$ section-php/shipping_rate/index.php [L]
 RewriteRule ^credits_summary/?$ section-php/credits_summary/index.php [L]
 RewriteRule ^credits_summary?$ section-php/credits_summary/index.php [L]
 
+RewriteRule ^payment_history/?$ section-php/payment_history/index.php [L]
+RewriteRule ^payment_history?$ section-php/payment_history/index.php [L]
+
 RewriteRule ^shipping_rate_calculator/?$ section-php/shipping_rate_calculator/index.php [L]
 RewriteRule ^shipping_rate_calculator?$ section-php/shipping_rate_calculator/index.php [L]
 

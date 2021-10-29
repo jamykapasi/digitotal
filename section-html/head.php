@@ -13,8 +13,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;500;600;700&display=swap" rel="stylesheet">
     
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
-    
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.0/css/all.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">  
 
+  <link href="{SITE_CSS}all.min.css" rel="stylesheet" type="text/css"/>
   <link href="{SITE_CSS}toastr/toastr.min.css" rel="stylesheet" type="text/css"/>
   <link rel="stylesheet" href="{SITE_CSS}custom.css">
   <link rel="stylesheet" href="{SITE_CSS}developer.css">

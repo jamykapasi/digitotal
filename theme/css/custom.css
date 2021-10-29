@@ -3083,4 +3083,43 @@ body.notification-content {
 .shipping-rates .btn {
     background-color: #001D61;
 }
+
+.fade.in {
+    opacity: 1 !important;
+}
+.modal-backdrop.fade.in {
+    opacity: 0.5 !important;
+}
+.modal-title {
+    font-family: montserrat;
+    color: #000000;
+    margin: 2%;
+    font-weight: bold;
+    font-size: 25px;
+}
+.edit-record-modal .form-control {
+    border-bottom: 1px solid #9CE1D0;
+    width: 100% !important;
+}
+.modal-description {
+    font-size: 14px;
+    opacity: 0.5;
+    margin-bottom: 0;
+}
+.customer-details-content {
+    padding: 10px 50px;
+}
+.customer-details-content .col {
+    margin-bottom: 25px;
+}
+.customer-details-content .btn2 {
+    padding: 8px 25px;
+    border: none;
+}
+@media (min-width: 992px) {
+    .modal-lg,
+    .modal-xl {
+        max-width: 670px;
+    }
+}
 /* ******************************************   Custom Css By Har...  End   ********************************** */

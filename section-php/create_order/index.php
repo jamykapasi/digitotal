@@ -14,10 +14,65 @@ $scripts = array(array("jquery.validate.min.js",SITE_JS));
 
 $tab_title = "Create Order";
 
+if(isset($_POST['action']) AND $_POST['action']=="shippingRateCalculate") 
+{	
+
+	$shipingRateRes = $db->pdoQuery("SELECT * FROM tbl_shipping_rate WHERE 1=1 ORDER BY id DESC LIMIT 1 ")->result();
+
+	$pickupAddress = $db->pdoQuery("SELECT * FROM tbl_pickup_address WHERE 1=1 AND id=".$_POST['pickup_address']." ORDER BY id DESC LIMIT 1 ")->result();
+
+	$string = explode(" ",$pickupAddress['address']);
+	
+	$shiping_rate = $finalPrice ='';
+
+	if (substr($_POST['customer_pincode'], 0, 3) == substr($string[2], 0, 3)) 
+	{
+		$shiping_rate = $shipingRateRes['within_city'];
+	}
+	if (substr($_POST['customer_pincode'], 0, 3) !== substr($string[2], 0, 3)) 
+	{
+		$shiping_rate = $shipingRateRes['within_zone'];
+	}
+	if (substr($_POST['customer_pincode'], 0, 1) !== substr($string[2], 0, 1)) 
+	{
+		$shiping_rate = $shipingRateRes['rest_of_india'];
+	}
+	
+		$rate = $_POST['ship_pack_weight']/0.5;
+		
+		$shiping_rate_price = $shiping_rate * $rate; 
+
+		if ($_POST['payment_method'] == 'c') 
+		{
+			$ratePrice = $shiping_rate_price + $shipingRateRes['cod'];
+		}
+		else
+		{
+			$ratePrice = $shiping_rate_price;
+		}
+
+		$unitPrice = $_POST['product_price'] * $_POST['product_qty'];
+
+		$codCharges = $shipingRateRes['cod'];
+
+		$totalPrice = $ratePrice + $unitPrice;
+		
+		$responce = array("codCharges" =>$codCharges,"unitPrice"=>$unitPrice,"rateCharges" =>$ratePrice,"totalPrice"=> $totalPrice,"shipingRatePrice" =>$shiping_rate_price);
+        echo json_encode($responce); exit;
+}
+
 if(isset($_POST['action']) AND $_POST['action']=="submitOrderForm") 
 {
 	extract($_POST);
-	
+
+	if ($payment_method == 'c') 
+	{
+		$cod_charges = $_POST['cod_charges'];
+	}
+	else
+	{
+		$cod_charges = "0.00";
+	}
 	$insert_array = array(
 		"customer_name"    => $customer_name,
 	    "customer_phone"   => $customer_phone,
@@ -34,11 +89,14 @@ if(isset($_POST['action']) AND $_POST['action']=="submitOrderForm")
 	    "payment_method"      => $payment_method,
 	    "pickup_address_id"   => $pickup_address_id,
 	    "ship_pack_weight"    => $ship_pack_weight,
+	    "shippment_charge"	  => $shippment_charge,
+	    "cod_charges"		  => $cod_charges,	
+	    "total_price"		  => $total_price,	
 	    "volumetric_cm_1"     => $volumetric_cm_1,
 	    "volumetric_cm_2"     => $volumetric_cm_2,
 	    "volumetric_cm_3"     => $volumetric_cm_3,
 	    "courier_partner"     => $courier_partner,
-	    "pickup_date"         => $pickup_date,
+	    "pickup_date"         => date($pickup_date),
 	    "created"             => created(),
 	);
 
@@ -57,7 +115,8 @@ if(isset($_POST['action']) AND $_POST['action']=="submitOrderForm")
 
 }
 if(isset($_POST['upload'])) 
-{
+{	
+
 	$filename = $_FILES["file"]["tmp_name"];
 
 	if ($_FILES["file"]["size"] > 0) 
@@ -147,8 +206,49 @@ if(isset($_POST['upload']))
 	            $pickup_date = $column[19];
 	        }
 	        
+	        $shipingRateRes = $db->pdoQuery("SELECT * FROM tbl_shipping_rate WHERE 1=1 ORDER BY id DESC LIMIT 1 ")->result();
+
+	        $pickupAddress = $db->pdoQuery("SELECT * FROM tbl_pickup_address WHERE 1=1 AND id=".$pickup_address_id." ORDER BY id DESC LIMIT 1 ")->result();	
+
+	        $string = explode(" ",$pickupAddress['address']);
+
+	        $shiping_rate = $total_price ='';
+
+	        if (substr($customer_pincode, 0, 3) == substr($string[2], 0, 3)) 
+			{
+				$shiping_rate = $shipingRateRes['within_city'];
+			}
+			if (substr($customer_pincode, 0, 3) !== substr($string[2], 0, 3)) 
+			{
+				$shiping_rate = $shipingRateRes['within_zone'];
+			}
+			if (substr($customer_pincode, 0, 1) !== substr($string[2], 0, 1)) 
+			{
+				$shiping_rate = $shipingRateRes['rest_of_india'];
+			}
+
+			$rate = $ship_pack_weight/0.5;
+		
+			$shippment_charge = $shiping_rate * $rate; 
+
+			
+
+			$productTotal = $product_price * $product_qty;
+
+			if ($payment_method == 'c') 
+			{
+				$cod_charges = $shipingRateRes['cod'];
+
+				$total_price = $shippment_charge + $cod_charges + $productTotal;	
+			}else
+			{
+				$cod_charges = "0.00";
+				
+				$total_price = $shippment_charge + $productTotal;
+			}
+
 	        $insert_array = array(
-		       "customer_name"    => $customer_name,
+		        "customer_name"    => $customer_name,
 			    "customer_phone"   => $customer_phone,
 			    "customer_email"   => $customer_email,
 			    "customer_address" => $customer_address,
@@ -163,6 +263,9 @@ if(isset($_POST['upload']))
 			    "payment_method"      => $payment_method,
 			    "pickup_address_id"   => $pickup_address_id,
 			    "ship_pack_weight"    => $ship_pack_weight,
+			    "shippment_charge"	  => $shippment_charge,
+			    "cod_charges"		  => $cod_charges,
+			    "total_price"		  => $total_price,			
 			    "volumetric_cm_1"     => $volumetric_cm_1,
 			    "volumetric_cm_2"     => $volumetric_cm_2,
 			    "volumetric_cm_3"     => $volumetric_cm_3,
@@ -180,6 +283,7 @@ if(isset($_POST['upload']))
 				
 			$db->update("tbl_order",array("order_id" => $new_order_id),array("id"=>$last_id)); 
 	    }
+
 	    $msgType = $_SESSION["msgType"] = disMessage(array('type'=>'suc','var'=> "Order created successfully."));
 			
 		redirectPage(SITE_URL."manage_order");

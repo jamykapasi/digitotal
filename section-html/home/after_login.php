@@ -4,7 +4,7 @@
         <img src="{SITE_IMG}Bhejooo_logo_dashboard.png" alt="" class="logo" width="90%">
       </a>
       <div class="right">
-        <button type="button" class="btn wallet-btn me-md-2"><img src="{SITE_IMG}wallet.png" width="16px" class="d-inline-block align-text-top">&#8203; &#8203; ₹ 200</button>
+        <button type="button" class="btn wallet-btn me-md-2"><img src="{SITE_IMG}wallet.png" width="16px" class="d-inline-block align-text-top">&#8203; &#8203; ₹ %WALLET_BALANCE%</button>
         <button type="button" class="btn btn-outline white-btn">+ RECHARGE</button>
         <a class="navbar-brand" href="#">
           <img src="{SITE_IMG}user.png" alt="" width="35px" class="">
@@ -61,7 +61,7 @@
                   <a href="{SITE_URL}credits_summary" class="nav-link px-0 sub-menu-text"> <span class="d-none d-sm-inline sub-text">Credits Summary</span></a>
                 </li>
                 <li class="ms-4">
-                  <a href="#" class="nav-link px-0 sub-menu-text"> <span class="d-none d-sm-inline sub-text">Payment History</span></a>
+                  <a href="{SITE_URL}payment_history" class="nav-link px-0 sub-menu-text"> <span class="d-none d-sm-inline sub-text">Payment History</span></a>
                 </li>
               </ul>
             </li>

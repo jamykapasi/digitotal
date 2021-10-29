@@ -28,17 +28,17 @@ class Controller extends Home {
                       <img src="'.SITE_IMG.'dashboard.svg" style="float:right">
                     </td>
                     <td class="table-style pad">'.$payment_method.'</td>
-                    <td class="table-style pad">'.$value['customer_name'].'<br><a href="" class="view">VIEW</a>/<a href="" class="view">EDIT</a>
+                    <td class="table-style pad">'.$value['customer_name'].'<br>
+                   	<a href="#exampleModalCenter?id='.$value['id'].'" data-toggle="modal" id="userData" data-target="#exampleModalCenter" class="view" data-id="'.$value['id'].'">VIEW</a>/<a href="#exampleModalCenter?id='.$value['id'].'" data-toggle="modal" id="userData" data-target="#exampleModalCenter" class="view" data-id="'.$value['id'].'">EDIT</a>
                     </td>
                     <td class="table-style pad">'.$order_status.'</td>
                     <td class="table-style pad"><button class="btn2" style="float:left;">SHIP</button>
                     <span style="float:right;" class="circle-cross">
-                    <a href="#" class="cross-icon"> 
+                    <a href="#" class="cross-icon" id="deleteOrder" data-id="'.$value['id'].'"> 
                     <i class="fas fa-times-circle"></i></a></span>
                     </td>
             </tr>';
 		}
-
 
 		$mainHTML =  DIR_TMPL . "manage_order/view.php";
 		$array = array(

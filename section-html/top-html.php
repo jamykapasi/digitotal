@@ -40,14 +40,7 @@
 	else if($_SERVER['REQUEST_URI']== PROJECT_DIRECTORY_NAME_HEADER.'weight_discrepancy'  OR 
 		$_SERVER['REQUEST_URI']== PROJECT_DIRECTORY_NAME_HEADER.'weight_discrepancy/') 
 	{
-		$body_class = "channel-integration style2";
-
-	}
-
-	else if($_SERVER['REQUEST_URI']== PROJECT_DIRECTORY_NAME_HEADER.'courier_partner_priority'  OR 
-		$_SERVER['REQUEST_URI']== PROJECT_DIRECTORY_NAME_HEADER.'courier_partner_priority/') 
-	{
-		$body_class = "channel-integration style2";
+		$body_class = "overflow-page notification-content onload='pagi()'";
 
 	}
 
@@ -68,28 +61,35 @@
 	else if($_SERVER['REQUEST_URI']== PROJECT_DIRECTORY_NAME_HEADER.'credits_summary'  OR 
 		$_SERVER['REQUEST_URI']== PROJECT_DIRECTORY_NAME_HEADER.'credits_summary/') 
 	{
-		$body_class = "channel-integration style2";
+		$body_class = "overflow-page notification-content onload='pagi()'";
 
 	}
 
+	else if($_SERVER['REQUEST_URI']== PROJECT_DIRECTORY_NAME_HEADER.'payment_history'  OR 
+		$_SERVER['REQUEST_URI']== PROJECT_DIRECTORY_NAME_HEADER.'payment_history/') 
+	{
+		$body_class = "channel-integration style2";
+
+	}
+	
 	else if($_SERVER['REQUEST_URI']== PROJECT_DIRECTORY_NAME_HEADER.'report'  OR 
 		$_SERVER['REQUEST_URI']== PROJECT_DIRECTORY_NAME_HEADER.'report/') 
 	{
-		$body_class = "channel-integration style2";
+		$body_class = "notification-content shipping-rates";
+
+	}
+	
+	else if($_SERVER['REQUEST_URI']== PROJECT_DIRECTORY_NAME_HEADER.'courier_partner_priority'  OR 
+		$_SERVER['REQUEST_URI']== PROJECT_DIRECTORY_NAME_HEADER.'courier_partner_priority/') 
+	{
+		$body_class = "notification-content";
 
 	}
 
 	else if($_SERVER['REQUEST_URI']== PROJECT_DIRECTORY_NAME_HEADER.'notification'  OR 
 		$_SERVER['REQUEST_URI']== PROJECT_DIRECTORY_NAME_HEADER.'notification/') 
 	{
-		$body_class = "channel-integration style2";
-
-	}
-
-	else if($_SERVER['REQUEST_URI']== PROJECT_DIRECTORY_NAME_HEADER.'rate_calculator'  OR 
-		$_SERVER['REQUEST_URI']== PROJECT_DIRECTORY_NAME_HEADER.'rate_calculator/') 
-	{
-		$body_class = "channel-integration style2";
+		$body_class = "overflow-page notification-content";
 
 	}
 

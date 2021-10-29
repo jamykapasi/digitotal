@@ -39,7 +39,7 @@
 
             <button type="button" class="btn btn-primary btn-connect mt-4">DOWNLOAD</button>
 
-              <!-- <h3 class="heading mt-4">INTEGRATE YOUR STORE</h3>
+             <!--  <h3 class="heading mt-4">INTEGRATE YOUR STORE</h3>
                   <img src="shopify.png" alt="" width="100%" class="shopify mt-4">
                   <p class="sub-heading">Enter your store details to get started</p>
                 </div>

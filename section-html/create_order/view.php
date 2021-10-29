@@ -74,8 +74,6 @@
 
         <div class="form-style">
             <h4 class="part1">2.Select Pickup Address</h4>
-            
-
             <h4 class="heading">PICKUP DETAILS</h4>
               <table class="data">
 
@@ -93,9 +91,7 @@
 
         <div class="form-style">
             <h4 class="part1">3.Create Shipment</h4>
-
               <table class="data">
-
               <tr>
                   <td class="for-column">
                       <label class="package-label">Package Dead Weight*</label>
@@ -117,7 +113,6 @@
                       <label class="cm-label">cm</label>
                   </td>
               </tr> 
-
               <tr>
                     <td class="for-column"><input type="text" name="courier_partner" id="courier_partner" class="input" placeholder="Courier Partner*" required/></td>
                     
@@ -134,8 +129,6 @@
      
         <div class="form-style order_summary_section hide">
             <h4 class="part1">Order Summary</h4>
-
-        
                <table class="data">
                 <tr>
                     <td><label class="summary">Order ID:</label><input type="text" name="order-id" value="#NEW_ORDER_ID#" class="input2" disabled></td>
@@ -145,9 +138,7 @@
                 <tr>
                     <td><label class="summary">Paymode Mode:</label><input type="text"  name="order-total" value="COD" class="input2"disabled></td>
                 </tr>
-
             </table>
-            
             <hr>
             <table class="data">
                 <tr>
@@ -166,37 +157,18 @@
                     <td><label class="summary">Price(per unit item):</label><input type="text" id="summary_product_unit_price" name="price1" class="input2" value="N/A" disabled></td>
                     <td><label class="summary">Qty:</label><input type="text" id="summary_product_qty" class="input2" name="Qty1" value="N/A"disabled></td>
                 </tr>
-
-
-
+                <tr><td><input type="hidden" name="shippment_charge" id="shippment_charge" value=""></td></tr>
+                <tr><td><input type="hidden" name="cod_charges" id="cod_charges" value=""></td></tr>
+                <tr><td><input type="hidden" name="total_price" id="total_price" value=""></td></tr>
                 <tr><td><button type="submit" name="submitBtn" id="submitBtn" class="btn2 btn-next order-btn">PLACE ORDER</button></td></tr>
-
             </table>
-
             </form>  
-
-     
-
     </div>
+    
 <script type="text/javascript">
-  
   $(document).on("click",".bulkUpload",function() {
     $("#file").trigger("click");
   });
-
-  // $(document).on('click','#upload',function()
-  //   {       
-  //       $.ajax({
-  //           type:"POST",
-  //           dataType : 'json',
-  //           url: window.location,
-  //           data : {"action":"BulkUpload"},
-  //           success: function(res)
-  //           {
-  //              //$(".main_div").append(res.InstructionText);
-  //           }
-  //       });   
-  //   });
 
   $(function () {
       $("#datepicker").datepicker({ 
@@ -209,35 +181,42 @@
         
       $(".order_summary_section").removeClass("hide");
 
-      var product_name = $("#product_name").val();
-      $("#summary_product_name").val(product_name);
-      
-      var product_price = $("#product_price").val();
-      $("#summary_product_unit_price").val("₹ "+product_price+" /");
-
-      var product_price = $("#product_price").val();
-      var product_qty = $("#product_qty").val();
-      
-      $("#summary_order_total").val("₹ "+(product_price*product_qty)+" /");
-      $("#summary_product_qty").val(product_qty);
-      
-      var customer_name = $("#customer_name").val();
-      var customer_phone = $("#customer_phone").val();
-      var customer_email = $("#customer_email").val();
+      var product_name     = $("#product_name").val();
+      var product_price    = $("#product_price").val();
+      var product_qty      = $("#product_qty").val();
+      var customer_name    = $("#customer_name").val();
+      var customer_phone   = $("#customer_phone").val();
+      var customer_email   = $("#customer_email").val();
       var customer_address = $("#customer_address").val();
       var customer_pincode = $("#customer_pincode").val();
-      var customer_city = $("#customer_city").val();
-      var customer_state = $("#customer_state").val();
+      var customer_city    = $("#customer_city").val();
+      var customer_state   = $("#customer_state").val();
+      var product_date     = $("#pickup_date").val();
+      var ship_pack_weight = $("#ship_pack_weight").val();
+      var pickup_address   = $('#pickup_address_id').val();
+      var payment_method   = $("input[name='payment_method']:checked").val();
        
       var full_address = customer_name+","+customer_phone+","+customer_address+","+customer_pincode+","+customer_city+","+customer_state;  
 
+      $.ajax({
+            type:"POST",
+            dataType : 'json',
+            url: window.location,
+            data : {"action":"shippingRateCalculate",customer_pincode,pickup_address,ship_pack_weight,payment_method,product_price,product_qty},
+            success: function(res)
+            {
+              $("#shippment_charge").val(res.shipingRatePrice);
+              $("#cod_charges").val(res.codCharges);
+              $("#total_price").val(res.totalPrice);
+              $("#summary_order_total").val("₹ "+(res.totalPrice)+" /");
+            }
+        });
+
+      $("#summary_product_name").val(product_name);
+      $("#summary_product_unit_price").val("₹ "+product_price+" /");
+      $("#summary_product_qty").val(product_qty);
       $("#summary_address").val(full_address);
-
-      var product_date = $("#pickup_date").val();
-      
-
       $("#summary_date").val(product_date);
 
   });
-
 </script>

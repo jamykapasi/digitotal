@@ -25,7 +25,6 @@ class Controller extends Home {
 	        		</tr>';
 		}
 
-
 		$mainHTML =  DIR_TMPL . "shipping_rate/view.php";
 		$array = array(
 			"%HTML%" => $html,

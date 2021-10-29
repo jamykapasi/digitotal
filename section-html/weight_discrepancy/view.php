@@ -95,8 +95,6 @@
     } 
   }); 
   </script>
-
-   
 </div>
 
 
@@ -159,7 +157,7 @@
                     <td class=" table-style pad">aaa</td>
                   </tr>
 
-		<tr class="row1">
+	               <tr class="row1">
                     <td class=" table-style pad">ABCD</td>
                     <td class=" table-style pad">aa</td>
                     
@@ -339,55 +337,40 @@
 </div>
 
 <script>
- function  pagi()
+function  pagi()
 {
-    
-
-
-
-flag=1;
-
-var tablinks = document.getElementsByClassName("tablinks");
-var i=0;
-
-	
- 
+    flag=1;
+    var tablinks = document.getElementsByClassName("tablinks");
+    var i=0;
 
 	if(tablinks[0].classList.contains("active"))
- 	 {
+ 	{
  	     
-	box1 = paginator({
-    table: document.getElementById("dispute-content").getElementsByTagName("table")[0],
-    box_mode: "list",
-	});
-	box1.className = "box1";
-	box1.id="box1";
-	document.getElementById("table_box_bootstrap").appendChild(box1);
-    document.getElementById("table_box_bootstrap").removeChild(box);
+    	box1 = paginator({
+        table: document.getElementById("dispute-content").getElementsByTagName("table")[0],
+        box_mode: "list",
+    	});
+    	box1.className = "box1";
+    	box1.id="box1";
+    	document.getElementById("table_box_bootstrap").appendChild(box1);
+        document.getElementById("table_box_bootstrap").removeChild(box);
 
-  }
-else if(tablinks[1].classList.contains("active")){	
+    }
+    else if(tablinks[1].classList.contains("active")){	
+    	box = paginator({
+        table: document.getElementById("dispute-content2").getElementsByTagName("table")[0],
+        box_mode: "list",
+    	});
+        box.className = "box1";
+        box.id="box";
 
-	
-    
-	box = paginator({
-    table: document.getElementById("dispute-content2").getElementsByTagName("table")[0],
-    box_mode: "list",
-	});
-box.className = "box1";
-box.id="box";
+        document.getElementById("table_box_bootstrap").appendChild(box);
+        document.getElementById("table_box_bootstrap").removeChild(box1);
+    }
+    else{}
 
-document.getElementById("table_box_bootstrap").appendChild(box);
-document.getElementById("table_box_bootstrap").removeChild(box1);
-
-}
-else{}
-
- 
-
-
-function paginator(config) {   
- // throw errors if insufficient parameters were given
+   function paginator(config) {   
+    // throw errors if insufficient parameters were given
     if (typeof config != "object")
         throw "Paginator was expecting a config object!";
     if (typeof config.get_rows != "function" && !(config.table instanceof Element))
@@ -421,7 +404,6 @@ function paginator(config) {
             }
 
             return trs;
-		
         }
     }
     var get_rows = config.get_rows;
@@ -732,7 +714,6 @@ function myfunction(evt, dispute) {
   document.getElementById(dispute).style.display = "block";
   evt.currentTarget.className += " active";
   
-
 }
 </script>
 
@@ -743,10 +724,6 @@ var btn2 = document.getElementById("tab2");
 
 btn.addEventListener("click", pagi);
 btn2.addEventListener("click", pagi);
-
-
 </script>
-
-
 </body>
 </html>

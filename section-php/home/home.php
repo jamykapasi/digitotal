@@ -13,7 +13,10 @@ class Home {
 
 		$menu = NULL;
 		if(isset($this->sessUserId) && $this->sessUserId > 0){
-			$replace = array();
+			$res = $this->db->pdoQuery("SELECT * FROM tbl_users WHERE 1=1 ORDER BY id DESC ")->result();
+			$replace = array(
+				"%WALLET_BALANCE%" => $res['wallet_balance'],
+			);
 			$menu = get_view(DIR_TMPL . $this->module . "/" . "after_login.php",$replace);
 		}
 		else
@@ -42,6 +45,8 @@ class Home {
 
 	public function getPageContent($type="") 
 	{
+		$html = "";
+		
 
 		$mainHTML =  DIR_TMPL . "home/home.php";
 		$array = array(
