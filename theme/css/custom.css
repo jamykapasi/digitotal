@@ -1607,7 +1607,7 @@ body.notification-content {
 .notification-content .calc-input,
 .notification-content .form-select {
     border: 0;
-    border-bottom: 1.5px solid #6DFADE;
+    border-bottom: 1.5px solid #6DFADE !important;
     border-radius: 0;
     margin-right: 4rem;
     margin-top: 0.6rem;
@@ -3115,6 +3115,18 @@ body.notification-content {
 .customer-details-content .btn2 {
     padding: 8px 25px;
     border: none;
+}
+.calc-input-content {
+    display: flex;
+    align-items: flex-end;
+}
+.calc-input-content input {
+    width: 100%;
+    margin: 0 20px 0 0 !important;
+}
+.calc-input-content .form-label {
+    margin: 0;
+    padding: 0;
 }
 @media (min-width: 992px) {
     .modal-lg,

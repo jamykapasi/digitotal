@@ -1,7 +1,7 @@
 <body class="notification-content">
 
 <div class="col py-3 content">
-      <form id="ratecCalculte" method="post" action="">
+      <form id="ratecCalculte" class="ratecCalculte" method="post" action="">
         <div class="row fields-instruction mt-4">
             <div class="col-auto fields-rate-calc">
               <div class="ms-4">
@@ -10,10 +10,10 @@
 
               <div class="input-group mb-3 ms-2 row w-75">
                 <div class="col-lg-6">
-                  <input type="text" class="form-control calc-input" id="pickup_pincode" placeholder="Pickup Pin Code">
+                  <input type="text" class="form-control calc-input" name="pickup_pincode" id="pickup_pincode" placeholder="Pickup Pin Code">
                 </div>
                 <div class="col-lg-6">
-                  <input type="text" class="form-control calc-input" id="drop_pincode" placeholder="Drop Pin Code">
+                  <input type="text" class="form-control calc-input" name="drop_code" id="drop_pincode" placeholder="Drop Pin Code">
                 </div>
               </div>
 
@@ -21,11 +21,11 @@
                 <div class="col-md-6">
                   <label for="inputCity" class="form-control form-label label-text">Package Dead Weight:</label>
                 </div>
-                <div class="col-md-2">
-                  <input type="number" class="form-control ms-0 calc-input" id="package_dead_weight"placeholder="">
-                </div>
-                <div class="col-md-2">
-                  <label for="inputkg" class="form-control form-label label-text">kgs</label>
+                <div class="col-lg-3">
+                  <div class="calc-input-content">                    
+                    <input type="text" class="form-control calc-input" name="package_dead_weight" id="package_dead_weight"placeholder="" value="">
+                    <label for="inputkg" class="form-label">kgs</label>
+                  </div>
                 </div>
 
                 <p class="italic-text italic-rate-calc">The minimum chargeable weight is 0.5kgs</p>
@@ -55,7 +55,7 @@
                   <input type="text" class="form-control calc-input" placeholder="Pickup Pin Code">
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-primary btn-connect mt-2">DOWNLOAD</button> <br>
+                  <button type="submit" class="btn btn-primary btn-connect mt-2">DOWNLOAD</button> <br>
                   <!-- <input type="text" class="form-control" placeholder="Drop Pin Code"> -->
                 </div>
               </div>
@@ -88,8 +88,51 @@
             data : {"action":"shippingRateCalculate",pickup_pincode,drop_pincode,package_weight,payment_mode},
             success: function(res)
             {
-              $("#finalCalculte").html(res.finalPrice);
+              if (res.status==1)
+              {
+                $("#finalCalculte").html(res.finalPrice);
+              }
+              else
+              {
+                $("#finalCalculte").html(res.error);
+              } 
             }
         });   
+  });
+
+    $(document).on("submit",".ratecCalculte",function(){
+      $(".ratecCalculte").validate({
+        ignore: [],
+        errorClass: 'help-block',
+        errorElement: 'span',
+        rules: {
+          pickup_pincode:{required:true,digits: true},
+          drop_pincode:{required:true,digits: true},
+          package_dead_weight:{required:true},
+        },
+        messages: {
+          pickup_pincode:{required:"Please enter valid pincode."},
+          drop_pincode:{required:"Please  enter valid pincode."},
+          package_dead_weight:{required:"numbers only"},
+        },
+        highlight: function (element) {
+            $(element).closest('form-check-input').addClass('has-error');
+        },
+        unhighlight: function (element) {
+            $(element).closest('form-check-input').removeClass('has-error');
+        },
+        errorPlacement: function (error, element) {
+          if(element.attr('id') == 'order'){
+              error.insertAfter(element.closest('.form-check-label'));
+          }else{
+              error.insertAfter(element.closest('.form-check-label'));
+          }
+        }
+      });
+      if ($(".ratecCalculte").valid()) {
+          return true;
+      } else {
+          return false;
+      }
     });
 </script>

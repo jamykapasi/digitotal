@@ -1,0 +1,2 @@
+2021-10-29 06:10:23 :: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'address='363421' ORDER BY id DESC LIMIT 1' at line 1: 340
+2021-10-29 06:10:01 :: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'address' in 'where clause': 340
