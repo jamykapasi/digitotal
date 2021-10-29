@@ -82,7 +82,7 @@
 	else if($_SERVER['REQUEST_URI']== PROJECT_DIRECTORY_NAME_HEADER.'courier_partner_priority'  OR 
 		$_SERVER['REQUEST_URI']== PROJECT_DIRECTORY_NAME_HEADER.'courier_partner_priority/') 
 	{
-		$body_class = "notification-content";
+		$body_class = "notification-content shipping-rates";
 
 	}
 

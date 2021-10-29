@@ -18,6 +18,14 @@ class Controller extends Home {
 			$payment_method = $value['payment_method'] == 'c' ? "COD" : "Prepaid";
 			$order_status = $value['status'] == 'c' ? "Completed" : "Pending";
 
+			if ($value['status'] == 'c') 
+			{
+				$shipButton ='<button class="btn2 ship" id="ship" data-id="'.$value['id'].'" style="float:left;" disabled>SHIP</button>';
+			}
+			else
+			{
+				$shipButton ='<button class="btn2 ship" id="ship" data-id="'.$value['id'].'" style="float:left;" >SHIP</button>';
+			}	
 			$html.= '<tr class="row1">
                     <td class="table-style pad"><input type="checkbox" class="check">
                     <span class="checkmark"></span>'.ORDER_FORMAT.$value['order_id'].'</td>
@@ -32,7 +40,7 @@ class Controller extends Home {
                    	<a href="#exampleModalCenter?id='.$value['id'].'" data-toggle="modal" id="userData" data-target="#exampleModalCenter" class="view" data-id="'.$value['id'].'">VIEW</a>/<a href="#exampleModalCenter?id='.$value['id'].'" data-toggle="modal" id="userData" data-target="#exampleModalCenter" class="view" data-id="'.$value['id'].'">EDIT</a>
                     </td>
                     <td class="table-style pad">'.$order_status.'</td>
-                    <td class="table-style pad"><button class="btn2" style="float:left;">SHIP</button>
+                    <td class="table-style pad">'.$shipButton.'
                     <span style="float:right;" class="circle-cross">
                     <a href="#" class="cross-icon" id="deleteOrder" data-id="'.$value['id'].'"> 
                     <i class="fas fa-times-circle"></i></a></span>

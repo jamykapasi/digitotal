@@ -8,11 +8,11 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 <div class="col content">
-    <form action="{SITE_URL}create_order" method="post" enctype="multipart/form-data">
+    <form class="bulkFile" id="bulkFile" action="{SITE_URL}create_order" method="post" enctype="multipart/form-data">
     <div class="head1">
          <h2 class="heading col-lg-7" style="letter-spacing: 2px; width: 38%;">CREATE NEW ORDERS</h2>
             <div class="create-order-file">
-                <input type="file" name="file" id="file" >
+                <input type="file" class="form-control" name="file" id="file" >
                 <button class="btn2 bulk col-lg-1 bulkUpload" id="btnFile" >BULK UPLOAD</button>
             </div>
             <button class="btn2 bulk col-lg-1" type="submit"  id="upload" name="upload"> UPLOAD</button>
@@ -218,5 +218,38 @@
       $("#summary_address").val(full_address);
       $("#summary_date").val(product_date);
 
+  });
+
+  $(document).on("submit",".bulkFile",function(){
+
+      $(".bulkFile").validate({
+        ignore: [],
+        errorClass: 'help-block',
+        errorElement: 'span',
+        rules: {
+          file:{required:true},
+        },
+        messages: {
+          file:{required:"Please  enter  File."},
+        },
+        highlight: function (element) {
+            $(element).closest('form-check-input').addClass('has-error');
+        },
+        unhighlight: function (element) {
+            $(element).closest('form-check-input').removeClass('has-error');
+        },
+        errorPlacement: function (error, element) {
+          if(element.attr('id') == 'file'){
+              error.insertAfter(element.closest('.form-check-input'));
+          }else{
+              error.insertAfter(element.closest('.form-check-input'));
+          }
+        }
+      });
+      if ($(".bulkFile").valid()) {
+          return true;
+      } else {
+          return false;
+      }
   });
 </script>

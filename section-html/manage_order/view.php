@@ -217,5 +217,20 @@
         }); 
    });
 
+   $(document).on("click","#ship",function() {
+      var id = $(this).data('id');
+
+      $.ajax({
+          type:"POST",
+          dataType : 'json',
+          url: window.location,
+          data : {"action":"changeStatus",id},
+          success: function(res)
+          {
+           window.location = "{SITE_URL}manage_order";
+          }
+      }); 
+   });
+
 </script>
 </div>
