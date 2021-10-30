@@ -55,6 +55,7 @@ if(isset($_POST['action']) AND $_POST['action']=="editUser")
 
 	redirectPage(SITE_URL."manage_order");
 }
+
 if(isset($_POST['action']) AND $_POST['action']=="deleteOrder") 
 {
 	extract($_POST);
@@ -66,6 +67,23 @@ if(isset($_POST['action']) AND $_POST['action']=="deleteOrder")
     $responce = array('status'=> 1);
     echo json_encode($responce); exit;
 }
+
+if(isset($_POST['action']) AND $_POST['action']=="changeStatus") 
+{
+	extract($_POST);
+	
+	$update_array = array(
+		"status"    => 'c'
+    );
+    
+	$db->update("tbl_order",$update_array,array("id"=>$id));
+
+	$msgType = $_SESSION["msgType"] = disMessage(array('type'=>'suc','var'=> "Order Ship."));
+    
+    $responce = array('status'=> 1);
+    echo json_encode($responce); exit;
+}
+
 else 
 {
 	$object = new Controller($module,$token);
