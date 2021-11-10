@@ -11,7 +11,7 @@ class Controller extends Home {
 	function getHTML() {
 		
 		$prepaid = $cod ="";
-		$res = $this->db->pdoQuery("SELECT * FROM tbl_order WHERE 1=1 ANd payment_method='p' ORDER BY id DESC ")->results();
+		$res = $this->db->pdoQuery("SELECT * FROM tbl_order WHERE 1=1 AND payment_method='p' ORDER BY id DESC ")->results();
 
 		foreach ($res as $key => $value) {
 
@@ -27,7 +27,7 @@ class Controller extends Home {
             </tr>';
 		}
 
-		$res = $this->db->pdoQuery("SELECT * FROM tbl_order WHERE 1=1 ANd payment_method='c' ORDER BY id DESC ")->results();
+		$res = $this->db->pdoQuery("SELECT * FROM tbl_order WHERE 1=1 AND payment_method='c' ORDER BY id DESC ")->results();
 
 		foreach ($res as $key => $value) {
 

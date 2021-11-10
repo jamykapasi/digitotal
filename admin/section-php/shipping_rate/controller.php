@@ -39,6 +39,10 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
                     $this->data['content'] =  $this->viewForm();
                     break;
                 }
+            case 'upload' : {
+                    $this->data['content'] =  $this->uploadCSV();
+                    break;
+                }
             case 'delete' : {
                     $this->data['content'] =  json_encode($this->dataGrid());
                     break;
@@ -49,26 +53,65 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
         }
     }
     
+    public function uploadCSV()
+    { 
+        $main_content = new MainTemplater(DIR_ADMIN_TMPL.$this->module."/upload_csv.php");
+        $main_content = $main_content->parse(); 
+        
+        $fields = array(
+            "%TYPE%",
+            "%ID%"
+        );
+        $fields_replace = array(
+            $this->type,
+            $this->id
+        );
+
+        $content = str_replace($fields, $fields_replace, $main_content);
+        return filtering($content, 'output', 'text');
+    }
+
     public function viewForm()
     { 
         $main_content = new MainTemplater(DIR_ADMIN_TMPL.$this->module."/full-view.php");
         $main_content = $main_content->parse(); 
         
+        $pincode ="";
+
+        $pincodeRes = $this->db->pdoQuery("SELECT * FROM tbl_courier_pincode WHERE courier_partner_id=".$_REQUEST['id']." ")->results();
+        
+        foreach ($pincodeRes as $key => $value) 
+        {
+            $pincode .='<li class="pincode-item">
+                            <span>'.$value['pincode'].'</span> <a href="javascript:void()" data-id="'.$value['id'].'" class="remove-icon" id="removePin"> X </a>
+                        </li>';
+        }
         $fields = array(
-            "#PINCODE#", 
             "#COURIER_PARTNER#",
             "#WITHIN_CITY#",
+            "#WITHIN_ZONE#",
+            "#METROS#",
+            "#REST_OF_INDIA#",
+            "#SPECIAL_ZONE#",
+            "#COD#",
             "#CREATED_DATE#",
+            "#PINCODE#",
         );
+
         $fields_replace = array(
-            $this->pincode,
             $this->courier_partner,
             $this->within_city,
+            $this->within_zone,
+            $this->metros,
+            $this->rest_of_india,
+            $this->special_zone,
+            $this->cod,
             getDateFormat($this->created,'y'),
+            $pincode,
         );
         $content=str_replace($fields,$fields_replace,$main_content);
         return sanitize_output($content);
-}
+    }
     
     public function getForm() 
     {
@@ -78,7 +121,7 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
 
         
         $fields = array(
-            "%PINCODE%",
+            //"%PINCODE%",
             "%COURIER_PARTNER%",
             "%WITHIN_CITY%",
             "%WITHIN_ZONE%",
@@ -91,7 +134,7 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
             
         );
         $fields_replace = array(
-            $this->pincode,
+            //$this->pincode,
             $this->courier_partner,
             $this->within_city,
             $this->within_zone,
@@ -136,9 +179,11 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
               
                 $operation = '';
                             
+                $operation.=get_operation($fetchRes['id'],"upload","btnEdit","Bulk Pincode");
                 $operation.=get_operation($fetchRes['id'],"edit","btnEdit","Edit");
-                // $operation.=get_operation($fetchRes['id'],"view","btnEdit","View");
+                $operation.=get_operation($fetchRes['id'],"view","btnEdit","View");
                 $operation.=get_operation($fetchRes['id'],"delete","btn-delete","Delete");
+
 
                 if($fetchRes['courier_logo'] == "")
                 {
@@ -153,12 +198,6 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
                     $fetchRes['id'],
                     $courier_logo,
                     $fetchRes['courier_partner'],
-                    $fetchRes['within_city'],
-                    $fetchRes['within_zone'],
-                    $fetchRes['metros'],
-                    $fetchRes['rest_of_india'],
-                    $fetchRes['special_zone'],
-                    $fetchRes['cod'],
                     get_switch($fetchRes['id'],$status),
                     $operation,
                 );

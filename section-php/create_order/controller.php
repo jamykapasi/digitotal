@@ -16,7 +16,8 @@ class Controller extends Home {
 	
 		$res = $this->db->pdoQuery("SELECT * FROM tbl_category WHERE status = 'a' ")->results();
 
-		$option = $pickup_option = "";
+		$option = $pickup_option = $courier_option = "";
+
 		foreach ($res as $key => $value) {
 			$option.= "<option value='".$value['id']."'>".$value['category_name']."</option>";
 		}
@@ -27,11 +28,31 @@ class Controller extends Home {
 			$pickup_option.= "<option value='".$value['id']."'>".$value['address']."</option>";
 		}
 
+		$userRes = $this->db->pdoQuery("SELECT id,courier_priority FROM tbl_users WHERE id=".$this->sessUserId." ")->result();
+
+		if ($userRes['courier_priority'] == "recommended priority") 
+		{
+			$resCourier = $this->db->pdoQuery("SELECT * FROM  tbl_shipping_rate WHERE status = 'a'  ORDER BY within_city ASC ")->results();
+
+			foreach ($resCourier as $key => $value) {
+				$courier_option.= "<option value='".$value['id']."'>".$value['courier_partner']."</option>";
+			}
+		}
+		else
+		{
+			$resCourier = $this->db->pdoQuery("SELECT * FROM  tbl_shipping_rate WHERE status = 'a' ")->results();
+
+			foreach ($resCourier as $key => $value) {
+				$courier_option.= "<option value='".$value['id']."'>".$value['courier_partner']."</option>";
+			}
+		}
+		
 		$mainHTML =  DIR_TMPL . "create_order/view.php";
 		$array = array(
-			"#OPTION#"         => $option,	
-			"#PICKUP_ADDRESS#" => $pickup_option,
-			"#NEW_ORDER_ID#"   => ORDER_FORMAT.$new_order_id,
+			"#OPTION#"          => $option,	
+			"#PICKUP_ADDRESS#"  => $pickup_option,
+			"#COURIER_PARTNER#"	=> $courier_option,
+			"#NEW_ORDER_ID#"    => ORDER_FORMAT.$new_order_id,
  		);
 		return get_view($mainHTML,$array);
 	}

@@ -81,9 +81,8 @@
             <option value="2">2</option>
           </select>
           <label class="show">Result</label>
-          
-
-            <div class=" pagination1 pagination:number active"> 1</div>
+        
+          <div class=" pagination1 pagination:number active"> 1</div>
 
           <div class="pagination:number arrow">
             <svg width="18" height="18">

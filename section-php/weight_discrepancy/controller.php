@@ -10,40 +10,88 @@ class Controller extends Home {
 
 	function getHTML() {
 		
-		$html = "";
-		// $res = $this->db->pdoQuery("SELECT * FROM tbl_order WHERE 1=1 ORDER BY id DESC ")->results();
+		$disputeFound = $disputeAction ="";
 
-		// foreach ($res as $key => $value) {
+		$disputeFoundRes = $this->db->pdoQuery("SELECT * FROM tbl_weight_discrepancy  WHERE status='d' ")->results();
 
-		// 	$payment_method = $value['payment_method'] == 'c' ? "COD" : "Prepaid";
-		// 	$order_status = $value['status'] == 'c' ? "Completed" : "Pending";
+		foreach ($disputeFoundRes as $key => $value) {
 
-		// 	$html.= '<tr class="row1">
-  //                   <td class="table-style pad"><input type="checkbox" class="check">
-  //                   <span class="checkmark"></span>'.ORDER_FORMAT.$value['order_id'].'</td>
-  //                   <td class="table-style pad">'.getDateFormat($value['created']).'</td>
-  //                   <td class="table-style pad">Channel Name</td>
-  //                   <td class="table-style pad">
-  //                     <p style="float:left">'.$value['product_name'].'</p>
-  //                     <img src="'.SITE_IMG.'dashboard.svg" style="float:right">
-  //                   </td>
-  //                   <td class="table-style pad">'.$payment_method.'</td>
-  //                   <td class="table-style pad">'.$value['customer_name'].'<br><a href="" class="view">VIEW</a>/<a href="" class="view">EDIT</a>
-  //                   </td>
-  //                   <td class="table-style pad">'.$order_status.'</td>
-  //                   <td class="table-style pad"><button class="btn2" style="float:left;">SHIP</button>
-  //                   <span style="float:right;" class="circle-cross">
-  //                   <a href="#" class="cross-icon"> 
-  //                   <i class="fas fa-times-circle"></i></a></span>
-  //                   </td>
-  //           </tr>';
-		// }
+			if($value['proof'] == "")
+            {
+                $discrepancy_proof = '<img src="'.SITE_UPD.'/discrepancy_proof/no_image.jpg" width="50" height="50">';
+            } else {
 
+                $discrepancy_proof = '<img src="'.SITE_UPD.'/discrepancy_proof/'.$value['proof'].'" width="50" height="50">';
+            }
+
+			$disputeFound.= '<tr class="row1">
+                <td class=" table-style pad">
+	                <p>'.date('d M Y',strtotime($value['created'])).',
+	                   '.date('h:i a',strtotime($value['created'])).'</p>
+                </td>
+                <td class=" table-style pad">
+	                <p>'.date('d M Y',strtotime($value['order_date_time'])).',
+	               	   '.date('h:i a',strtotime($value['order_date_time'])).'</p>
+                <td class=" table-style pad">
+                    <p>'.$value['product_name'].'</p>
+                    <p>Qty: '.$value['product_qty'].'</p>
+                    <img src="'.SITE_IMG.'dashboard.svg" style="float:right">
+                <td class=" table-style pad">
+                	<p>'.$value['courier_name'].'</p>
+                	<p>AWB:12456</p>
+                </td>
+                <td class=" table-style pad">
+                	<p>Weight : '.$value['enterd_weight'].' kg</p>
+                	<p>₹</p>
+                </td>
+                <td class=" table-style pad">
+                	<p>Weight : '.$value['charged_weight'].' kg</p>
+                	<p>₹'.$value['depute_charge'].'</p>
+                </td>
+                <td class="table-style pad">'.$discrepancy_proof.'</td>
+              </tr>';
+		}
+		
+		$disputeActionRes = $this->db->pdoQuery("SELECT * FROM tbl_weight_discrepancy WHERE status='a'")->results();
+
+		foreach ($disputeActionRes as $key => $value) {
+
+			$disputeAction.= '<tr class="row1">
+                <td class=" table-style pad">
+	                <p>'.date('d M Y',strtotime($value['created'])).',
+	                   '.date('h:i a',strtotime($value['created'])).'</p>
+                </td>
+                <td class=" table-style pad">
+	                <p>'.date('d M Y',strtotime($value['order_date_time'])).',
+	               	   '.date('h:i a',strtotime($value['order_date_time'])).'</p>
+                <td class=" table-style pad">
+                    <p>'.$value['product_name'].'</p>
+                    <p>Qty: '.$value['product_qty'].'</p>
+                    <img src="'.SITE_IMG.'dashboard.svg" style="float:right">
+                <td class=" table-style pad">
+                	<p>'.$value['courier_name'].'</p>
+                	<p>AWB:12456</p>
+                </td>
+                <td class=" table-style pad">
+                	<p>Weight : '.$value['enterd_weight'].' kg</p>
+                	<p>₹</p>
+                </td>
+                <td class=" table-style pad">
+                	<p>Weight : '.$value['charged_weight'].' kg</p>
+                	<p>₹'.$value['depute_charge'].'</p>
+                </td>
+                <td class="table-style pad">
+                	<p>Dispute Resolved</p>
+                	<p>credit Added:₹'.$value['depute_charge'].'</p>
+                </td>
+              </tr>';
+		}
 
 		$mainHTML =  DIR_TMPL . "weight_discrepancy/view.php";
 		$array = array(
-			
- 		);
+			"%DISPUTEFOUND%"  => $disputeFound,
+			"%DISPUTEACTION%" => $disputeAction,
+  		);
 		return get_view($mainHTML,$array);
 	}
 	

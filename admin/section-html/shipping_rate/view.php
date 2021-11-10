@@ -1,71 +1,50 @@
-<style type="text/css">
-
-div#dt_users_filter {
-    display: none;
-}
-div.dataTables_paginate {
-    float: right;
-    margin: 0;
-    display: none;
-}
-
-div.dataTables_info {
-    position: relative;
-    top: 15px;
-    display: none;
-}
-
-</style>
-
 <script type="text/javascript">
     $(function () {
 
     ajaxSourceUrl = "<?php echo SITE_ADM_MOD.  $this->module; ?>/ajax.php";
        
     OTable = $('#dt_users').dataTable({
-            "bProcessing": true,
-            "bServerSide": true,
-            "sAjaxSource": ajaxSourceUrl,
-            "fnServerData": function (sSource, aoData, fnCallback) {
-                $.ajax({
-                    "dataType": 'json',
-                    "type": "POST",
-                    "url": sSource,
-                    "data": aoData,
-                    "success": fnCallback
-                });
-            },
-            "aaSorting" : [],
-            "aoColumns": [
-                {"sName": "id", 'sTitle' : 'ID', 'bVisible': false},
-                {"sName": "", 'sTitle': 'ID'},
-                {"sName": "", 'sTitle': 'Courier Logo'},
-                {"sName": "", 'sTitle': 'Courier Partner'},
-                {"sName": "email", 'sTitle': 'Within City'},
-                {"sName": "email", 'sTitle': 'Within Zone'},
-                {"sName": "email", 'sTitle': 'Metros'},
-                {"sName": "email", 'sTitle': 'Rest Of India'},
-                {"sName": "email", 'sTitle': 'Special Zone'},
-                {"sName": "email", 'sTitle': 'COD'},
-                {"sName": "status", 'sTitle' : 'Status', bSortable:false, bSearchable:false},
-                // {"sName": "name", 'sTitle' : 'Created'}, 
-                {"sName": "operation", 'sTitle': 'Action', bSortable: false, bSearchable: false}
-            ],
-            "fnServerParams"
-                    : function (aoData) {
-                        setTitle(aoData, this)
-                    },
-            "fnDrawCallback"
-                    : function (oSettings) {
-                        $('.make-switch').bootstrapSwitch();
-                        $('.make-switch').bootstrapSwitch('setOnClass', 'success');
-                        $('.make-switch').bootstrapSwitch('setOffClass', 'danger');
+        "bProcessing": true,
+        "bServerSide": true,
+        "sAjaxSource": ajaxSourceUrl,
+        "fnServerData": function (sSource, aoData, fnCallback) {
+            $.ajax({
+                "dataType": 'json',
+                "type": "POST",
+                "url": sSource,
+                "data": aoData,
+                "success": fnCallback
+            });
+        },
+        "aaSorting" : [],
+        "aoColumns": [
+            {"sName": "id", 'sTitle' : 'ID', 'bVisible': false},
+            {"sName": "", 'sTitle': 'ID'},
+            {"sName": "", 'sTitle': 'Courier Logo'},
+            {"sName": "", 'sTitle': 'Courier Partner'},
 
-                    }
+            {"sName": "status", 'sTitle' : 'Status', bSortable:false, bSearchable:false},
+            // {"sName": "name", 'sTitle' : 'Created'}, 
+            {"sName": "operation", 'sTitle': 'Action', bSortable: false, bSearchable: false}
+            
+        ],
+        "fnServerParams"
+                : function (aoData) {
+                    setTitle(aoData, this)
+                },
+        "fnDrawCallback"
+                : function (oSettings) {
+                    $('.make-switch').bootstrapSwitch();
+                    $('.make-switch').bootstrapSwitch('setOnClass', 'success');
+                    $('.make-switch').bootstrapSwitch('setOffClass', 'danger');
 
-        });
-        $('.dataTables_filter').css({float: 'right'});
-        $('.dataTables_filter input').addClass("form-control input-inline");
+                }
+
+    });
+    $('.dataTables_filter').css({float: 'right'});
+    $('.dataTables_filter input').addClass("form-control input-inline");
+
+        
     });
 </script>
 
@@ -89,3 +68,28 @@ div.dataTables_info {
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).on("click","#removePin",function() {
+      var id = $(this).data('id');
+
+      var del = confirm("Are you sure you want to delete?");
+        if (del)
+        $.ajax({
+            type:"POST",
+            dataType : 'json',
+            url: window.location,
+            data : {"action":"deletePincode",id},
+            success: function (res) 
+            {       
+                if(res.status == 1)
+                { 
+                  window.location.reload();
+                } 
+                else 
+                {
+                    toastr['error'](response.message);
+                }
+            },
+        }); 
+    });
+</script>

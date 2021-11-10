@@ -12,7 +12,7 @@
     <div class="head1">
          <h2 class="heading col-lg-7" style="letter-spacing: 2px; width: 38%;">CREATE NEW ORDERS</h2>
             <div class="create-order-file">
-                <input type="file" class="form-control" name="file" id="file" >
+                <input type="file" class="form-control" name="file" id="file" accept=".csv">
                 <button class="btn2 bulk col-lg-1 bulkUpload" id="btnFile" >BULK UPLOAD</button>
             </div>
             <button class="btn2 bulk col-lg-1" type="submit"  id="upload" name="upload"> UPLOAD</button>
@@ -66,8 +66,8 @@
                     
                 </tr>
 
-                <tr><td class="for-column"><a href="javascript:void(0);" class="order_summary_click btn2 btn-next">Order Summary</button></td></tr>
-
+                <tr><td class="for-column"><button type="button" class="order_summary_click btn2 btn-next">Next</button></td></tr>
+                
             </table>
         
         </div><br><br>
@@ -114,14 +114,17 @@
                   </td>
               </tr> 
               <tr>
-                    <td class="for-column"><input type="text" name="courier_partner" id="courier_partner" class="input" placeholder="Courier Partner*" required/></td>
+                    <td class="for-column"><select name="courier_partner" id="courier_partner" class="input" required>
+                        <option value="">Select Courier Partner*</option>
+                         #COURIER_PARTNER# 
+                        </select></td>
                     
                     <td class="for-column pickup-date">
                         <div id="datepicker" class="input-group input-group2 date pickup datepicker " data-date-format="dd-mm-yyyy">
                         <input class="form-control filter1 " type="text" name="pickup_date" id="pickup_date" value="Pickup Date*" />
                         <span class="input-group-addon calendar"><i class="glyphicon glyphicon-calendar"></i></span>
                       </div>
-                  </td>
+                    </td>
              </tr>
           </table>
         </div><br><br>
@@ -194,6 +197,7 @@
       var product_date     = $("#pickup_date").val();
       var ship_pack_weight = $("#ship_pack_weight").val();
       var pickup_address   = $('#pickup_address_id').val();
+      var courier_partner  = $('#courier_partner').val();
       var payment_method   = $("input[name='payment_method']:checked").val();
        
       var full_address = customer_name+","+customer_phone+","+customer_address+","+customer_pincode+","+customer_city+","+customer_state;  
@@ -202,7 +206,7 @@
             type:"POST",
             dataType : 'json',
             url: window.location,
-            data : {"action":"shippingRateCalculate",customer_pincode,pickup_address,ship_pack_weight,payment_method,product_price,product_qty},
+            data : {"action":"shippingRateCalculate",customer_pincode,pickup_address,ship_pack_weight,payment_method,courier_partner,product_price,product_qty},
             success: function(res)
             {
               $("#shippment_charge").val(res.shipingRatePrice);

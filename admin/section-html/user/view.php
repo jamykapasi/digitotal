@@ -1,69 +1,53 @@
-<style type="text/css">
-
-div#dt_users_filter {
-    display: none;
-}
-div.dataTables_paginate {
-    float: right;
-    margin: 0;
-    display: none;
-}
-
-div.dataTables_info {
-    position: relative;
-    top: 15px;
-    display: none;
-}
-
-</style>
-
 <script type="text/javascript">
     $(function () {
 
     ajaxSourceUrl = "<?php echo SITE_ADM_MOD.  $this->module; ?>/ajax.php";
        
     OTable = $('#dt_users').dataTable({
-            "bProcessing": true,
-            "bServerSide": true,
-            "sAjaxSource": ajaxSourceUrl,
-            "fnServerData": function (sSource, aoData, fnCallback) {
-                $.ajax({
-                    "dataType": 'json',
-                    "type": "POST",
-                    "url": sSource,
-                    "data": aoData,
-                    "success": fnCallback
-                });
-            },
-            "aaSorting" : [],
-            "aoColumns": [
-                {"sName": "id", 'sTitle' : 'ID', 'bVisible': false},
-                {"sName": "", 'sTitle': 'ID'},
-                {"sName": "", 'sTitle': 'Name'},
-                {"sName": "email", 'sTitle': 'Company Name'},
-                {"sName": "email", 'sTitle': 'Phone'},
-                {"sName": "email", 'sTitle': 'Email'},
-                {"sName": "email", 'sTitle': 'Password'},
-                {"sName": "email", 'sTitle': 'Monthly Order'},
-                //{ "sName": "status", 'sTitle' : 'Status', bSortable:false, bSearchable:false},
-                {"sName": "name", 'sTitle' : 'Created'}, 
-                {"sName": "operation", 'sTitle': 'Action', bSortable: false, bSearchable: false}
-            ],
-            "fnServerParams"
-                    : function (aoData) {
-                        setTitle(aoData, this)
-                    },
-            "fnDrawCallback"
-                    : function (oSettings) {
-                        $('.make-switch').bootstrapSwitch();
-                        $('.make-switch').bootstrapSwitch('setOnClass', 'success');
-                        $('.make-switch').bootstrapSwitch('setOffClass', 'danger');
+        "bProcessing": true,
+        "bServerSide": true,
+        "sAjaxSource": ajaxSourceUrl,
+        "fnServerData": function (sSource, aoData, fnCallback) {
+            $.ajax({
+                "dataType": 'json',
+                "type": "POST",
+                "url": sSource,
+                "data": aoData,
+                "success": fnCallback
+            });
+        },
+        "aaSorting" : [],
+        "aoColumns": [
+            { sName: "id", sTitle : 'ID', 'bVisible': false},
+            {"sName": "ID", 'sTitle': 'ID'},
+            {"sName": "first_name", 'sTitle': 'User Name'},
+            {"sName": "company_name", 'sTitle': 'Compnay Name'},
+            {"sName": "mobile_no", 'sTitle': 'Mobile No'},
+            {"sName": "email", 'sTitle': 'Email'},
+            {"sName": "password", 'sTitle': 'Password'},
+            {"sName": "monthly_order", 'sTitle': 'Monthly Order'},
+            {"sName": "", 'sTitle': 'Created At'},
+            // {"sName": "status", 'sTitle' : 'Status', bSortable:false, bSearchable:false},
+            // {"sName": "operation", 'sTitle': 'Action', bSortable: false, bSearchable: false}
+            
+        ],
+        "fnServerParams"
+                : function (aoData) {
+                    setTitle(aoData, this)
+                },
+        "fnDrawCallback"
+                : function (oSettings) {
+                    $('.make-switch').bootstrapSwitch();
+                    $('.make-switch').bootstrapSwitch('setOnClass', 'success');
+                    $('.make-switch').bootstrapSwitch('setOffClass', 'danger');
 
-                    }
+                }
 
-        });
-        $('.dataTables_filter').css({float: 'right'});
-        $('.dataTables_filter input').addClass("form-control input-inline");
+    });
+    $('.dataTables_filter').css({float: 'right'});
+    $('.dataTables_filter input').addClass("form-control input-inline");
+
+        
     });
 </script>
 

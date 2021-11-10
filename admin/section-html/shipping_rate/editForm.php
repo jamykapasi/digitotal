@@ -1,12 +1,6 @@
  <form action="" method="post" name="frmCont" id="frmCont" class="form-horizontal" enctype="multipart/form-data" novalidate="novalidate">
     <div class="form-body">		
         <div class="form-group">
-            <label for="pincode" class="control-label col-md-3">Pincode:</label> 
-            <div class="col-md-4">
-                <input type="text" class="form-control required" name="pincode" id="pincode" value="%PINCODE%" />
-            </div>
-        </div>
-        <div class="form-group">
             <label for="courier_logo" class="control-label col-md-3">Courier Partner Logo:</label> 
             <div class="col-md-4">
                 <input type="file" class="form-control required" name="courier_logo" id="courier_logo" value="%COURIER_PARTNER%" />
@@ -57,7 +51,13 @@
                 <input type="number" class="form-control required" name="cod" id=" cod" value="%COD%" />
             </div>
         </div>
-         
+        <div class="form-group">
+            <label for="pincode" class="control-label col-md-3">Pincode:</label> 
+            <div class="col-md-4">
+                <input type="text" class="form-control required" name="pincode" id="pincode" value="" />
+            </div>
+        </div>
+        
         <div class="col-md-offset-3 col-md-9">
             <button type="submit" name="submitAddForm" class="btn" id="submitAddForm">Submit</button>
             &nbsp;&nbsp;&nbsp;
