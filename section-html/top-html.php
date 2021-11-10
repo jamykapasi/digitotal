@@ -68,7 +68,7 @@
 	else if($_SERVER['REQUEST_URI']== PROJECT_DIRECTORY_NAME_HEADER.'payment_history'  OR 
 		$_SERVER['REQUEST_URI']== PROJECT_DIRECTORY_NAME_HEADER.'payment_history/') 
 	{
-		$body_class = "channel-integration style2";
+		$body_class = "overflow-page notification-content payment-history-content onload='pagi()'";
 
 	}
 	

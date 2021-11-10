@@ -11,7 +11,7 @@ class Controller extends Home {
 	function getHTML() {
 		
 		$html = "";
-		$res = $this->db->pdoQuery("SELECT * FROM tbl_order WHERE 1=1 ORDER BY id DESC ")->results();
+		$res = $this->db->pdoQuery("SELECT * FROM tbl_order WHERE 1=1 AND user_id=".$this->sessUserId." ORDER BY id DESC ")->results();
 
 		foreach ($res as $key => $value) {
 

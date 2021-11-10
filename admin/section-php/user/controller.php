@@ -114,7 +114,7 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
             
             $whereCond = ' WHERE 1=1 ';
             if (isset($chr) && $chr != '') {
-                $whereCond .= " AND id LIKE '%" . $chr . "%' OR 
+                $whereCond .= " AND first_name LIKE '%" . $chr . "%' OR 
                                      LIKE '%" . $chr . "%'  ";
                                  
             }

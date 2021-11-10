@@ -1,57 +1,29 @@
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
-    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.0/css/all.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous"> -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">  
 <div class="col py-3 content">
   <h2 class="heading" style="letter-spacing: 2px;">WEIGHT DISCREPANCY</h2>
 <!--$$$$$$$$$$$$$$$$ tabs $$$$$$$$$$$$-->
-    
-
 <div class="tab">
   <button id="tab1" class="tablinks active" onclick="myfunction(event, 'dispute-content')">DISPUTE FOUND</button>
-
   <button id="tab2" class="tablinks" onclick="myfunction(event, 'dispute-content2')">DISPUTE ACTION</button>
-
-
 </div>
     <div class="operation2"style="background-color:#ffffff;">
-
       <div id="datepicker" class="input-group date date5 col-lg-4" data-date-format="dd-mm-yyyy">
         <input class="form-control filter1" type="text" value="Filter by [Discrepancy Date]" />
        <span class="input-group-addon calendar"><i class="fas fa-calendar-alt"></i></span>
-
       </div>
-  
-     <!-- <div class="filter2 col-lg-3">
-    
-          <select name="filter" id="filter2">
-            <option value="">Status</option>
-            <option value="approve">Approve</option>
-            <option value="Rejected">Rejected</option>
-          </select><i class="fas fa-chevron-circle-down caret_style3"></i>
-      </div>
-	
--->
 
 	<div class="input-group  filter2 search_cust4 col-lg-3">
      <div class="input-group-btn search-panel">
       <button type="button" class="btn btn-default dropdown-toggle searchbtn" data-toggle="dropdown">
         <span id="status">Status</span><i class="fas fa-chevron-circle-down caret_style3"></i>
       </button>
-      
       <ul class="dropdown-menu scrollable-dropdown" role="menu">
         <li><a href="#">Approve</a></li>
         <li><a href="#">Reject</a></li>
-        
       </ul>
      </div>
-     
     </div>
 
-  
     <div class="input-group search_cust2 col-lg-5">
      <div class="input-group-btn search-panel">
       <button type="button" class="btn btn-default dropdown-toggle searchbtn" data-toggle="dropdown">
@@ -97,10 +69,8 @@
   </script>
 </div>
 
-
       <!-----second main div start ---->
-
-              
+      
  <div id="table_box_bootstrap">
 	
 </div>
@@ -116,224 +86,39 @@
 </script>
 
 <div class="dispute-content table1" id="dispute-content">
-
-<div id="content">
-    
-<table class=" table-style table2 col-lg-10">
-                  <tr class="row1">
-                    <th class=" table-style table-heading">DISCREPANCY DATE AND TIME</th>
-                    <th class=" table-style table-heading">ORDER DATE AND TIME</th>
-                    <th class=" table-style table-heading">PRODUCT DETAILS CHANNEL</th>
-
-                    <th class=" table-style table-heading">SHIPMENT DETAILS</th>
-                    <th class=" table-style table-heading">ENTERED WEIGHT DETAILS</th>
-                    <th class=" table-style table-heading">CHARGED WEIGHT DETAILS</th>
-                    <th class=" table-style table-heading">PROOF</th>
-                    
-                  </tr>
-
-                  <tr class="row1">
-                    <td class=" table-style pad">ABCD</td>
-                    <td class=" table-style pad">aa</td>
-                    
-                    <td class=" table-style pad">
-                        <p style="float:left ">aaa</p>
-						<img src="images/dashboard.svg" style="float:right; "></td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">AAAAA</td>
-                    <td class=" table-style pad">aaa</td>
-                  </tr>
-				  <tr class="row1">
-                    <td class=" table-style pad">ABCD</td>
-                    <td class=" table-style pad">aa</td>
-                    
-                    <td class=" table-style pad">
-                        <p style="float:left ">aaa</p>
-						<img src="images/dashboard.svg" style="float:right; "></td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">AAAAA</td>
-                    <td class=" table-style pad">aaa</td>
-                  </tr>
-
-	               <tr class="row1">
-                    <td class=" table-style pad">ABCD</td>
-                    <td class=" table-style pad">aa</td>
-                    
-                    <td class=" table-style pad">
-                        <p style="float:left ">aaa</p>
-						<img src="images/dashboard.svg" style="float:right; "></td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">AAAAA</td>
-                    <td class=" table-style pad">aaa</td>
-                  </tr>
-
-		<tr class="row1">
-                    <td class=" table-style pad">ABCD</td>
-                    <td class=" table-style pad">aa</td>
-                    
-                    <td class=" table-style pad">
-                        <p style="float:left ">aaa</p>
-						<img src="images/dashboard.svg" style="float:right; "></td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">AAAAA</td>
-                    <td class=" table-style pad">aaa</td>
-                  </tr>
-
-		<tr class="row1">
-                    <td class=" table-style pad">ABCD</td>
-                    <td class=" table-style pad">aa</td>
-                    
-                    <td class=" table-style pad">
-                        <p style="float:left ">aaa</p>
-						<img src="images/dashboard.svg" style="float:right; "></td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">AAAAA</td>
-                    <td class=" table-style pad">aaa</td>
-                  </tr>
-
-                  <tr class="row1">
-                    <td class=" table-style pad">ABCD</td>
-                    <td class=" table-style pad">aa</td>
-                    
-                    <td class=" table-style pad">
-                        <p style="float:left ">aaa</p>
-						<img src="images/dashboard.svg" style="float:right;"></td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">AAAAA</td>
-                    <td class=" table-style pad">aaa</td>
-                  </tr>
-
-                 </table>
-  </div><!--    disput content div end  -->
+    <div id="content">    
+        <table class=" table-style table2 col-lg-10">
+          <tr class="row1">
+            <th class=" table-style table-heading">DISCREPANCY DATE & TIME</th>
+            <th class=" table-style table-heading">ORDER DATE & TIME</th>
+            <th class=" table-style table-heading">PRODUCT DETAILS & CHANNEL</th>
+            <th class=" table-style table-heading">SHIPMENT DETAILS</th>
+            <th class=" table-style table-heading">ENTERED WEIGHT DETAILS</th>
+            <th class=" table-style table-heading">CHARGED WEIGHT DETAILS</th>
+            <th class=" table-style table-heading">PROOF</th>
+          </tr>
+          %DISPUTEFOUND%
+        </table>
+    </div><!--    disput content div end  -->
 </div>
 
  <!------------------table of dispute  action----------------------- -->
 
 <div class="dispute-content" id="dispute-content2">
-
    <div id="content"> 
-<table  class="table2 table-style col-lg-10">
-                  <tr class="row1">
-                    <th class=" table-style table-heading">DISCREPANCY DATE AND TIME</th>
-                    <th class=" table-style table-heading">ORDER DATE AND TIME</th>
-                    <th class=" table-style table-heading">PRODUCT DETAILS & CHANNEL</th>
-
-                    <th class=" table-style table-heading">SHIPMENT DETAILS</th>
-                    <th class=" table-style table-heading">ENTERED WEIGHT DETAILS</th>
-                    <th class=" table-style table-heading">CHARGED WEIGHT DETAILS</th>
-                    <th class=" table-style table-heading">STATUS</th>
-                    
-                  </tr>
-
-                  <tr class="row1">
-                    <td class="table-style pad">ABCD</td>
-                    <td class=" table-style pad">aa</td>
-                    
-                    <td class=" table-style pad">
-                        <p style="float:left">aaa</p>
-                        <img src="images/dashboard.svg" style="float:right">
-                    </td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">AAAAA</td>
-                    
-                  </tr>
-
-                   <tr class="row1">
-                    <td class=" table-style pad">ABCD</td>
-                    <td class=" table-style pad">aa</td>
-                    
-                    <td class=" table-style pad">
-                        <p style="float:left">aaa</p>
-                        <img src="images/dashboard.svg" style="float:right">
-                    </td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">AAAAA</td>
-                    
-                  </tr>
-		<tr class="row1">
-                    <td class=" table-style pad">ABCD</td>
-                    <td class=" table-style pad">aa</td>
-                    
-                    <td class=" table-style pad">
-                        <p style="float:left">aaa</p>
-                        <img src="images/dashboard.svg" style="float:right">
-                    </td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">AAAAA</td>
-                    </tr>
-                  
-		<tr class="row1">
-                    <td class=" table-style pad">ABCD</td>
-                    <td class=" table-style pad">aa</td>
-                    
-                    <td class=" table-style pad">
-                        <p style="float:left">aaa</p>
-                        <img src="images/dashboard.svg" style="float:right">
-                    </td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">AAAAA</td>
-					</tr>
-					
-		<tr class="row1">
-                    <td class=" table-style pad">ABCD</td>
-                    <td class=" table-style pad">aa</td>
-                    
-                    <td class=" table-style pad">
-                        <p style="float:left">aaa</p>
-                        <img src="images/dashboard.svg" style="float:right">
-                    </td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">AAAAA</td>
-                  
-		<tr class="row1">
-                    <td class=" table-style pad">ABCD</td>
-                    <td class=" table-style pad">aa</td>
-                    
-                    <td class=" table-style pad">
-                        <p style="float:left">aaa</p>
-                        <img src="images/dashboard.svg" style="float:right">
-                    </td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">AAAAA</td>
-                  </tr>
-		<tr class="row1">
-                    <td class=" table-style pad">ABCD</td>
-                    <td class=" table-style pad">aa</td>
-                    
-                    <td class=" table-style pad">
-                        <p style="float:left">aaa</p>
-                        <img src="images/dashboard.svg" style="float:right">
-                    </td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">aaa</td>
-                    <td class=" table-style pad">AAAAA</td>
-                  
-                  </tr>
-
-
-                 </table>
-  </div><!--    disput-content2 div end  -->
-
-
+        <table  class="table2 table-style col-lg-10">
+            <tr class="row1">
+                <th class=" table-style table-heading">DISCREPANCY DATE & TIME</th>
+                <th class=" table-style table-heading">ORDER DATE & TIME</th>
+                <th class=" table-style table-heading">PRODUCT DETAILS & CHANNEL</th>
+                <th class=" table-style table-heading">SHIPMENT DETAILS</th>
+                <th class=" table-style table-heading">ENTERED WEIGHT DETAILS</th>
+                <th class=" table-style table-heading">CHARGED WEIGHT DETAILS</th>
+                <th class=" table-style table-heading">STATUS</th>
+            </tr>
+            %DISPUTEACTION%
+        </table>
+    </div><!--    disput-content2 div end  -->
 </div>
 
 <script>

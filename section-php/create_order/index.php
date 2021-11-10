@@ -16,8 +16,8 @@ $tab_title = "Create Order";
 
 if(isset($_POST['action']) AND $_POST['action']=="shippingRateCalculate") 
 {	
-
-	$shipingRateRes = $db->pdoQuery("SELECT * FROM tbl_shipping_rate WHERE 1=1 ORDER BY id DESC LIMIT 1 ")->result();
+	
+	$shipingRateRes = $db->pdoQuery("SELECT * FROM tbl_shipping_rate WHERE 1=1 AND id=".$_POST['courier_partner']." ORDER BY id DESC LIMIT 1 ")->result();
 
 	$pickupAddress = $db->pdoQuery("SELECT * FROM tbl_pickup_address WHERE 1=1 AND id=".$_POST['pickup_address']." ORDER BY id DESC LIMIT 1 ")->result();
 
@@ -74,6 +74,7 @@ if(isset($_POST['action']) AND $_POST['action']=="submitOrderForm")
 		$cod_charges = "0.00";
 	}
 	$insert_array = array(
+		"user_id"		   => $sessUserId,	
 		"customer_name"    => $customer_name,
 	    "customer_phone"   => $customer_phone,
 	    "customer_email"   => $customer_email,
@@ -248,6 +249,7 @@ if(isset($_POST['upload']))
 			}
 
 	        $insert_array = array(
+	        	"user_id"		   => $sessUserId,
 		        "customer_name"    => $customer_name,
 			    "customer_phone"   => $customer_phone,
 			    "customer_email"   => $customer_email,

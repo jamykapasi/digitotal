@@ -23,7 +23,7 @@
                 {"sName": "html_name", 'sTitle': 'Email Template Name'},
                 {"sName": "subject_name", 'sTitle': 'Subject Name'},
               
-                { "sName": "status", 'sTitle' : 'Status', bSortable:false, bSearchable:false},
+                {"sName": "status", 'sTitle' : 'Status', bSortable:false, bSearchable:false},
                 {"sName": "operation", 'sTitle': 'Action', bSortable: false, bSearchable: false}
                 
             ],

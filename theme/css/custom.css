@@ -3128,6 +3128,70 @@ body.notification-content {
     margin: 0;
     padding: 0;
 }
+.notification-content.shipping-rates {
+    overflow-y: auto;
+}
+
+.payment-history-table span {
+    color: #000;
+    text-align: left;
+}
+.payment-history-table td {
+    text-align: left;
+}
+.payment-history-table span {
+    color: #000;
+    display: block;
+    text-align: center;
+}
+.payment-history-content .container-fluid {
+    width: 100%;
+}
+.payment-history-detail-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.payment-history-details .price {
+    opacity: 0.5;
+    line-height: 1;
+}
+.payment-history-details .description {
+    font-size: 14px;
+    opacity: 0.8;
+}
+.payment-history-head td:first-child span {
+    text-align: left;
+}
+.payment-history-detail-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+.payment-history-table td {
+    border-left: none !important;
+    border-right: none !important;
+}
+.payment-history-head.detail-show td {
+    border-bottom: none !important;
+}
+.payment-history-details.detail-show td {
+    border-top: none;
+}
+.payment-history-table td {
+    padding: 10px 10px;
+}
+.payment-history-details {
+    display: none;
+}
+.payment-history-details.detail-show {
+    display: table-row;
+}
+.open-details-icon {
+    margin-left: 10px;
+}
+
 @media (min-width: 992px) {
     .modal-lg,
     .modal-xl {
