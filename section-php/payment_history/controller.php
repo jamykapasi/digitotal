@@ -14,7 +14,7 @@ class Controller extends Home {
 		$random = time();
 		$userRes = $this->db->pdoQuery("SELECT id,wallet_balance FROM tbl_users WHERE id =".$this->sessUserId." ")->result();
 
-		$res = $this->db->pdoQuery("SELECT * FROM tbl_order WHERE 1=1 AND status = 'c'ORDER BY id DESC ")->results();
+		$res = $this->db->pdoQuery("SELECT * FROM tbl_order WHERE 1=1 AND status = 'c' ORDER BY id DESC ")->results();
 
 		foreach ($res as $key => $value) {
 

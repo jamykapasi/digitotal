@@ -117,6 +117,46 @@ if(isset($_POST['action']) AND $_POST['action']=="deletePincode")
     $responce = array('status'=> 1,'type' => 'success', 'message' => "Pincode has been deleted successfully.");
     echo json_encode($responce); exit;
 }
+
+if (isset($_POST['action']) AND $_POST['action'] == 'getRecord') 
+{
+	
+
+	extract($_REQUEST);
+
+	if($page==0) { 
+		$page = 1;
+	} 
+	
+	if($limit == ""){ 
+		$limit = 16;
+	}
+	$totalRow = 0;
+	@$offset = ($page - 1) * $limit;	
+
+	$pincode ='';
+
+	$pincodeRes = $db->pdoQuery("SELECT * FROM tbl_courier_pincode WHERE courier_partner_id='4' LIMIT $offset,$limit ")->results();
+
+	$totalRowRes = $db->pdoQuery("SELECT * FROM tbl_courier_pincode WHERE courier_partner_id='4' ")->results();
+
+	$totalRow = count($totalRowRes);
+
+	
+	$totalPage=  ceil($totalRow / $limit); 
+        
+        foreach ($pincodeRes as $key => $value) 
+        {
+            $pincode .='<li class="pincode-item">
+                            <span>'.$value['pincode'].'</span> <a href="javascript:void()" data-id="'.$value['id'].'" class="remove-icon" id="removePin"> X </a>
+                        </li>';
+        }
+
+    echo json_encode(array('pincode'=>$pincode, "page" => $page ,  'total_page'=> $totalPage ,'current_page' => 1));   
+	exit;
+
+
+}
 $objUsers = new Controller($module);
 $pageContent = $objUsers->getPageContent();
 require_once(DIR_ADMIN_TMPL . "replace.php");

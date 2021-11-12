@@ -2,8 +2,6 @@
 
 //define('ADMIN_USER_ID', 1);
 
-
-
 $sqlSettings = $db->select("tbl_setting", array("constant", "value"))->results();
 foreach ($sqlSettings as $conskey => $consval) {
     define($consval["constant"], $consval["value"]);
@@ -14,11 +12,22 @@ $request_uri = $_SERVER['REQUEST_URI'];
 $canonical_url = "http://" . $host . $request_uri;
 define('CANONICAL_URL', $canonical_url);
 
+if(!defined('KEY_ID')){
+    //define('KEY_ID', ''); //Live
+    define('KEY_ID', 'rzp_test_MGWEvtj7yKCjDr'); //TEST
+}
+
+if(!defined('KEY_SECRET')){
+    //define('KEY_SECRET', ''); //Live
+    define('KEY_SECRET', 'dnzW8z6gtLTRi44lZptFPsID'); //TEST
+}
+
+if(!defined('DISPLAY_CURRENCY')){
+    //define('DISPLAY_CURRENCY', 'INR'); //Live
+    define('DISPLAY_CURRENCY', 'INR'); //TEST
+}
 
 define('ORDER_FORMAT', 'ORDER');
-
-
-
 
 define('MEND_SIGN', '<font color="#FF0000">*</font>');
 

@@ -112,23 +112,74 @@
                     <div class="form-group row">
                         <div class="pincode-content">
                         <label class="col-sm-4 col-form-label"><b>PINCODE</b> : </label>
-                        <ul class="pincode-list">
-                            #PINCODE#
-                        </ul>
-                    </div>
-                    </div>
-                    
-                    <!-- <div class="form-group row">
-                        <label class="col-sm-4 col-form-label"><b>PINCODE</b> : </label>
-                        <div class="pincode-content">
-                            <ul class="pincode-list">
-                                #PINCODE#
+                            <ul class="pincode-list html_data">
+                               
                             </ul>
                         </div>
-                    </div> -->
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label"><b>demo</b> : </label>
+                        <div class="col-sm-8">
+                            <div class ="ProductOrderPagination"> <nav aria-label="Page navigation"> </nav>
+                            </div>
+                        </div>
+                    </div>
+                     
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function()
+    {
+        loadRecord(1);
+    });
 
+    function loadRecord(page)
+    {   
+
+        var id = $(this).data('id');
+
+        $.ajax({
+            type:"POST",
+            dataType : 'json',
+            url: window.location,
+            data : {"action":"getRecord","page" : page ,"limit":10},
+            success: function(res)
+            {  
+
+                $( "html, body" ).animate({ scrollTop:0 },'slow');
+
+                $('.html_data').append("");
+                $('.html_data').html(res.pincode);
+                $(".ProductOrderPagination").empty();
+                $('.ProductOrderPagination').unbind('page');
+                ProductOrderPagination(res.total_page, page);
+            }
+        });
+    }
+
+    function ProductOrderPagination(totalpage,page)
+    {
+        $('.ProductOrderPagination').bootpag({
+            total: parseInt(totalpage),
+            page: parseInt(page),
+            maxVisible: 5 , 
+            leaps: true,
+            firstLastUse: true,
+            first: '←',
+            last: '→',
+            wrapClass: 'pagination',
+            activeClass: 'active',
+            disabledClass: 'disabled',
+            nextClass: 'next',
+            prevClass: 'prev',
+            lastClass: 'last',
+            firstClass: 'first'
+        }).on("page", function(event, num)
+        {
+            loadRecord(num); 
+        });  
+    }
+</script>

@@ -84,6 +84,48 @@ if(isset($_POST['action']) AND $_POST['action']=="changeStatus")
     echo json_encode($responce); exit;
 }
 
+if (isset($_POST['query'])) 
+{
+	$serchData = $db->pdoQuery("SELECT * FROM tbl_order WHERE order_id LIKE '%".$_POST['query']."%' ")->results();
+
+	$html ='';
+
+	if (count($serchData) > 0) 
+	{
+		foreach ($serchData as $key => $value) 
+		{
+			$html .='<tr class="row1">
+					<td class="table-style pad"><input type="checkbox" class="check">
+	                <span class="checkmark"></span>'.ORDER_FORMAT.$value['order_id'].'</td>
+	                <td class="table-style pad">'.getDateFormat($value['created']).'</td>
+	                <td class="table-style pad">Channel Name</td>
+	                <td class="table-style pad">
+	                  <p style="float:left">'.$value['product_name'].'</p>
+	                  <img src="'.SITE_IMG.'dashboard.svg" style="float:right">
+	                </td>
+	                <td class="table-style pad">'.$payment_method.'</td>
+	                <td class="table-style pad">'.$value['customer_name'].'<br>
+	               	<a href="#exampleModalCenter?id='.$value['id'].'" data-toggle="modal" id="userData" data-target="#exampleModalCenter" class="view" data-id="'.$value['id'].'">VIEW</a>/<a href="#exampleModalCenter?id='.$value['id'].'" data-toggle="modal" id="userData" data-target="#exampleModalCenter" class="view" data-id="'.$value['id'].'">EDIT</a>
+	                </td>
+	                <td class="table-style pad">'.$order_status.'</td>
+	                <td class="table-style pad">'.$shipButton.'
+	                <span style="float:right;" class="circle-cross">
+	                <a href="#" class="cross-icon" id="deleteOrder" data-id="'.$value['id'].'"> 
+	                <i class="fas fa-times-circle"></i></a></span>
+	                /td>
+	            <tr>';
+		}
+	}
+	else
+	{
+		$html = "No Data Found";
+	}	
+	
+
+	$responce = array('status'=> 1,'html'=>$html);
+    echo json_encode($responce); exit;
+}
+
 else 
 {
 	$object = new Controller($module,$token);

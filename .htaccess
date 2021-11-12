@@ -20,6 +20,9 @@ RewriteRule ^register?$ section-php/register/index.php [L]
 RewriteRule ^login/?$ section-php/login/index.php [L]
 RewriteRule ^login?$ section-php/login/index.php [L]
 
+RewriteRule ^home/?$ section-php/home/index.php [L]
+RewriteRule ^home?$ section-php/home/index.php [L]
+
 RewriteRule ^forgot_password/?$ section-php/forgot_password/index.php [L]
 RewriteRule ^forgot_password?$ section-php/forgot_password/index.php [L]
 

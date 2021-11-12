@@ -26,7 +26,7 @@
   <script src="{SITE_JS}bootstrap.min.js"></script>
   <script src="{SITE_JS}custom.js"></script>
   <script src="{SITE_JS}jquery.validate.min.js"></script>
-
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
 
 </head>

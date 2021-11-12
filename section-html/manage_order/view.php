@@ -35,7 +35,7 @@
             </div>
             <input type="hidden" name="search_param" value="all"
               id="search_param">
-            <input type="text" class="form-control search3" name="x" id="search" placeholder="Search">
+            <input type="text" class="form-control search3" name="search" id="search" placeholder="Search">
             <span class="input-group-btn">
             <button class="btn btn-default search_icon" type="button">
               <span class="glyphicon glyphicon-search"></span>
@@ -76,12 +76,10 @@
   <div class="second-row col-lg-10">
           <label class="show">Show</label>
           <select name="filter" class="record">
-            
             <option value="1">1</option>
             <option value="2">2</option>
           </select>
           <label class="show">Result</label>
-        
           <div class=" pagination1 pagination:number active"> 1</div>
 
           <div class="pagination:number arrow">
@@ -96,11 +94,7 @@
             <symbol id="right" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></symbol>
           </svg>
       </div>
-
-
   <!------------------code for table ----------------------- -->
-
-
         <table id="t01" class="table2 table-style  manage-table col-lg-10">
           <tr class="row1">
             <th class=" table-style table-heading">ORDER ID</th>
@@ -113,8 +107,7 @@
             <th class=" table-style table-heading">STATUS</th>
             <th class=" table-style table-heading">ACTIONS</th>
           </tr>
-
-           %HTML%
+            %HTML%     
         </table>
  <div>
 <div class="modal fade edit-record-modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -230,6 +223,37 @@
           }
       }); 
    });
+
+  $(document).ready(function(){
+
+    load_data(1);
+    //var url = "<?php echo SITE_MOD.  $this->module; ?>/controller.php";
+    
+    function load_data(page, query = '')
+    {
+      $.ajax({
+        url:window.location,
+        method:"POST",
+        data:{page:page,query:query},
+        success:function(res)
+        {
+          //alert(res.html);
+        }
+      });
+    }
+
+    // $(document).on('click', '.page-link', function(){
+    //   var page = $(this).data('page_number');
+    //   var query = $('#search_box').val();
+    //   load_data(page, query);
+    // });
+
+    $('#search').keyup(function(){
+      var query = $('#search').val();
+      load_data(1, query);
+    });
+
+  });
 
 </script>
 </div>
