@@ -78,7 +78,7 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
         
         $pincode ="";
 
-        $pincodeRes = $this->db->pdoQuery("SELECT * FROM tbl_courier_pincode WHERE courier_partner_id=".$_REQUEST['id']." ")->results();
+        $pincodeRes = $this->db->pdoQuery("SELECT * FROM tbl_courier_pincode WHERE courier_partner_id=".$_REQUEST['id']." LIMIT 50 ")->results();
         
         foreach ($pincodeRes as $key => $value) 
         {
@@ -160,8 +160,7 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
             $whereCond = ' WHERE 1=1 ';
             if (isset($chr) && $chr != '') {
                 $whereCond .= " AND id LIKE '%" . $chr . "%' OR 
-                                     LIKE '%" . $chr . "%'  ";
-                                 
+                                     LIKE '%" . $chr . "%'  ";                  
             }
             if (isset($sort))
                 $sorting = $sort . ' ' . $order;
@@ -179,9 +178,9 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
               
                 $operation = '';
                             
-                $operation.=get_operation($fetchRes['id'],"upload","btnEdit","Bulk Pincode");
-                $operation.=get_operation($fetchRes['id'],"edit","btnEdit","Edit");
-                $operation.=get_operation($fetchRes['id'],"view","btnEdit","View");
+                $operation.=get_operation($fetchRes['id'],"upload","btnEdit","Bulk Pincode",);
+                $operation.=get_operation($fetchRes['id'],"edit","btnEdit","Edit",);
+                $operation.=get_operation($fetchRes['id'],"view","btnEdit","View",$fetchRes['id']);
                 $operation.=get_operation($fetchRes['id'],"delete","btn-delete","Delete");
 
 

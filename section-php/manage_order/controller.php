@@ -8,6 +8,7 @@ class Controller extends Home {
 		$this->module = $module;
 	}
 
+	
 	function getHTML() {
 		
 		$html = "";
@@ -26,8 +27,9 @@ class Controller extends Home {
 			{
 				$shipButton ='<button class="btn2 ship" id="ship" data-id="'.$value['id'].'" style="float:left;" >SHIP</button>';
 			}	
+			
 			$html.= '<tr class="row1">
-                    <td class="table-style pad"><input type="checkbox" class="check">
+									<td class="table-style pad"><input type="checkbox" class="check">
                     <span class="checkmark"></span>'.ORDER_FORMAT.$value['order_id'].'</td>
                     <td class="table-style pad">'.getDateFormat($value['created']).'</td>
                     <td class="table-style pad">Channel Name</td>
@@ -44,8 +46,8 @@ class Controller extends Home {
                     <span style="float:right;" class="circle-cross">
                     <a href="#" class="cross-icon" id="deleteOrder" data-id="'.$value['id'].'"> 
                     <i class="fas fa-times-circle"></i></a></span>
-                    </td>
-            </tr>';
+                	</td>
+            		<tr>';
 		}
 
 		$mainHTML =  DIR_TMPL . "manage_order/view.php";

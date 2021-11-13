@@ -25,6 +25,8 @@
 
         <script src="{SITE_ADMIN_JS}bootstrap-datepicker.js" type="text/javascript"></script>
 
+        <script src="{SITE_ADMIN_JS}jquery.bootpag.min.js"></script>
+
         <script type="text/javascript" src="{SITE_ADMIN_JS}additional-methods.min.js"></script>
        
         <script type="text/javascript" src="{SITE_ADMIN_JS}ckeditor/ckeditor.js"></script>

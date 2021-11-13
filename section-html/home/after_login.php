@@ -5,7 +5,7 @@
       </a>
       <div class="right">
         <button type="button" class="btn wallet-btn me-md-2"><img src="{SITE_IMG}wallet.png" width="16px" class="d-inline-block align-text-top">&#8203; &#8203; ₹ %WALLET_BALANCE%</button>
-        <button type="button" class="btn btn-outline white-btn">+ RECHARGE</button>
+        <a href="#" data-toggle="modal" data-target="#rechargeModalCenter" class="btn btn-outline white-btn">+ RECHARGE</a>
         <a class="navbar-brand" href="#">
           <img src="{SITE_IMG}user.png" alt="" width="35px" class="">
           <span><?php echo ucfirst($_SESSION["name"]);?></span>
@@ -95,3 +95,64 @@
           <hr>
         </div>
       </div>
+
+      <!-- <div class="modal fade recharge-record-modal" id="rechargeModalCenter" tabindex="-1" role="dialog" aria-labelledby="rechargeModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="text-center">
+                        <h5 class="modal-title" id="rechargeModalLongTitle">RECHARGE ACCOUNT</h5>
+                          <form class="recharge" action="#" method="post" enctype="multipart/form-data">
+                            <div class="customer-details-content">
+                                <div class="row">
+                                     <div class="col col-12 col-md-6">
+                                         <input type="text" id="amount" name="amount"class="form-control" placeholder="Enter Amount*" value="">
+                                     </div>
+                                     
+                                     <div class="col col-12 col-md-12">
+                                        <input type="hidden" name="action" value="payment">
+                                        <button type="submit" id="edit" name="recharge" class="btn2">RECHARGE</button>
+                                     </div>
+                                </div>
+                            </div>
+                          </form>  
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div> -->
+
+<script type="text/javascript">
+   $(document).on("submit",".recharge",function(){
+
+      $(".recharge").validate({
+        ignore: [],
+        errorClass: 'help-block',
+        errorElement: 'span',
+        rules: {
+          amount:{required:true,digits: true},
+        },
+        messages: {
+          amount:{required:"Please Enter Amount."},
+        },
+        highlight: function (element) {
+            $(element).closest('.form-control').addClass('has-error');
+        },
+        unhighlight: function (element) {
+            $(element).closest('.form-control').removeClass('has-error');
+        },
+        errorPlacement: function (error, element) {
+          if(element.attr('id') == 'amount'){
+              error.insertAfter(element.closest('.form-control'));
+          }else{
+              error.insertAfter(element.closest('.form-control'));
+          }
+        }
+      });
+      if ($(".recharge").valid()) {
+          return true;
+      } else {
+          return false;
+      }
+  });
+</script>

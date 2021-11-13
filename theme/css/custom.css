@@ -3101,6 +3101,12 @@ body.notification-content {
     border-bottom: 1px solid #9CE1D0;
     width: 100% !important;
 }
+
+.recharge-record-modal .form-control {
+    border-bottom: 1px solid #9CE1D0;
+    width: 220% !important;
+}
+
 .modal-description {
     font-size: 14px;
     opacity: 0.5;
@@ -3190,6 +3196,10 @@ body.notification-content {
 }
 .open-details-icon {
     margin-left: 10px;
+}
+.modal-content span {
+    color: red;
+    margin-right: auto;
 }
 
 @media (min-width: 992px) {
