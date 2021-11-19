@@ -19,12 +19,39 @@ if(isset($_POST['action']) AND $_POST['action']=="category")
 	extract($_POST);
 
 	$insert_array = array(
-		"category_name"    => $category_name, 
+		"category_name" => $category_name, 
+		"created"		=> created(),
 	);
 
 	$last_id = $db->insert("tbl_category",$insert_array)->getLastInsertId();
 
 	$msgType = $_SESSION["msgType"] = disMessage(array('type'=>'suc','var'=> "Category created successfully."));
+
+	redirectPage(SITE_URL."product_category");
+}
+
+if(isset($_POST['action']) AND $_POST['action']=="viewCategory") 
+{
+	extract($_POST);
+	
+	$categoryRes = $db->pdoQuery("SELECT * FROM tbl_category WHERE id='".$id."' ")->result();
+
+	$responce = array('status'=> 1,"category"=>$categoryRes['category_name'],"id"=>$id);
+    
+    echo json_encode($responce); exit;
+}
+
+if(isset($_POST['action']) AND $_POST['action']=="editCategory") 
+{
+	extract($_POST);
+
+	$update_array = array(
+		"category_name" => $category_name, 
+	);
+
+	$db->update("tbl_category",$update_array,array("id"=>$_POST['id']));
+
+	$msgType = $_SESSION["msgType"] = disMessage(array('type'=>'suc','var'=> "Category Updated successfully."));
 
 	redirectPage(SITE_URL."product_category");
 }
@@ -35,7 +62,7 @@ if(isset($_POST['action']) AND $_POST['action']=="deleteCategory")
 	
 	$db->delete("tbl_category",array("id"=>$_POST['id']));
 	
-	$msgType = $_SESSION["msgType"] = disMessage(array('type'=>'suc','var'=> "Category Delete Successfully."));
+	$msgType = $_SESSION["msgType"] = disMessage(array('type'=>'suc','var'=> "Category Deleted Successfully."));
     
     $responce = array('status'=> 1);
     echo json_encode($responce); exit;

@@ -124,16 +124,13 @@
 <!--	<div id="table_box_bootstrap"></div>-->
 	
 	<!------------------code for table ----------------------- -->
-
-
-	            <table  class="table2 table-style col-lg-10"style="width:40% !important;margin:0% 4% !important;">
-                  <tr class="row1">
-                    <th class=" table-style table-heading">CATEGORY NAME</th>
-                    <th class=" table-style table-heading">OPERATIONS</th>
-                  </tr>
-                    %HTML%
-                </table>
- 
+        <table  class="table2 table-style col-lg-10"style="width:40% !important;margin:0% 4% !important;">
+          <tr class="row1">
+            <th class=" table-style table-heading">CATEGORY NAME</th>
+            <th class=" table-style table-heading">OPERATIONS</th>
+          </tr>
+            %HTML%
+        </table>
 <script>
 var box = paginator({
     table: document.getElementById("content").getElementsByTagName("table")[0],
@@ -413,24 +410,54 @@ function paginator(config) {
     </div>
   </div>
 </div>
+
+<div id="editModal" class="modal" style="height: auto;">
+  <div class="modal-content" >
+    <span class="close close2 cross-circle1">&times;</span>
+    <div class="modal-header">    
+    <h3 class="main-heading" id="exampleModalLabel">EDIT CATEGORY</h3>
+    <!-- <h2>Modal Header</h2>-->
+    </div>
+    <div class="modal-body">
+        <form action="{SITE_URL}product_category" name="editCategory" method="post" id="editCategory" class="editCategory">
+            <div class="popup" style="margin-top:5%;">
+                <div class=" custfields">
+                    <label class="col-4 " style="font-size:0.9rem;font-weight: 500;display: inline-block;">Category Name</label>
+                    
+                    <input type="text" name="category_name" id="edit_Category" class="custinput col-5"  required/>
+                   
+                    <div class="text-center mt-4">
+                        <input type="hidden" name="action" value="editCategory">
+                        <input type="hidden" id="cat_id" name="id" value="">
+                        <button class="btn2 btn-next submit-btn btn-hv" type="submit" id="edit" name="edit">EDIT</button>
+                        <button id="canceledit" class="btn2 btn-next submit-btn btn-hv" >CANCEL</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
 <!--The Modal End -->
 <script>
     function myModal() {
         var modal = document.getElementById("myModal");
         modal.style.display = "block";
     }
+
+    function editModal() {
+        var editmodal = document.getElementById("editModal");
+        editmodal.style.display = "block";
+    }
 </script>
 
 <script>
-
 // Get the modal
 var modal = document.getElementById("myModal");
-
 // Get the button that opens the modal
 var btn = document.getElementById("myBtn");
 // Get the button that opens the modal
 var btn2 = document.getElementById("cancel");
-
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
@@ -453,6 +480,39 @@ span.onclick = function() {
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
+  }
+}
+</script>
+
+<script>
+// Get the modal
+var editmodal = document.getElementById("editModal");
+// Get the button that opens the modal
+var editBtn = document.getElementById("editBtn");
+// Get the button that opens the modal
+var canceledit = document.getElementById("canceledit");
+
+// Get the <span> element that closes the modal
+var closespan = document.getElementsByClassName("close2")[0];
+
+// When the user clicks the button, open the modal 
+editBtn.onclick = function() {
+  editmodal.style.display = "block";
+}
+// When the user clicks the button, open the modal 
+canceledit.onclick = function() {
+  editmodal.style.display = "none";
+}
+
+// When the user clicks on <span> (x), close the modal
+closespan.onclick = function() {
+  editmodal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == editmodal) {
+    editmodal.style.display = "none";
   }
 }
 </script>
@@ -491,6 +551,23 @@ window.onclick = function(event) {
       }
     });
 
+    $(document).on("click","#editBtn",function() {
+      var id = $(this).data('id');
+
+      $.ajax({
+          type:"POST",
+          dataType : 'json',
+          url: window.location,
+          data : {"action":"viewCategory",id},
+          success: function(res)
+          {
+            $("#edit_Category").val(res.category);
+            $("#cat_id").val(res.id); 
+          }
+      });
+
+    });
+
     $(document).on("click","#deleteCategory",function() {
       var id = $(this).data('id');
 
@@ -513,5 +590,5 @@ window.onclick = function(event) {
               }
             },
         }); 
-   });
+    });
 </script>

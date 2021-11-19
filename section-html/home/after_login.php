@@ -78,7 +78,7 @@
                   <a href="{SITE_URL}courier_partner_priority" class="nav-link px-0"> <span class="d-none d-sm-inline sub-text">Courier Partner Priority</span></a>
                 </li>
                 <li class="ms-4">
-                  <a href="{SITE_URL}shipping_label" class="nav-link px-0"> <span class="d-none d-sm-inline sub-text">Shipping Label</span></a>
+                  <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline sub-text">Shipping Label</span></a>
                 </li>
                 <li class="ms-4">
                   <a href="{SITE_URL}notification" class="nav-link px-0"> <span class="d-none d-sm-inline sub-text">Notifications</span></a>

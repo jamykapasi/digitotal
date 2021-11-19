@@ -88,27 +88,32 @@ if (isset($_POST['action']) AND $_POST['action'] == 'getRecord')
 {
 	extract($_REQUEST);
 
-	if($page==0) { 
-		$page = 1;
-	} 
-	
-	if($limit == ""){ 
-		$limit = 16;
-	}
-
-	$totalRow = 0;
-	@$offset = ($page - 1) * $limit;	
-
 	$user = $total ='';
 
-	$userRes = $db->pdoQuery("SELECT * FROM tbl_order WHERE  user_id='".$sessUserId."' LIMIT $offset,$limit ")->results();
+	$where = '';
+	if($status != ''){
+		$where .= 'AND status = "'.$status.'"';
+	}
 
-	$totalRowRes = $db->pdoQuery("SELECT * FROM tbl_order WHERE user_id='".$sessUserId."' ")->results();
+	if($keyword != ''){
+		$where .= 'AND (order_id LIKE "%'.$keyword.'%" or product_name LIKE "%'.$keyword.'%" or customer_name LIKE "%'.$keyword.'%")';
+	}
+
+	if($date != ''){
+		$where .= 'AND DATE_FORMAT(created, "%d-%m-%Y") = "'.$date.'"';
+	}
+
+	if($page_rec > 0){
+		$limit = ' LIMIT '.$page_rec.'';
+	}
+	
+	$userRes = $db->pdoQuery("SELECT * FROM tbl_order WHERE  user_id='".$sessUserId."' ".$where." $limit ")->results();
+
+	$totalRowRes = $db->pdoQuery("SELECT * FROM tbl_order WHERE user_id='".$sessUserId."' ".$where." ")->results();
 	
 	$totalRow = count($totalRowRes);
 
-	$totalPage=  ceil($totalRow / $limit); 
-    
+
     foreach ($userRes as $key => $value) 
     {
         $payment_method = $value['payment_method'] == 'c' ? "COD" : "Prepaid";
@@ -143,7 +148,11 @@ if (isset($_POST['action']) AND $_POST['action'] == 'getRecord')
             	</td></tr>';
     }
 
-    	$userTable ='<tr class="row1">
+	if($totalRow > $limit){
+		//$user.= '<tr><td><a herf="javascript:void(0);" id="viewall">View all</a></td></tr>';
+	}
+
+    $userTable ='<tr class="row1">
 			        <th class=" table-style table-heading">ORDER ID</th>
 			        <th class=" table-style table-heading">ORDER DATE AND TIME</th>
 			        <th class=" table-style table-heading">CHANNEL INTEGRATION<span><a href=""><i class="fas fa-filter filter_img"></i></a></span></th>
@@ -155,14 +164,8 @@ if (isset($_POST['action']) AND $_POST['action'] == 'getRecord')
 			        <th class=" table-style table-heading">ACTIONS</th>
 			      </tr> 
 			      	'.$user.' ';
-
-		for ($i=1; $i<=$totalPage; $i++) 
-		{ 
-			$total .="<option id='".$i."' value='".$i."'>".$i."</option>";
-		}
-
-    	echo json_encode(array('userTable'=>$userTable, "page" => $page ,'total_page'=> $total ,'current_page' => 1));   
-			exit;
+	echo json_encode(array('userTable'=>$userTable));   
+	exit;
 }
 
 else 

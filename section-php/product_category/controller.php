@@ -17,7 +17,7 @@ class Controller extends Home {
 		{
 			$html .='<tr class="row1">
                     <td class=" table-style pad">'.$value['category_name'].'</td>
-					<td class="table-style pad"><button class="ship-btn btn-hv btn1" style="float:left;">EDIT</button>
+					<td class="table-style pad"><button class="ship-btn btn-hv btn1" style="float:left;" id="editBtn" onclick="editModal()" data-id="'.$value['id'].'">EDIT</button>
 					<span style="float:right;" class="circle-cross">
 					<a href="javascript:void()" id="deleteCategory" data-id="'.$value['id'].'" class="cross-icon"> 
 					<i class="fas fa-times-circle"></i></a></span>

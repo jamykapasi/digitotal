@@ -2120,7 +2120,7 @@ body.notification-content {
     letter-spacing: 2px;
     margin: 2px;
 }
-.notification-content .btn {
+.notification-content .btn:not(.wallet-btn) {
     border: none;
     box-shadow: none;
     border-radius: 0px;
