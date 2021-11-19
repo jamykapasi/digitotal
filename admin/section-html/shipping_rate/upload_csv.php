@@ -58,7 +58,7 @@
             } else {
                 return false;
             }
-        });
+     });
    
         // $("#birthdate").datepicker({
         //     autoclose: true,

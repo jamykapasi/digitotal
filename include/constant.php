@@ -14,12 +14,12 @@ define('CANONICAL_URL', $canonical_url);
 
 if(!defined('KEY_ID')){
     //define('KEY_ID', ''); //Live
-    define('KEY_ID', 'rzp_test_MGWEvtj7yKCjDr'); //TEST
+    define('KEY_ID', 'rzp_test_mAVEYHRfcV2jOh'); //TEST
 }
 
 if(!defined('KEY_SECRET')){
     //define('KEY_SECRET', ''); //Live
-    define('KEY_SECRET', 'dnzW8z6gtLTRi44lZptFPsID'); //TEST
+    define('KEY_SECRET', 'V55zrtEsaKi3h8FjuL1YtwwH'); //TEST
 }
 
 if(!defined('DISPLAY_CURRENCY')){

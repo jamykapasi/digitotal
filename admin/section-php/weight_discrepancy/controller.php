@@ -133,8 +133,11 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
         
         $status_ids = "a" ;
         
-        $qrySel = $this->db->pdoQuery("SELECT  * FROM $this->table WHERE 1=1 ORDER BY id DESC ")->results();
+        // $qrySel = $this->db->pdoQuery("SELECT  * FROM $this->table WHERE 1=1 ORDER BY id DESC ")->results();
 
+        $qrySel = $this->db->pdoQuery("SELECT  tbl_weight_discrepancy.* , tbl_order.customer_name  FROM tbl_weight_discrepancy
+        LEFT JOIN tbl_order ON tbl_weight_discrepancy.order_id = tbl_order.order_id ")->results();
+        
            $totalRow = count($qrySel);
 
             foreach ($qrySel as $fetchRes) 
@@ -161,6 +164,7 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
                     date('d M Y h:i a',strtotime($fetchRes['order_date_time'])),
                     $fetchRes['product_name'],
                     $fetchRes['courier_name'],
+                    $fetchRes['customer_name'],
                     $fetchRes['enterd_weight']."kg",
                     $fetchRes['charged_weight']."kg",
                     $discrepancy_proof,

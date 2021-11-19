@@ -1,0 +1,2 @@
+2021-10-14 04:10:10 :: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''48' at line 1: 340
+2021-11-17 03:11:24 :: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'digital.tbl_plan' doesn't exist: 340

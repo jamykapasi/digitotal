@@ -35,6 +35,10 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
                     $this->data['content'] =  $this->getForm();
                     break;
                 }
+            case 'weightDiscrepancy' : {
+                    $this->data['content'] =  $this->discrepancyForm();
+                    break;
+                }
             case 'view' : {
                     $this->data['content'] =  $this->viewForm();
                     break;
@@ -112,6 +116,30 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
         return filtering($content, 'output', 'text');
         
     }
+
+    public function discrepancyForm() 
+    {
+        $content = $optionHTML = '';
+        $main_content = new MainTemplater(DIR_ADMIN_TMPL . $this->module . "/weightDiscrepancy.php");
+        $main_content = $main_content->parse();  
+        
+        $orderRes = $this->db->pdoQuery("SELECT * FROM tbl_order WHERE id='".$this->id."' ")->result();
+
+        $fields = array(
+            "%SHIP_WEIGHT%",
+            "%TYPE%",
+            "%ID%"
+        );
+        $fields_replace = array(
+            $orderRes['ship_pack_weight'],
+            $this->type,
+            $this->id
+        );
+
+        $content = str_replace($fields, $fields_replace, $main_content);
+        return filtering($content, 'output', 'text');
+        
+    }
     public function dataGrid() 
     {
             $content = $operation = $whereCond = $totalRow = NULL;
@@ -150,6 +178,7 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
                 $operation = '';
                             
                 //$operation.=get_operation($fetchRes['id'],"edit","btnEdit","Edit");
+                $operation.=get_operation($fetchRes['id'],"weightDiscrepancy","btnEdit","Add-Weight-Discrepancy");
                 $operation.=get_operation($fetchRes['id'],"view","btnEdit","View");
                 //$operation.=get_operation($fetchRes['id'],"delete","btn-delete","Delete");
 

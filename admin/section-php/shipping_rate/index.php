@@ -87,7 +87,6 @@ if (isset($_POST["uploadCSV"]) && $_SERVER["REQUEST_METHOD"] == "POST")
        {
             $file = fopen($filename, "r");
 
-
             while (($column  = fgetcsv($file, 10000, ",")) !== FALSE) 
 	    	{   
 		        $pincode = "";
@@ -104,7 +103,8 @@ if (isset($_POST["uploadCSV"]) && $_SERVER["REQUEST_METHOD"] == "POST")
 				$db->insert("tbl_courier_pincode",$insert_array1); 
 			}	
 	    	
-	    	$_SESSION["toastr_message"] = disMessage(array('type' => 'suc', 'var' => 'Pincode insert successfully.'));       
+	    	$_SESSION["toastr_message"] = disMessage(array('type' => 'suc', 'var' => 'Pincode File has been insert successfully.'));
+	    	redirectPage(SITE_ADM_MOD . $module);     
 	    }  
     }
 }
@@ -120,8 +120,6 @@ if(isset($_POST['action']) AND $_POST['action']=="deletePincode")
 
 if (isset($_POST['action']) AND $_POST['action'] == 'getRecord') 
 {
-	
-
 	extract($_REQUEST);
 
 	if($page==0) { 
@@ -154,8 +152,6 @@ if (isset($_POST['action']) AND $_POST['action'] == 'getRecord')
 
     echo json_encode(array('pincode'=>$pincode, "page" => $page ,  'total_page'=> $totalPage ,'current_page' => 1));   
 	exit;
-
-
 }
 $objUsers = new Controller($module);
 $pageContent = $objUsers->getPageContent();

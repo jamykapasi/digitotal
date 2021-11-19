@@ -84,46 +84,85 @@ if(isset($_POST['action']) AND $_POST['action']=="changeStatus")
     echo json_encode($responce); exit;
 }
 
-if (isset($_POST['query'])) 
+if (isset($_POST['action']) AND $_POST['action'] == 'getRecord') 
 {
-	$serchData = $db->pdoQuery("SELECT * FROM tbl_order WHERE order_id LIKE '%".$_POST['query']."%' ")->results();
+	extract($_REQUEST);
 
-	$html ='';
-
-	if (count($serchData) > 0) 
-	{
-		foreach ($serchData as $key => $value) 
-		{
-			$html .='<tr class="row1">
-					<td class="table-style pad"><input type="checkbox" class="check">
-	                <span class="checkmark"></span>'.ORDER_FORMAT.$value['order_id'].'</td>
-	                <td class="table-style pad">'.getDateFormat($value['created']).'</td>
-	                <td class="table-style pad">Channel Name</td>
-	                <td class="table-style pad">
-	                  <p style="float:left">'.$value['product_name'].'</p>
-	                  <img src="'.SITE_IMG.'dashboard.svg" style="float:right">
-	                </td>
-	                <td class="table-style pad">'.$payment_method.'</td>
-	                <td class="table-style pad">'.$value['customer_name'].'<br>
-	               	<a href="#exampleModalCenter?id='.$value['id'].'" data-toggle="modal" id="userData" data-target="#exampleModalCenter" class="view" data-id="'.$value['id'].'">VIEW</a>/<a href="#exampleModalCenter?id='.$value['id'].'" data-toggle="modal" id="userData" data-target="#exampleModalCenter" class="view" data-id="'.$value['id'].'">EDIT</a>
-	                </td>
-	                <td class="table-style pad">'.$order_status.'</td>
-	                <td class="table-style pad">'.$shipButton.'
-	                <span style="float:right;" class="circle-cross">
-	                <a href="#" class="cross-icon" id="deleteOrder" data-id="'.$value['id'].'"> 
-	                <i class="fas fa-times-circle"></i></a></span>
-	                /td>
-	            <tr>';
-		}
-	}
-	else
-	{
-		$html = "No Data Found";
-	}	
+	if($page==0) { 
+		$page = 1;
+	} 
 	
+	if($limit == ""){ 
+		$limit = 16;
+	}
 
-	$responce = array('status'=> 1,'html'=>$html);
-    echo json_encode($responce); exit;
+	$totalRow = 0;
+	@$offset = ($page - 1) * $limit;	
+
+	$user = $total ='';
+
+	$userRes = $db->pdoQuery("SELECT * FROM tbl_order WHERE  user_id='".$sessUserId."' LIMIT $offset,$limit ")->results();
+
+	$totalRowRes = $db->pdoQuery("SELECT * FROM tbl_order WHERE user_id='".$sessUserId."' ")->results();
+	
+	$totalRow = count($totalRowRes);
+
+	$totalPage=  ceil($totalRow / $limit); 
+    
+    foreach ($userRes as $key => $value) 
+    {
+        $payment_method = $value['payment_method'] == 'c' ? "COD" : "Prepaid";
+		$order_status = $value['status'] == 'c' ? "Completed" : "Pending";
+
+		if ($value['status'] == 'c') 
+		{
+			$shipButton ='<button class="btn2 ship" id="ship" data-id="'.$value['id'].'" style="float:left;" disabled>SHIP</button>';
+		}
+		else
+		{
+			$shipButton ='<button class="btn2 ship" id="ship" data-id="'.$value['id'].'" style="float:left;" >SHIP</button>';
+		}				
+			$user.='<tr class="row1">
+				<td class="table-style pad"><input type="checkbox" class="check">
+                <span class="checkmark"></span>'.ORDER_FORMAT.$value['order_id'].'</td>
+                <td class="table-style pad">'.getDateFormat($value['created']).'</td>
+                <td class="table-style pad">Channel Name</td>
+                <td class="table-style pad">
+                  <p style="float:left">'.$value['product_name'].'</p>
+                  <img src="'.SITE_IMG.'dashboard.svg" style="float:right">
+                </td>
+                <td class="table-style pad">'.$payment_method.'</td>
+                <td class="table-style pad">'.$value['customer_name'].'<br>
+               	<a href="#exampleModalCenter?id='.$value['id'].'" data-toggle="modal" id="userData" data-target="#exampleModalCenter" class="view" data-id="'.$value['id'].'">VIEW</a>/<a href="#exampleModalCenter?id='.$value['id'].'" data-toggle="modal" id="userData" data-target="#exampleModalCenter" class="view" data-id="'.$value['id'].'">EDIT</a>
+                </td>
+                <td class="table-style pad">'.$order_status.'</td>
+                <td class="table-style pad">'.$shipButton.'
+                <span style="float:right;" class="circle-cross">
+                <a href="#" class="cross-icon" id="deleteOrder" data-id="'.$value['id'].'"> 
+                <i class="fas fa-times-circle"></i></a></span>
+            	</td></tr>';
+    }
+
+    	$userTable ='<tr class="row1">
+			        <th class=" table-style table-heading">ORDER ID</th>
+			        <th class=" table-style table-heading">ORDER DATE AND TIME</th>
+			        <th class=" table-style table-heading">CHANNEL INTEGRATION<span><a href=""><i class="fas fa-filter filter_img"></i></a></span></th>
+
+			        <th class=" table-style table-heading">PRODUCT DETAILS</th>
+			        <th class=" table-style table-heading">PAYMENT<span><a href=""><i class="fas fa-filter filter_img"></i></a></span></th>
+			        <th class=" table-style table-heading">CUSTOMER DETAILS<span><a href=""><i class="fas fa-filter filter_img"></i></a></span></th>
+			        <th class=" table-style table-heading">STATUS</th>
+			        <th class=" table-style table-heading">ACTIONS</th>
+			      </tr> 
+			      	'.$user.' ';
+
+		for ($i=1; $i<=$totalPage; $i++) 
+		{ 
+			$total .="<option id='".$i."' value='".$i."'>".$i."</option>";
+		}
+
+    	echo json_encode(array('userTable'=>$userTable, "page" => $page ,'total_page'=> $total ,'current_page' => 1));   
+			exit;
 }
 
 else 

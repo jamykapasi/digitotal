@@ -24,6 +24,7 @@
             {"sName": "", 'sTitle': 'Order date & time'},
             {"sName": "", 'sTitle': 'Product Details'},
             {"sName": "", 'sTitle': 'shipment Details'},
+            {"sName": "", 'sTitle': 'Seller Party'},
             {"sName": "", 'sTitle': 'Entered Weight'},
             {"sName": "", 'sTitle': 'Charged Weight'},
             {"sName": "", 'sTitle': 'Proff'},  
@@ -59,7 +60,7 @@
                 </div>
                  <div class="actions portlet-toggler btn_add_button">    
                  
-                <a href="ajax.php?action=add" class="btn blue btn-add"><i class="fa fa-plus"></i> Add Weight Discrepancy</a>       
+               <!--  <a href="ajax.php?action=add" class="btn blue btn-add"><i class="fa fa-plus"></i> Add Weight Discrepancy</a> -->       
                 
                     <div class="btn-group"></div>
                 </div>

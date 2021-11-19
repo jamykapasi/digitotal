@@ -13,7 +13,7 @@ class Home {
 
 		$menu = NULL;
 		if(isset($this->sessUserId) && $this->sessUserId > 0){
-			$res = $this->db->pdoQuery("SELECT * FROM tbl_users WHERE 1=1 ORDER BY id DESC ")->result();
+			$res = $this->db->pdoQuery("SELECT * FROM tbl_users WHERE id = ".$this->sessUserId."")->result();
 			$replace = array(
 				"%WALLET_BALANCE%" => $res['wallet_balance'],
 			);

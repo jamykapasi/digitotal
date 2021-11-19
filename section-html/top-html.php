@@ -93,6 +93,13 @@
 
 	}
 
+	else if($_SERVER['REQUEST_URI']== PROJECT_DIRECTORY_NAME_HEADER.'product_category'  OR 
+		$_SERVER['REQUEST_URI']== PROJECT_DIRECTORY_NAME_HEADER.'product_category/') 
+	{
+		$body_class = "notification-content overflow-page style2";
+
+	}
+
 	?>		
 	
 	<body class="<?php echo $body_class;?>">

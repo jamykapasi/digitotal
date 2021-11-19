@@ -45,6 +45,10 @@
                 <img src="{SITE_IMG}weight-balance-green.svg" alt="" width="25px" class="svg"> <span class="ms-1 d-none d-sm-inline main-text">Weight Discrepancy</span></a>
             </li>
             <li>
+              <a href="{SITE_URL}product_category" class="nav-link px-0 align-middle">
+                <img src="{SITE_IMG}weight-balance-green.svg" alt="" width="25px" class="svg"> <span class="ms-1 d-none d-sm-inline main-text">Product Category</span></a>
+            </li>
+            <li>
               <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
                 <img src="{SITE_IMG}money-flow-green.svg" alt="" width="25px" class="svg"> <span class="ms-1 d-none d-sm-inline main-text">Pricing and Billing</span></a>
               <ul class="collapse show nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
@@ -96,22 +100,21 @@
         </div>
       </div>
 
-      <!-- <div class="modal fade recharge-record-modal" id="rechargeModalCenter" tabindex="-1" role="dialog" aria-labelledby="rechargeModalCenterTitle" aria-hidden="true">
+      <div class="modal fade recharge-record-modal" id="rechargeModalCenter" tabindex="-1" role="dialog" aria-labelledby="rechargeModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="text-center">
                         <h5 class="modal-title" id="rechargeModalLongTitle">RECHARGE ACCOUNT</h5>
-                          <form class="recharge" action="#" method="post" enctype="multipart/form-data">
+                          <form action="{SITE_URL}dashboard" method="post" name="frmCont" id="frmCont" class="form-horizontal" enctype="multipart/form-data" novalidate="novalidate">
                             <div class="customer-details-content">
                                 <div class="row">
                                      <div class="col col-12 col-md-6">
                                          <input type="text" id="amount" name="amount"class="form-control" placeholder="Enter Amount*" value="">
                                      </div>
-                                     
                                      <div class="col col-12 col-md-12">
                                         <input type="hidden" name="action" value="payment">
-                                        <button type="submit" id="edit" name="recharge" class="btn2">RECHARGE</button>
+                                        <button type="submit" id="recharge" name="recharge" class="btn2">RECHARGE</button>
                                      </div>
                                 </div>
                             </div>
@@ -120,39 +123,78 @@
                 </div>
             </div>
         </div>
-      </div> -->
-
+      </div>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<!-- <button id="rzp-button1">Pay</button> -->
 <script type="text/javascript">
-   $(document).on("submit",".recharge",function(){
 
-      $(".recharge").validate({
-        ignore: [],
-        errorClass: 'help-block',
-        errorElement: 'span',
-        rules: {
-          amount:{required:true,digits: true},
-        },
-        messages: {
-          amount:{required:"Please Enter Amount."},
-        },
-        highlight: function (element) {
-            $(element).closest('.form-control').addClass('has-error');
-        },
-        unhighlight: function (element) {
-            $(element).closest('.form-control').removeClass('has-error');
-        },
-        errorPlacement: function (error, element) {
-          if(element.attr('id') == 'amount'){
-              error.insertAfter(element.closest('.form-control'));
-          }else{
-              error.insertAfter(element.closest('.form-control'));
+  $(document).on('submit', '#frmCont', function (e) {
+      
+      $("#frmCont").validate({
+          ignore: [],
+          errorClass: 'help-block',
+          errorElement: 'span',
+          rules: {
+            amount:
+            {
+              required:true,
+              min:500,
+              digits: true,
+            },
+          },
+          messages: {
+              amount:{
+                required:"Please enter amount.",
+                min:"Please enter minimum 500"
+              },
+          },
+          highlight: function (element) {
+              $(element).closest('.form-control').addClass('has-error');
+          },
+          unhighlight: function (element) {
+              $(element).closest('.form-group').removeClass('has-error');
+          },
+          errorPlacement: function (error, element) {
+              if (element.attr("data-error-container")) {
+                  error.appendTo(element.attr("data-error-container"));
+              } else {
+                  error.insertAfter(element);
+              }
           }
-        }
       });
-      if ($(".recharge").valid()) {
+
+      if ($("#frmCont").valid()) {
           return true;
       } else {
           return false;
       }
   });
+
+  // var options = {
+  //   "key": "rzp_test_mAVEYHRfcV2jOh", // Enter the Key ID generated from the Dashboard
+  //   "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+  //   "currency": "INR",
+  //   "name": "Acme Corp",
+  //   "description": "Test Transaction",
+  //   "image": "https://example.com/your_logo",
+  //   "order_id": "order_9A33XWu170gUtm", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+  //   "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+  //   "prefill": {
+  //       "name": "Gaurav Kumar",
+  //       "email": "gaurav.kumar@example.com",
+  //       "contact": "9999999999"
+  //   },
+  //   "notes": {
+  //       "address": "Razorpay Corporate Office"
+  //   },
+  //   "theme": {
+  //       "color": "#3399cc"
+  //     }
+  // };
+  
+  // var rzp1 = new Razorpay(options);
+  // document.getElementById('recharge').onclick = function(e){
+  //     rzp1.open();
+  //     e.preventDefault();
+  // }
 </script>

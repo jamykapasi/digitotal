@@ -46,7 +46,7 @@
 
       <script>
       $(document).ready(function(e){
-            $('.search-panel .dropdown-menu').find('a').click(function(e) {
+        $('.search-panel .dropdown-menu').find('a').click(function(e) {
         e.preventDefault();
         var param = $(this).attr("href").replace("#","");
         var concept = $(this).text();
@@ -54,14 +54,14 @@
         $('.input-group #search_param').val(param);
           });
             });
-      var a = document.getElementByTagName('a').item(0);
-      $(a).on('keyup', function(evt){
-      console.log(evt);
-      if(evt.keycode === 13){
-    
-      alert('search?');
-      } 
-      }); 
+        var a = document.getElementByTagName('a').item(0);
+        $(a).on('keyup', function(evt){
+        console.log(evt);
+        if(evt.keycode === 13){
+      
+        alert('search?');
+        } 
+        }); 
       </script>
 
       <div class=" ship1 col-lg-3">
@@ -73,20 +73,19 @@
 
 <!-----second main div start ---->
 
-  <div class="second-row col-lg-10">
+          <div class="second-row col-lg-10">
           <label class="show">Show</label>
           <select name="filter" class="record">
-            <option value="1">1</option>
-            <option value="2">2</option>
+            
           </select>
           <label class="show">Result</label>
-          <div class=" pagination1 pagination:number active"> 1</div>
+          <div class="pagination1 pagination:number active"></div>
 
-          <div class="pagination:number arrow">
+          <!-- <div class="pagination:number arrow">
             <svg width="18" height="18">
               <use xlink:href="#right" />
             </svg>
-          </div>
+          </div> -->
 
 
           <svg class="hide">
@@ -96,18 +95,7 @@
       </div>
   <!------------------code for table ----------------------- -->
         <table id="t01" class="table2 table-style  manage-table col-lg-10">
-          <tr class="row1">
-            <th class=" table-style table-heading">ORDER ID</th>
-            <th class=" table-style table-heading">ORDER DATE AND TIME</th>
-            <th class=" table-style table-heading">CHANNEL INTEGRATION<span><a href=""><i class="fas fa-filter filter_img"></i></a></span></th>
-
-            <th class=" table-style table-heading">PRODUCT DETAILS</th>
-            <th class=" table-style table-heading">PAYMENT<span><a href=""><i class="fas fa-filter filter_img"></i></a></span></th>
-            <th class=" table-style table-heading">CUSTOMER DETAILS<span><a href=""><i class="fas fa-filter filter_img"></i></a></span></th>
-            <th class=" table-style table-heading">STATUS</th>
-            <th class=" table-style table-heading">ACTIONS</th>
-          </tr>
-            %HTML%     
+                 
         </table>
  <div>
 <div class="modal fade edit-record-modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -151,11 +139,11 @@
                           </div>
                         </form>  
                     </div>
-                    
                 </div>
             </div>
         </div>
     </div>
+</div>
 <script>
   $(function () {
       $("#datepicker").datepicker({ 
@@ -224,36 +212,63 @@
       }); 
    });
 
-  $(document).ready(function(){
+  // $(document).ready(function(){
 
-    load_data(1);
-    //var url = "<?php echo SITE_MOD.  $this->module; ?>/controller.php";
-    
-    function load_data(page, query = '')
+  //   load_data(1);
+
+  //   function load_data(page, query = '')
+  //   {
+  //     $.ajax({
+  //       url:window.location,
+  //       method:"POST",
+  //       data:{page:page,query:query},
+  //       success:function(res)
+  //       {
+  //         //alert(res.html);
+  //       }
+  //     });
+  //   }
+
+  //   // $('#search').keyup(function(){
+  //   //   var query = $('#search').val();
+  //   //   load_data(1, query);
+  //   // });
+
+  // });
+
+    $(document).ready(function()
     {
-      $.ajax({
-        url:window.location,
-        method:"POST",
-        data:{page:page,query:query},
-        success:function(res)
-        {
-          //alert(res.html);
-        }
-      });
-    }
-
-    // $(document).on('click', '.page-link', function(){
-    //   var page = $(this).data('page_number');
-    //   var query = $('#search_box').val();
-    //   load_data(page, query);
-    // });
-
-    $('#search').keyup(function(){
-      var query = $('#search').val();
-      load_data(1, query);
+      loadRecord(1);
     });
 
-  });
+    function loadRecord(page,query ='')
+    {   
+      $.ajax({
+          type:"POST",
+          dataType : 'json',
+          url: window.location,
+          data : {"action":"getRecord","page":page,query:query,"limit":3},
+          success: function(res)
+          {  
+            $('.html_data').append("");
+            $('.manage-table').html(res.userTable);
+            $('.record').html(res.total_page, page);
+            $('.pagination1').html(res.page);
+            // $(".ProductOrderPagination").empty();
+            // $('.ProductOrderPagination').unbind('page');
+            //ProductOrderPagination(res.total_page, page);
+          }
+      });
 
+        $(document).on('click', '.record', function(){
+          var page = $(this).val();
+          var query = $('#search_box').val();
+          loadRecord(page,query);
+        });
+
+        $('#search').keyup(function(){
+          var query = $('#search').val();
+          loadRecord(1, query);
+        });
+    }
 </script>
-</div>

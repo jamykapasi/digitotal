@@ -32,8 +32,6 @@ if(isset($_POST['action']) AND $_POST['action']=="registerFrom")
 		extract($_POST);
 	
 		$token = genrateRandom(8);
-		
-
 
 		$insert_array = array(
 			"first_name"    => $first_name,
@@ -44,7 +42,17 @@ if(isset($_POST['action']) AND $_POST['action']=="registerFrom")
 			"created"       => created(),
 			"email_token"   => $token, 
 		);
-		$user_id = $db->insert("tbl_users",$insert_array)->getLastInsertId();
+
+
+		$last_emp_id = $db->pdoQuery("SELECT user_id FROM tbl_users WHERE 1=1 ORDER BY id DESC LIMIT 1 ")->result();
+
+		$last_id = $db->insert("tbl_users",$insert_array)->getLastInsertId();
+
+		$user_id = $last_emp_id['user_id'];
+
+		$new_user_id = str_pad($order_id + 1, 8, 0, STR_PAD_LEFT);
+
+		$db->update("tbl_users",array("user_id" => $new_user_id),array("id"=>$last_id));
 
 		// $url = SITE_URL.'verify/'.$user_id.'/'.$token;
 						

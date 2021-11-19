@@ -107,16 +107,16 @@
         </tr>
         <tr class="final cod-final">
           <td class="final"><label class="final-label">Net Payable:</label><br>
-              <span class="final-sublabel">(Shipment Charges + COD Collected)</span></td>
+              <span class="final-sublabel">(Shipment Charges - COD Collected)</span></td>
           <td class="final"><input type="text" name="shipment-charges" class="input-final" value="%NETPAYABLE%" disabled></td>
         </tr>
         <tr class="final cod-final">
           <td class="final"><label class="final-label">Weight Dispute(if any):</label></td>
-          <td class="final"><input type="text" name="shipment-charges" class="input-final"  value="₹ 2000" disabled></td>
+          <td class="final"><input type="text" name="shipment-charges" class="input-final"  value="%DIPUTE%" disabled></td>
         </tr>
         <tr class="final cod-final">
           <td class="final"><label class="total-label">Total Payment after weight Dispute:</label></td>
-          <td class="final"><input type="text" name="shipment-charges" class="input-final ship-charges" value="₹ 78,000" disabled></td>
+          <td class="final"><input type="text" name="shipment-charges" class="input-final ship-charges" value="%TOTAL_PAYMENT%" disabled></td>
         </tr>
       </table>
     </div>

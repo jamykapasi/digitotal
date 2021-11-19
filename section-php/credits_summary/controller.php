@@ -23,7 +23,7 @@ class Controller extends Home {
               <td class=" table-style pad">'.getDateFormat($value['created']).'</td>
               <td class=" table-style pad">123456</td>
               <td class=" table-style pad">'.$value['ship_pack_weight'].'kg</td>
-              <td class=" table-style pad">'.$value['shippment_charge'].'</td>
+              <td class=" table-style pad">₹'.$value['shippment_charge'].'</td>
             </tr>';
 		}
 
@@ -40,18 +40,23 @@ class Controller extends Home {
               <td class=" table-style pad">123456</td>
               <td class=" table-style pad">'.$value['ship_pack_weight'].'kg</td>
               <td class=" table-style pad">aaa</td>
-              <td class=" table-style pad">'.$value['shippment_charge'].'</td>
+              <td class=" table-style pad">₹'.$value['shippment_charge'].'</td>
             </tr>';
 		}
 
-		$TotalCod = $this->db->pdoQuery("SELECT SUM(cod_charges) as totalCod FROM tbl_order")->result();
+		$TotalCod = $this->db->pdoQuery("SELECT SUM(cod_charges) as totalCod FROM tbl_order WHERE payment_method='c' ")->result();
 
-		$TotalShipCarge = $this->db->pdoQuery("SELECT SUM(shippment_charge) as ShipCharges FROM tbl_order")->result();
-
-		$shipmentCharges = $TotalShipCarge['ShipCharges'] + $TotalCod['totalCod'];
-
-		$netpayable = $TotalCod['totalCod'] + $shipmentCharges ;
+		$TotalShipCharge = $this->db->pdoQuery("SELECT SUM(shippment_charge) as ShipCharges FROM tbl_order")->result();
 		
+		$TotalDisputeCharge = $this->db->pdoQuery("SELECT SUM(weight_dispute_charge) as weight_despute FROM tbl_order")->result();
+
+		$shipmentCharges = $TotalShipCharge['ShipCharges'] + $TotalCod['totalCod'];
+
+
+		$netpayable = $TotalShipCharge['ShipCharges'] - $TotalCod['totalCod'];
+		
+		$totalPayment = $netpayable - $TotalDisputeCharge['weight_despute'];
+
 		$mainHTML =  DIR_TMPL . "credits_summary/view.php";
 		$array = array(
 			"%PREPAID%" =>$prepaid,
@@ -59,6 +64,8 @@ class Controller extends Home {
 			"%TOTALCOD%" =>'₹'.$TotalCod['totalCod'],
 			"%SHIPMENTCHARGES%" =>'₹'.$shipmentCharges,
 			"%NETPAYABLE%" =>'₹'.$netpayable,
+			"%DIPUTE%"	=>'₹'.$TotalDisputeCharge['weight_despute'],
+			"%TOTAL_PAYMENT%" =>'₹'.$totalPayment, 
  		);
 		return get_view($mainHTML,$array);
 	}
