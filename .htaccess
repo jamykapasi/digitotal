@@ -60,6 +60,8 @@ RewriteRule ^courier_partner_priority?$ section-php/courier_partner_priority/ind
 RewriteRule ^notification/?$ section-php/notification/index.php [L]
 RewriteRule ^notification?$ section-php/notification/index.php [L]
 
+RewriteRule ^product_category/?$ section-php/product_category/index.php [L]
+RewriteRule ^product_category?$ section-php/product_category/index.php [L]
 
 RewriteRule ^product_details/([0-9]+)?$ section-php/product_details/index.php?product_id=$1 [L]
 RewriteRule ^product_details/([0-9]+)?$ section-php/product_details/index.php?product_id=$1 [L]

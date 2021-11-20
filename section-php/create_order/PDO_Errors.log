@@ -1,0 +1,7 @@
+2021-11-18 03:11:07 :: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'pickup_address_id' cannot be null: 513
+2021-11-18 03:11:31 :: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'pickup_address_id' cannot be null: 513
+2021-11-18 03:11:43 :: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'pickup_address_id' cannot be null: 513
+2021-11-18 03:11:03 :: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'pickup_address_id' cannot be null: 513
+2021-11-18 04:11:14 :: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'pickup_address_id' cannot be null: 513
+2021-11-18 07:11:01 :: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1: 340
+2021-11-18 07:11:01 :: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1: 340

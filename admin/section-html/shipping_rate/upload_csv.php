@@ -14,7 +14,7 @@
             </div>
         </div> 
         <div class="col-md-offset-3 col-md-9">
-            <button type="submit" name="uploadCSV" class="btn" id="uploadCSV">Submit</button>
+            <button type="submit" name="uploadCSV" class="btn" id="uploadCSV" accept=".csv">Submit</button>
             &nbsp;&nbsp;&nbsp;
             <button type="button" name="cn" class="btn btn-toggler" id="cn">Cancel</button>
         </div>
@@ -34,10 +34,16 @@
                 errorClass: 'help-block',
                 errorElement: 'span',
                 rules: {
-                    bulk_pincode:{required:true},
+                    bulk_pincode:{
+                        required:true,
+                        extension:'csv'
+                    },
                 },
                 messages: {
-                    pincode:{required:"Please  Enter  File."},
+                    bulk_pincode:{
+                        required:"Please select csv file.",
+                        extension:"Please upload only csv file"
+                    },
                 },
                 highlight: function (element) {
                     $(element).closest('.form-group').addClass('has-error');

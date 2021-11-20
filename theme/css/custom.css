@@ -1530,40 +1530,56 @@ body.notification-content {
 }
 
 /* REPORTS */
-.notification-content .fields-report {
-    background-color: #fff;
-    width: 100%;
-    height: 60%;
+.fields-report{
+  background-color: #fff;
+  width: 100%;
+  height: 60%;
 }
-.notification-content .btn-group {
-    display: block;
+.btn-group{
+  display: block;
 }
-.notification-content .report-btn {
-    border-bottom: 1.8px solid #6DFADE;
-    font-weight: 500;
-    font-size: 0.8rem;
-    display: block;
+.report-btn{
+  border-bottom: 1.8px solid #6DFADE;
+  font-weight: 500;
+  font-size: 0.8rem;
+  display: block;
 }
-.notification-content .dropdown-menu {
-    font-size: 0.8rem;
+.dropdown-menu{
+  font-size: 0.8rem;
 }
-.notification-content .form-check {
-    margin-right: -1rem;
+
+.form-check{
+  margin-right: -1rem;
 }
-.notification-content .long-label {
-    margin-right: 5.5rem;
+.long-label{
+  margin-right: 5.5rem;
 }
-.notification-content .long-label-2 {
-    margin-right: 1rem;
+.long-label-2{
+  margin-right: 1rem;
 }
-.notification-content .no-space-break {
-    white-space: nowrap;
+.no-space-break{
+    white-space:nowrap;
     font-size: 0.8rem;
     color: #000 !important;
     font-weight: 600;
 }
-.notification-content .main-area {
-    width: 100%;
+.main-area{
+  width: 100%;
+}
+
+/* COURIER PARTNER PRIORITY */
+
+.custom-prio-label{
+  font-size: 1rem;
+  font-weight: 500;
+}
+.checkbox-2{
+  margin-top: 0rem;
+}
+.sub-text-radio{
+  color:#989898;
+  font-size: 0.6rem;
+  width:200px;
 }
 
 /* COURIER PARTNER PRIORITY */
@@ -2104,7 +2120,7 @@ body.notification-content {
     letter-spacing: 2px;
     margin: 2px;
 }
-.notification-content .btn {
+.notification-content .btn:not(.wallet-btn) {
     border: none;
     box-shadow: none;
     border-radius: 0px;
@@ -3200,6 +3216,37 @@ body.notification-content {
 .modal-content span {
     color: red;
     margin-right: auto;
+}
+
+.dropdown-toggle.show {
+    margin: 0;
+}
+
+.notification-content .report-btn {
+    background-color: transparent;
+    border-bottom: 1.8px solid #6DFADE;
+}
+
+.dropdown-toggle:after {
+    display: inline-block !important;
+}
+
+.dropdown-item {
+    color: #212529 !important;
+    font-weight: normal !important;
+    font-size: 12.8px;
+}
+
+.selected-file-name {
+    font-size: 14px;
+    color: #000 !important;
+    position: absolute;
+    border-bottom: 1px solid cyan;
+    right: calc(100% + 10px);
+    top: 5px;
+    max-width: 180px;
+    overflow-wrap: break-word;
+    /*display: none;*/
 }
 
 @media (min-width: 992px) {

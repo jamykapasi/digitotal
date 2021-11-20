@@ -178,9 +178,9 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
               
                 $operation = '';
                             
-                $operation.=get_operation($fetchRes['id'],"upload","btnEdit","Bulk Pincode",);
-                $operation.=get_operation($fetchRes['id'],"edit","btnEdit","Edit",);
-                $operation.=get_operation($fetchRes['id'],"view","btnEdit","View",$fetchRes['id']);
+                $operation.=get_operation($fetchRes['id'],"upload","btnEdit","Bulk Pincode");
+                $operation.=get_operation($fetchRes['id'],"edit","btnEdit","Edit");
+                $operation.=get_operation($fetchRes['id'],"view","btnEdit","View");
                 $operation.=get_operation($fetchRes['id'],"delete","btn-delete","Delete");
 
 

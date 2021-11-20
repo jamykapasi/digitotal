@@ -16,24 +16,24 @@ $tab_title = "Create Order";
 
 if(isset($_POST['action']) AND $_POST['action']=="shippingRateCalculate") 
 {	
-	
-	$shipingRateRes = $db->pdoQuery("SELECT * FROM tbl_shipping_rate WHERE 1=1 AND id=".$_POST['courier_partner']." ORDER BY id DESC LIMIT 1 ")->result();
 
-	$pickupAddress = $db->pdoQuery("SELECT * FROM tbl_pickup_address WHERE 1=1 AND id=".$_POST['pickup_address']." ORDER BY id DESC LIMIT 1 ")->result();
+	$shipingRateRes = $db->pdoQuery("SELECT * FROM tbl_shipping_rate WHERE 1=1 AND id='".$_POST['courier_partner']."' ")->result();
 
-	$string = explode(" ",$pickupAddress['address']);
-	
+	$pickupAddress = $db->pdoQuery("SELECT * FROM tbl_pickup_address WHERE 1=1 AND id='".$_POST['pickup_address']."' ")->result();
+
 	$shiping_rate = $finalPrice ='';
 
-	if (substr($_POST['customer_pincode'], 0, 3) == substr($string[2], 0, 3)) 
+	if (substr($_POST['customer_pincode'], 0, 3) == substr($pickupAddress['pincode'], 0, 3)) 
 	{
 		$shiping_rate = $shipingRateRes['within_city'];
+
 	}
-	if (substr($_POST['customer_pincode'], 0, 3) !== substr($string[2], 0, 3)) 
+	if (substr($_POST['customer_pincode'], 0, 3) !== substr($pickupAddress['pincode'], 0, 3)) 
 	{
 		$shiping_rate = $shipingRateRes['within_zone'];
+
 	}
-	if (substr($_POST['customer_pincode'], 0, 1) !== substr($string[2], 0, 1)) 
+	if (substr($_POST['customer_pincode'], 0, 1) !== substr($pickupAddress['pincode'], 0, 1)) 
 	{
 		$shiping_rate = $shipingRateRes['rest_of_india'];
 	}
@@ -57,7 +57,7 @@ if(isset($_POST['action']) AND $_POST['action']=="shippingRateCalculate")
 
 		$totalPrice = $ratePrice + $unitPrice;
 		
-		$responce = array("codCharges" =>$codCharges,"unitPrice"=>$unitPrice,"rateCharges" =>$ratePrice,"totalPrice"=> $totalPrice,"shipingRatePrice" =>$shiping_rate_price);
+		$responce = array("codCharges" =>$codCharges,"unitPrice"=>$unitPrice,"rateCharges" =>$ratePrice,"totalPrice"=> $totalPrice,"shipingRatePrice" =>$shiping_rate_price,"pickup_address_id"=>$_POST['pickup_address']);
         echo json_encode($responce); exit;
 }
 
@@ -73,51 +73,162 @@ if(isset($_POST['action']) AND $_POST['action']=="submitOrderForm")
 	{
 		$cod_charges = "0.00";
 	}
-	$insert_array = array(
-		"user_id"		   => $sessUserId,	
-		"customer_name"    => $customer_name,
-	    "customer_phone"   => $customer_phone,
-	    "customer_email"   => $customer_email,
-	    "customer_address" => $customer_address,
-	    "customer_pincode" => $customer_pincode,
-	    "customer_city"    => $customer_city,
-	    "customer_state"   => $customer_state,
-	    "product_name"     => $product_name,
-	    "product_price"    => $product_price,
-	    "product_qty"      => $product_qty,
-	    "product_sku"      => $product_sku,
-	    "product_category_id" => $product_category_id,
-	    "payment_method"      => $payment_method,
-	    "pickup_address_id"   => $pickup_address_id,
-	    "ship_pack_weight"    => $ship_pack_weight,
-	    "shippment_charge"	  => $shippment_charge,
-	    "cod_charges"		  => $cod_charges,	
-	    "total_price"		  => $total_price,	
-	    "volumetric_cm_1"     => $volumetric_cm_1,
-	    "volumetric_cm_2"     => $volumetric_cm_2,
-	    "volumetric_cm_3"     => $volumetric_cm_3,
-	    "courier_partner"     => $courier_partner,
-	    "pickup_date"         => date($pickup_date),
-	    "created"             => created(),
-	);
 
-	$last_emp_code = $db->pdoQuery("SELECT order_id FROM tbl_order WHERE 1=1 ORDER BY id DESC LIMIT 1 ")->result();
-  	
-  	$last_id = $db->insert("tbl_order",$insert_array)->getLastInsertId();
+	if ($payment_method == 'p') 
+	{	
+		$userBalance = $db->pdoQuery("SELECT wallet_balance FROM tbl_users WHERE id='".$sessUserId."' " )->result();
 
-	$order_id = $last_emp_code['order_id'];
-	$new_order_id = str_pad($order_id + 1, 5, 0, STR_PAD_LEFT);
-		
-	$db->update("tbl_order",array("order_id" => $new_order_id),array("id"=>$last_id));
+		if ($userBalance['wallet_balance'] >= $total_price) 
+		{
 			
-	$msgType = $_SESSION["msgType"] = disMessage(array('type'=>'suc','var'=> "Order created successfully."));
-	
-	redirectPage(SITE_URL."manage_order");		
+			$wallet_balance = $userBalance['wallet_balance'] - $total_price;
+
+			$update_array = array(
+				"wallet_balance" => $wallet_balance,
+			);
+
+			$db->update("tbl_users",$update_array,array("id"=>$sessUserId));
+		}
+		else
+		{
+			$msgType = $_SESSION["msgType"] = disMessage(array('type'=>'war','var'=> "You Don't have sufficient Balance"));
+		
+			redirectPage(SITE_URL."create_order");
+		}		
+	}
+		$insert_array = array(
+			"user_id"		   => $sessUserId,	
+			"customer_name"    => $customer_name,
+		    "customer_phone"   => $customer_phone,
+		    "customer_email"   => $customer_email,
+		    "customer_address" => $customer_address,
+		    "customer_pincode" => $customer_pincode,
+		    "customer_city"    => $customer_city,
+		    "customer_state"   => $customer_state,
+		    "product_name"     => $product_name,
+		    "product_price"    => $product_price,
+		    "product_qty"      => $product_qty,
+		    "product_sku"      => $product_sku,
+		    "product_category_id" => $product_category_id,
+		    "payment_method"      => $payment_method,
+		    "pickup_address_id"   => $pickup_address_id,
+		    "ship_pack_weight"    => $ship_pack_weight,
+		    "shippment_charge"	  => $shippment_charge,
+		    "cod_charges"		  => $cod_charges,	
+		    "total_price"		  => $total_price,	
+		    "volumetric_cm_1"     => $volumetric_cm_1,
+		    "volumetric_cm_2"     => $volumetric_cm_2,
+		    "volumetric_cm_3"     => $volumetric_cm_3,
+		    "courier_partner"     => $courier_partner,
+		    "pickup_date"         => date($pickup_date),
+		    "created"             => created(),
+		);
+
+		$last_emp_code = $db->pdoQuery("SELECT order_id FROM tbl_order WHERE 1=1 ORDER BY id DESC LIMIT 1 ")->result();
+	  	
+	  	$last_id = $db->insert("tbl_order",$insert_array)->getLastInsertId();
+
+		$order_id = $last_emp_code['order_id'];
+		$new_order_id = str_pad($order_id + 1, 5, 0, STR_PAD_LEFT);
+			
+		$db->update("tbl_order",array("order_id" => $new_order_id),array("id"=>$last_id));
+				
+		$msgType = $_SESSION["msgType"] = disMessage(array('type'=>'suc','var'=> "Order created successfully."));
+		
+		redirectPage(SITE_URL."manage_order");
 
 }
+
+if(isset($_POST['action']) AND $_POST['action']=="AddNewAddress") 
+{
+	extract($_POST);
+
+	$insert_array = array(
+		"user_id"	 => $sessUserId,	
+		"name"    	 => $name,
+	    "phone_no"   => $phone_no,
+	    "flat_no"    => $flat_no,
+	    "locality"   => $locality,
+	    "landmark"   => $landmark,
+	    "pincode"    => $pincode,
+	    "area"       => $area,
+	    "created"    => created(),
+	);
+
+	if (isset($_POST['default_address'])) 
+	{
+		$insert_array['default_address'] = 'y';
+	}
+	
+	$last_id = $db->insert("tbl_pickup_address",$insert_array)->getLastInsertId();
+
+	$msgType = $_SESSION["msgType"] = disMessage(array('type'=>'suc','var'=> "New Adress created successfully."));
+	
+	redirectPage(SITE_URL."create_order");		
+}
+
+if(isset($_POST['action']) AND $_POST['action']=="viewAddress") 
+{
+	extract($_POST);
+
+	$addressRes = $db->pdoQuery("SELECT * FROM tbl_pickup_address WHERE id=".$_POST['id']." ")->result();
+	
+	$responce = array(
+		'address_id'      => $addressRes['id'],
+		'name'            => $addressRes['name'],
+		'phone_no'        => $addressRes['phone_no'],
+		'flat_no'         => $addressRes['flat_no'],
+		'locality'        => $addressRes['locality'],
+		'landmark'        => $addressRes['landmark'],
+		'pincode'         => $addressRes['pincode'],
+		'area'   		  => $addressRes['area'],
+		'default_address' => $addressRes['default_address'],
+	);
+
+	echo json_encode($responce); exit;	
+}
+
+if(isset($_POST['action']) AND $_POST['action']=="editAddress") 
+{
+	extract($_POST);
+
+	$update_array = array(
+		"user_id"	 => $sessUserId,	
+		"name"    	 => $name,
+	    "phone_no"   => $phone_no,
+	    "flat_no"    => $flat_no,
+	    "locality"   => $locality,
+	    "landmark"   => $landmark,
+	    "pincode"    => $pincode,
+	    "area"       => $area,
+	);
+
+	if (isset($_POST['default_address'])) 
+	{
+		$insert_array['default_address'] = 'y';
+	}
+
+	$db->update("tbl_pickup_address",$update_array,array("id"=>$_POST['id']));
+
+	$msgType = $_SESSION["msgType"] = disMessage(array('type'=>'suc','var'=> "Adress update successfully."));
+	
+	redirectPage(SITE_URL."create_order");		
+}
+
+if(isset($_POST['action']) AND $_POST['action']=="deleteAddress") 
+{
+	extract($_POST);
+	
+	$db->delete("tbl_pickup_address",array("id"=>$_POST['id']));
+	
+	$msgType = $_SESSION["msgType"] = disMessage(array('type'=>'suc','var'=> "Order Delete Successfully."));
+    
+    $responce = array('status'=> 1);
+    echo json_encode($responce); exit;
+}
+
 if(isset($_POST['upload'])) 
 {	
-
 	$filename = $_FILES["file"]["tmp_name"];
 
 	if ($_FILES["file"]["size"] > 0) 
@@ -231,8 +342,6 @@ if(isset($_POST['upload']))
 			$rate = $ship_pack_weight/0.5;
 		
 			$shippment_charge = $shiping_rate * $rate; 
-
-			
 
 			$productTotal = $product_price * $product_qty;
 

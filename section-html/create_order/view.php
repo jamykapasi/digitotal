@@ -14,6 +14,7 @@
             <div class="create-order-file">
                 <input type="file" class="form-control" name="file" id="file" accept=".csv">
                 <button class="btn2 bulk col-lg-1 bulkUpload" id="btnFile" >BULK UPLOAD</button>
+                <span class="selected-file-name">fdgbdjh.jpg</span>
             </div>
             <button class="btn2 bulk col-lg-1" type="submit"  id="upload" name="upload"> UPLOAD</button>
     </div>
@@ -74,15 +75,19 @@
 
         <div class="form-style">
             <h4 class="part1">2.Select Pickup Address</h4>
+
             <h4 class="heading">PICKUP DETAILS</h4>
               <table class="data">
 
               <tr>
-                  <td class="for-column"><select name="pickup_address_id" id="pickup_address_id" class="input" required>
+                  <!-- <td class="for-column"><select name="pickup_address_id" id="pickup_address_id" class="input" required>
                         <option value="">Select pickup address*</option>
                          #PICKUP_ADDRESS# 
                         </select>
-                    </td>
+                    </td> -->
+                    <td class="for-column">
+                      <label class="address-label">Select Address*</label><button type="button" data-toggle="modal" data-target="#exampleModalCenter"  class="btn2 select-btn">SELECT</button>
+                  </td>
               </tr> 
 
             </table>
@@ -162,12 +167,143 @@
                 </tr>
                 <tr><td><input type="hidden" name="shippment_charge" id="shippment_charge" value=""></td></tr>
                 <tr><td><input type="hidden" name="cod_charges" id="cod_charges" value=""></td></tr>
+                <tr><td><input type="hidden" name="pickup_address_id" id="pickup_address_id" value=""></td></tr>
                 <tr><td><input type="hidden" name="total_price" id="total_price" value=""></td></tr>
                 <tr><td><button type="submit" name="submitBtn" id="submitBtn" class="btn2 btn-next order-btn">PLACE ORDER</button></td></tr>
             </table>
             </form>  
     </div>
-    
+    <!-- Adress Select Modal  -->
+    <div class="modal fade edit-record-modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="modal-header border-0">
+                        <span class="cross-circle1 close ms-auto" data-dismiss="modal">
+                            <a href="#" class="cross-icon"> 
+                            <i class="fas fa-times-circle"></i></a>
+                        </span>
+                    </div>
+                    <h3 class="modal-title text-center w-100 m-0">SELECT PICKUP ADDRESS</h3>
+                    <div class="row custfields style2 " style="margin-top: 5%;">
+                        <label class="col-4" style="font-size:0.9rem;font-weight: 500;">Add New Address?</label>
+                        <button class="btn2 btn-next update-btn btn-hv col-4" data-dismiss="modal" data-toggle="modal" data-target="#SelectModalCenter" style="width: 18%;margin: -5px 10px 0px auto;">SELECT</button>
+                            #ADDRESS#
+                        <button class="btn2 btn-next update-btn btn-hv col-4" data-dismiss="modal" data-toggle="modal" data-target="" style="width: 18%;margin: 20px 5px 0px auto;">Done</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add New Adreess Modal -->
+    <div class="modal fade edit-record-modal" id="SelectModalCenter" tabindex="-1" role="dialog" aria-labelledby="SelectModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <span class="cross-circle1 close ms-auto" data-dismiss="modal">
+                        <a href="#" class="cross-icon"> 
+                        <i class="fas fa-times-circle"></i></a>
+                    </span>
+                </div>
+                <form class="addAddress" id="addAddress" action="{SITE_URL}create_order" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <h5 class="modal-title" >ADD NEW PICKUP ADDRESS</h5>
+                            <div class="customer-details-content">
+                                <div class="row">
+                                     <div class="col col-12 col-md-6">
+                                         <input type="text" id="name" name="name" class="form-control" placeholder="Full Name*">
+                                     </div>
+                                     <div class="col col-12 col-md-6">
+                                         <input type="text" id="phone_no" name="phone_no" class="form-control" placeholder="Phone*">
+                                     </div>
+                                     <div class="col col-12 col-md-12">
+                                         <input type="text" class="form-control" id="flat_no" name="flat_no" placeholder="Flat No.& Building Name*">
+                                     </div>
+                                     <div class="col col-12 col-md-12">
+                                         <input type="text" class="form-control" id="locality" name="locality" placeholder="Road, Locality">
+                                     </div>
+                                     <div class="col col-12 col-md-12">
+                                         <input type="text" class="form-control" id="landmark" name="landmark" placeholder="Landmark*">
+                                     </div>
+                                     <div class="col col-12 col-md-6">
+                                         <input type="text" class="form-control" id="Pincode" name="pincode" placeholder="Pincode*">
+                                     </div>
+                                     <div class="col col-12 col-md-6">
+                                         <input type="text" class="form-control" id="area" name="area" placeholder="Area*">
+                                     </div>
+                                     <div class="col col-12 col-md-6">
+                                         <input type="checkbox"  id="SaveDefault"  name="default_address" style="margin-left: -30px;">
+                                         <label for="SaveDefault">Save as default address</label>
+                                     </div>
+                                     <div class="col col-12 col-md-12">
+                                        <input type="hidden" name="action" value="AddNewAddress">
+                                        <button class="btn2" type="submit"  id="submitAddress" name="submitAddress">SAVE</button>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>    
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Adreess Modal -->
+    <div class="modal fade edit-record-modal" id="editAddressModalCenter" tabindex="-1" role="dialog" aria-labelledby="editAddressModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <span class="cross-circle1 close ms-auto" data-dismiss="modal">
+                        <a href="#" class="cross-icon"> 
+                        <i class="fas fa-times-circle"></i></a>
+                    </span>
+                </div>
+                <form class="editAddress" id="editAddress" action="{SITE_URL}create_order" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <h5 class="modal-title" >EDIT PICKUP ADDRESS</h5>
+                            <div class="customer-details-content">
+                                <div class="row">
+                                     <div class="col col-12 col-md-6">
+                                         <input type="text" name="name" id="editName" class="form-control" placeholder="Full Name*">
+                                     </div>
+                                     <div class="col col-12 col-md-6">
+                                         <input type="text" name="phone_no" id="editPhone_no" class="form-control" placeholder="Phone*">
+                                     </div>
+                                     <div class="col col-12 col-md-12">
+                                         <input type="text" name="flat_no" id="editFlat_no" class="form-control" placeholder="Flat No.& Building Name*">
+                                     </div>
+                                     <div class="col col-12 col-md-12">
+                                         <input type="text" name="locality" id="editLocality" class="form-control" placeholder="Road, Locality">
+                                     </div>
+                                     <div class="col col-12 col-md-12">
+                                         <input type="text" name="landmark" id="editLandmark" class="form-control" placeholder="Landmark*">
+                                     </div>
+                                     <div class="col col-12 col-md-6">
+                                         <input type="text" name="pincode" id="editPincode" class="form-control" placeholder="Pincode*">
+                                     </div>
+                                     <div class="col col-12 col-md-6">
+                                         <input type="text" name="area" id="editArea" class="form-control" placeholder="Area*">
+                                     </div>
+                                     <div class="col col-12 col-md-6">
+                                         <input type="checkbox" name="editDefault_address" id="default_address" placeholder="Area*" id="SaveDefault" style="margin-left: -30px;">
+                                         <label for="SaveDefault">Save as default address</label>
+                                     </div>
+                                     <div class="col col-12 col-md-12">
+                                        <input type="hidden" name="id" id="editAddress_id">
+                                        <input type="hidden" name="action" value="editAddress">
+                                        <button class="btn2" type="submit"  id="editAddress" name="editAddress">SAVE</button>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 <script type="text/javascript">
   $(document).on("click",".bulkUpload",function() {
     $("#file").trigger("click");
@@ -196,7 +332,7 @@
       var customer_state   = $("#customer_state").val();
       var product_date     = $("#pickup_date").val();
       var ship_pack_weight = $("#ship_pack_weight").val();
-      var pickup_address   = $('#pickup_address_id').val();
+      var pickup_address   = $("input[name='pickup_address']:checked").val();
       var courier_partner  = $('#courier_partner').val();
       var payment_method   = $("input[name='payment_method']:checked").val();
        
@@ -212,6 +348,7 @@
               $("#shippment_charge").val(res.shipingRatePrice);
               $("#cod_charges").val(res.codCharges);
               $("#total_price").val(res.totalPrice);
+              $("#pickup_address_id").val(res.pickup_address_id);
               $("#summary_order_total").val("₹ "+(res.totalPrice)+" /");
             }
         });
@@ -256,4 +393,92 @@
           return false;
       }
   });
+
+  $(document).on("submit",".addAddress",function(){
+
+      $(".addAddress").validate({
+        ignore: [],
+        errorClass: 'help-block',
+        errorElement: 'span',
+        rules: {
+          name:{required:true},
+          phone_no:{required:true,digits:true,minlength:10},
+          landamark:{required:true},
+          pincode:{required:true,digits:true,minlength:5,mixlength:6},
+          area:{required:true},
+        },
+        messages: {
+          name:{required:"Please Enter Name"},
+          phone_no:{required:"Please enter Phone."},
+          landamark:{required:"Please Enter Landmark."},
+          pincode:{required:"Please Enter Pincode"},
+          area:{required:"Please Enter Area"},
+        },
+        highlight: function (element) {
+            $(element).closest('form-control').addClass('has-error');
+        },
+        unhighlight: function (element) {
+            $(element).closest('form-control').removeClass('has-error');
+        },
+        errorPlacement: function (error, element) {
+          if(element.attr('id') == 'file'){
+              error.insertAfter(element.closest('.form-control'));
+          }else{
+              error.insertAfter(element.closest('.form-control'));
+          }
+        }
+      });
+      if ($(".addAddress").valid()) {
+          return true;
+      } else {
+          return false;
+      }
+  });
+
+  $(document).on("click","#editAddress",function() {
+      var id = $(this).data('id');
+
+      $.ajax({
+          type:"POST",
+          dataType : 'json',
+          url: window.location,
+          data : {"action":"viewAddress",id},
+          success: function(res)
+          {
+            $("#editName").val(res.name);
+            $("#editPhone_no").val(res.phone_no);
+            $("#editFlat_no").val(res.flat_no);
+            $("#editLocality").val(res.locality);
+            $("#editLandmark").val(res.landmark);
+            $("#editPincode").val(res.pincode);
+            $("#editArea").val(res.area);
+            $("#editDefault_address").val(res.default_address);
+            $("#editAddress_id").val(res.address_id); 
+          }
+      });
+  });
+
+  $(document).on("click","#deleteAddress",function() {
+      var id = $(this).data('id');
+
+      var del = confirm("Are you sure you want to delete?");
+        if (del)
+        $.ajax({
+            type:"POST",
+            dataType : 'json',
+            url: window.location,
+            data : {"action":"deleteAddress",id},
+            success: function (response) 
+            {
+             if(response.status == 1)
+              { 
+                window.location = "{SITE_URL}create_order";   
+              } 
+              else 
+              {
+                toastr['error'](response.message);
+              }
+            },
+        }); 
+   });
 </script>

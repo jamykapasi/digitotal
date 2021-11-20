@@ -21,6 +21,7 @@ if(isset($_POST['action']) AND $_POST['action']=="shippingRateCalculate")
 	LEFT JOIN tbl_courier_pincode as pincode ON pincode.courier_partner_id = rate.id
 	WHERE pincode.pincode= ".$_POST['pickup_pincode']." ORDER BY id DESC ")->results();
 	
+
 	if (count($shipingRateRes) > 0) 
 	{
 		$shiping_rate = $finalPrice = $shippingTable = $withinCity = $withinZone = $RestOfIndia= $shippingTableVal ='';
@@ -55,18 +56,21 @@ if(isset($_POST['action']) AND $_POST['action']=="shippingRateCalculate")
 				if ($shiping_rate == $shipingRateRes[0]['within_city']) 
 				{
 					$withinCity .='<tbody>
+										<td class="tg-jgah">'.$value['courier_partner'].'</td>
 										<td class="tg-jgah">₹'.$value['within_city'].'</td>
 									</tbody>';
 				}
 				if ($shiping_rate == $shipingRateRes[0]['within_zone']) 
 				{
 					$withinZone .='<tbody>
+										<td class="tg-jgah">'.$value['courier_partner'].'</td>
 										<td class="tg-jgah">₹'.$value['within_zone'].'</td>
 									</tbody>';
 				}
 				if ($shiping_rate == $shipingRateRes[0]['rest_of_india']) 
 				{
 					$RestOfIndia .='<tbody>
+										<td class="tg-jgah">'.$value['courier_partner'].'</td>
 										<td class="tg-jgah">₹'.$value['rest_of_india'].'</td>
 									</tbody>';
 				}
@@ -78,6 +82,7 @@ if(isset($_POST['action']) AND $_POST['action']=="shippingRateCalculate")
 				$shippingTable ='<table class="tg ms-3 mt-3">
 				                <thead>
 				                  <tr>
+				                  	<th class="tg-9sut">Courier Partner</th>
 				                    <th class="tg-9sut">WITHIN CITY</th>
 				                  </tr>
 				                </thead>
@@ -88,6 +93,7 @@ if(isset($_POST['action']) AND $_POST['action']=="shippingRateCalculate")
 				$shippingTable ='<table class="tg ms-3 mt-3">
 				                <thead>
 				                  <tr>
+				                  	<th class="tg-9sut">Courier Partner </th>
 				                    <th class="tg-9sut">WITHIN ZONE</th>
 				                  </tr>
 				                </thead>
@@ -98,6 +104,7 @@ if(isset($_POST['action']) AND $_POST['action']=="shippingRateCalculate")
 				$shippingTable ='<table class="tg ms-3 mt-3">
 				                <thead>
 				                  <tr>
+				                    <th class="tg-9sut">Courier Partner </th>
 				                    <th class="tg-9sut">REST OF INDIA</th>
 				                  </tr>
 				                </thead>

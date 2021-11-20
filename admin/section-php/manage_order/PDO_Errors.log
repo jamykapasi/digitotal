@@ -1,0 +1,2 @@
+2021-11-17 03:11:17 :: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ORDER BY id DESC LIMIT 1' at line 1: 340
+2021-11-17 03:11:37 :: update statement not in valid format..
