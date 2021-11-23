@@ -117,7 +117,7 @@ if (isset($_POST['action']) AND $_POST['action'] == 'getRecord')
     foreach ($userRes as $key => $value) 
     {
         $payment_method = $value['payment_method'] == 'c' ? "COD" : "Prepaid";
-		$order_status = $value['status'] == 'c' ? "Completed" : "Pending";
+				$order_status = $value['status'] == 'c' ? "Completed" : "Pending";
 
 		if ($value['status'] == 'c') 
 		{

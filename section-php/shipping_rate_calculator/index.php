@@ -42,6 +42,7 @@ if(isset($_POST['action']) AND $_POST['action']=="shippingRateCalculate")
 			
 			$shiping_rate_price = $shiping_rate * $rate; 
 
+			
 			if ($_POST['payment_mode'] == 'cod') 
 			{
 				$finalPrice = $shiping_rate_price + $shipingRateRes[0]['cod'];

@@ -42,7 +42,8 @@ if(isset($_POST['action']) AND $_POST['action']=="shippingRateCalculate")
 		
 		$shiping_rate_price = $shiping_rate * $rate; 
 
-		if ($_POST['payment_method'] == 'c') 
+		
+		if ($_POST['payment_method'] == 'COD') 
 		{
 			$ratePrice = $shiping_rate_price + $shipingRateRes['cod'];
 		}
@@ -65,37 +66,34 @@ if(isset($_POST['action']) AND $_POST['action']=="submitOrderForm")
 {
 	extract($_POST);
 
-	if ($payment_method == 'c') 
-	{
-		$cod_charges = $_POST['cod_charges'];
-	}
-	else
-	{
-		$cod_charges = "0.00";
-	}
+		$cod = ($product_price / 100) * 2;
 
-	if ($payment_method == 'p') 
-	{	
-		$userBalance = $db->pdoQuery("SELECT wallet_balance FROM tbl_users WHERE id='".$sessUserId."' " )->result();
-
-		if ($userBalance['wallet_balance'] >= $total_price) 
-		{
-			
-			$wallet_balance = $userBalance['wallet_balance'] - $total_price;
-
-			$update_array = array(
-				"wallet_balance" => $wallet_balance,
-			);
-
-			$db->update("tbl_users",$update_array,array("id"=>$sessUserId));
+		if ($payment_method == 'c') 
+		{	
+			if ($cod > $cod_charges) 
+			{
+				$cod_charges = $cod;
+			}
+			else
+			{
+				$cod_charges;
+			}
 		}
 		else
 		{
-			$msgType = $_SESSION["msgType"] = disMessage(array('type'=>'war','var'=> "You Don't have sufficient Balance"));
-		
-			redirectPage(SITE_URL."create_order");
-		}		
-	}
+			$cod_charges = "0.00";
+		}
+
+		$userBalance = $db->pdoQuery("SELECT wallet_balance FROM tbl_users WHERE id='".$sessUserId."' " )->result();
+
+		$wallet_balance = $userBalance['wallet_balance'] - $shippment_charge;
+
+		$update_array = array(
+			"wallet_balance" => $wallet_balance,
+		);
+
+		$db->update("tbl_users",$update_array,array("id"=>$sessUserId));
+
 		$insert_array = array(
 			"user_id"		   => $sessUserId,	
 			"customer_name"    => $customer_name,
@@ -136,7 +134,6 @@ if(isset($_POST['action']) AND $_POST['action']=="submitOrderForm")
 		$msgType = $_SESSION["msgType"] = disMessage(array('type'=>'suc','var'=> "Order created successfully."));
 		
 		redirectPage(SITE_URL."manage_order");
-
 }
 
 if(isset($_POST['action']) AND $_POST['action']=="AddNewAddress") 

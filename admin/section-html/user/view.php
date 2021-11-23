@@ -28,7 +28,7 @@
             {"sName": "monthly_order", 'sTitle': 'Monthly Order'},
             {"sName": "", 'sTitle': 'Created At'},
             // {"sName": "status", 'sTitle' : 'Status', bSortable:false, bSearchable:false},
-            // {"sName": "operation", 'sTitle': 'Action', bSortable: false, bSearchable: false}
+            {"sName": "operation", 'sTitle': 'Action', bSortable: false, bSearchable: false}
             
         ],
         "fnServerParams"

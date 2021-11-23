@@ -31,8 +31,8 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
                     $this->data['content'] =  $this->getForm();
                     break;
                 }
-            case 'edit' : {
-                    $this->data['content'] =  $this->getForm();
+            case 'addBalance' : {
+                    $this->data['content'] =  $this->addBalance();
                     break;
                 }
             case 'view' : {
@@ -68,8 +68,25 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
         );
         $content=str_replace($fields,$fields_replace,$main_content);
         return sanitize_output($content);
-}
+    }
     
+    public function addBalance()
+    { 
+        $main_content = new MainTemplater(DIR_ADMIN_TMPL.$this->module."/addBalance.php");
+        $main_content = $main_content->parse(); 
+        
+        $fields = array(
+            "%TYPE%",
+            "%ID%"
+        );
+        $fields_replace = array(
+            $this->type,
+            $this->id
+        );
+        $content=str_replace($fields,$fields_replace,$main_content);
+        return sanitize_output($content);
+    }
+
     public function getForm() 
     {
         $content = $optionHTML = '';
@@ -133,10 +150,11 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
                 $status = ($fetchRes['status'] == "a") ? "checked" : "";
               
                 $operation = '';
-                            
-                //$operation.=get_operation($fetchRes['id'],"edit","btnEdit","Edit");
-                // $operation.=get_operation($fetchRes['id'],"view","btnEdit","View");
-                $operation.=get_operation($fetchRes['id'],"delete","btn-delete","Delete");
+                
+                $operation.=get_operation($fetchRes['id'],"addBalance","btnEdit","Add balance");
+                // $operation.=get_operation($fetchRes['id'],"edit","btnEdit","Edit");
+                //$operation.=get_operation($fetchRes['id'],"view","btnEdit","View");
+                //$operation.=get_operation($fetchRes['id'],"delete","btn-delete","Delete");
                 
                 $final_array = array(
                     $fetchRes['id'],

@@ -115,28 +115,29 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
     }
     public function dataGrid() 
     {
-            $content = $operation = $whereCond = $totalRow = NULL;
-            $result = $tmp_rows = $row_data = array();
-            extract($this->searchArray);
-            $chr = str_replace(array('_', '%'), array('\_', '\%'), $chr);
-            
-            $whereCond = ' WHERE 1=1 ';
-            if (isset($chr) && $chr != '') {
-                $whereCond .= " AND id LIKE '%" . $chr . "%' OR 
-                                     LIKE '%" . $chr . "%'  ";
-                                 
-            }
-            if (isset($sort))
-                $sorting = $sort . ' ' . $order;
-            else
-                $sorting = 'id DESC';
+        $content = $operation = $whereCond = $totalRow = NULL;
+        $result = $tmp_rows = $row_data = array();
+        extract($this->searchArray);
+        $chr = str_replace(array('_', '%'), array('\_', '\%'), $chr);
+        
+        $whereCond = ' WHERE 1=1 ';
+        if (isset($chr) && $chr != '') {
+            $whereCond .= " AND product_name LIKE '%" . $chr . "%' ";            
+        }
+        if (isset($sort))
+            $sorting = $sort . ' ' . $order;
+        else
+            $sorting = 'id DESC';
         
         $status_ids = "a" ;
         
-        // $qrySel = $this->db->pdoQuery("SELECT  * FROM $this->table WHERE 1=1 ORDER BY id DESC ")->results();
+        // $qrySel = $this->db->pdoQuery("SELECT  tbl_weight_discrepancy.* , tbl_order.customer_name  FROM tbl_weight_discrepancy
+        // LEFT JOIN tbl_order ON tbl_weight_discrepancy.order_id = tbl_order.order_id ")->results();
 
-        $qrySel = $this->db->pdoQuery("SELECT  tbl_weight_discrepancy.* , tbl_order.customer_name  FROM tbl_weight_discrepancy
-        LEFT JOIN tbl_order ON tbl_weight_discrepancy.order_id = tbl_order.order_id ")->results();
+        $qrySel = $this->db->pdoQuery("SELECT tbl_weight_discrepancy.* , tbl_order.customer_name  
+        FROM tbl_weight_discrepancy
+        LEFT JOIN tbl_order ON tbl_weight_discrepancy.order_id = tbl_order.order_id
+        ".$whereCond." ORDER BY " .$sorting." limit " .$offset." ," .$rows."")->results();
         
            $totalRow = count($qrySel);
 
