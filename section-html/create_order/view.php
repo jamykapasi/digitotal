@@ -6,6 +6,14 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<style>
+.modal-content span {
+    margin-right: unset;
+}
+.modal-backdrop.fade.show {
+    margin : 0;
+}
+</style>
 
 <div class="col content">
     <form class="bulkFile" id="bulkFile" action="{SITE_URL}create_order" method="post" enctype="multipart/form-data">
@@ -14,7 +22,7 @@
             <div class="create-order-file">
                 <input type="file" class="form-control" name="file" id="file" accept=".csv">
                 <button class="btn2 bulk col-lg-1 bulkUpload" id="btnFile" >BULK UPLOAD</button>
-                <span class="selected-file-name">fdgbdjh.jpg</span>
+                <span class="selected-file-name"></span>
             </div>
             <button class="btn2 bulk col-lg-1" type="submit"  id="upload" name="upload"> UPLOAD</button>
     </div>
@@ -61,7 +69,6 @@
                     </td>
                     
                     <td class="for-column"><label class="payment-label">Payment Mode*</label><input type="radio" name="payment_method" value="c"><label class="cod">COD</label>
-
                     <input type="radio" name="payment_method" value="p"><label class="cod">Prepaid</label>
                     </td>
                     
@@ -135,7 +142,7 @@
         </div><br><br>
 
      
-        <div class="form-style order_summary_section hide">
+        <div class="form-style order_summary_section">
             <h4 class="part1">Order Summary</h4>
                <table class="data">
                 <tr>
@@ -174,7 +181,7 @@
             </form>  
     </div>
     <!-- Adress Select Modal  -->
-    <div class="modal fade edit-record-modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade edit-record-modal select-address-modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-body">
@@ -187,9 +194,9 @@
                     <h3 class="modal-title text-center w-100 m-0">SELECT PICKUP ADDRESS</h3>
                     <div class="row custfields style2 " style="margin-top: 5%;">
                         <label class="col-4" style="font-size:0.9rem;font-weight: 500;">Add New Address?</label>
-                        <button class="btn2 btn-next update-btn btn-hv col-4" data-dismiss="modal" data-toggle="modal" data-target="#SelectModalCenter" style="width: 18%;margin: -5px 10px 0px auto;">SELECT</button>
+                        <button class="btn2 btn-next update-btn btn-hv col-4" data-dismiss="modal" data-toggle="modal" data-target="#SelectModalCenter" style="    padding: 5px; width: 18%;margin: -5px 10px 0px auto;">SELECT</button>
                             #ADDRESS#
-                        <button class="btn2 btn-next update-btn btn-hv col-4" data-dismiss="modal" data-toggle="modal" data-target="" style="width: 18%;margin: 20px 5px 0px auto;">Done</button>
+                        <button class="btn2 btn-next update-btn btn-hv col-4" data-dismiss="modal" data-toggle="modal" data-target="" style="width: 18%;margin: 20px auto 0px auto;">Done</button>
                     </div>
                 </div>
             </div>
@@ -251,7 +258,7 @@
     </div>
 
     <!-- Edit Adreess Modal -->
-    <div class="modal fade edit-record-modal" id="editAddressModalCenter" tabindex="-1" role="dialog" aria-labelledby="editAddressModalCenterTitle" aria-hidden="true">
+    <div class="modal fade edit-record-modal " id="editAddressModalCenter" tabindex="-1" role="dialog" aria-labelledby="editAddressModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header border-0">
@@ -334,8 +341,10 @@
       var ship_pack_weight = $("#ship_pack_weight").val();
       var pickup_address   = $("input[name='pickup_address']:checked").val();
       var courier_partner  = $('#courier_partner').val();
-      var payment_method   = $("input[name='payment_method']:checked").val();
-       
+      var payment_method_val   = $("input[name='payment_method']:checked").val();
+      
+      var payment_method = payment_method_val == 'c' ? "COD" : "Prepaid";
+        
       var full_address = customer_name+","+customer_phone+","+customer_address+","+customer_pincode+","+customer_city+","+customer_state;  
 
       $.ajax({
@@ -358,6 +367,7 @@
       $("#summary_product_qty").val(product_qty);
       $("#summary_address").val(full_address);
       $("#summary_date").val(product_date);
+      $("#summary_payment_mode").val(payment_method);
 
   });
 
@@ -470,7 +480,7 @@
             data : {"action":"deleteAddress",id},
             success: function (response) 
             {
-             if(response.status == 1)
+              if(response.status == 1)
               { 
                 window.location = "{SITE_URL}create_order";   
               } 

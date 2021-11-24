@@ -465,6 +465,18 @@ body.style2 {
     /* position: relative;*/
 }
 
+.style2 #category {
+    color: #153474;
+    border: none;
+    border-bottom: 1px solid cyan;
+    margin-left: -1%;
+    width: 47%;
+    font-family: montserrat;
+    font-size: 16px;
+    padding: 3.5%;
+    /* position: relative;*/
+}
+
 .style2 #datepicker {
     font-family: montserrat;
     color: #153474;
@@ -1076,7 +1088,7 @@ body.style2 {
     border-bottom: none;
 }
 .style2 .pad {
-    padding: 10px 15px;
+    padding: 5px;
     width: 10%;
 }
 .style2 .table-heading {
@@ -2121,10 +2133,10 @@ body.notification-content {
     margin: 2px;
 }
 .notification-content .btn:not(.wallet-btn) {
-    border: none;
-    box-shadow: none;
-    border-radius: 0px;
-    background: none;
+    /*border: none;*/
+    /*box-shadow: none;*/
+    /*border-radius: 0px;*/
+    /*background: none;*/
 }
 
 /*scrollbar----------------------------------------*/
@@ -3248,11 +3260,22 @@ body.notification-content {
     overflow-wrap: break-word;
     /*display: none;*/
 }
-
+.select-address-modal .modal-header {
+    padding: 0;
+}
+.manage-order-content .pad {
+    font-size: 12px;
+}
+.select-address-modal span {
+    margin-right: unset;
+}
 @media (min-width: 992px) {
     .modal-lg,
     .modal-xl {
         max-width: 670px;
+    }
+    .select-address-modal .modal-lg {
+        max-width: 600px;
     }
 }
 /* ******************************************   Custom Css By Har...  End   ********************************** */

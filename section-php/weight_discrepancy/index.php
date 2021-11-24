@@ -14,42 +14,12 @@ $scripts = array(array("jquery.validate.min.js",SITE_JS));
 
 $tab_title = "Weight Discrepancy";
 
-if(isset($_POST['action']) AND $_POST['action']=="loginForm") 
+if (isset($_POST['action']) AND $_POST['action'] == 'getRecord') 
 {
-	extract($_POST);
-	
-	if($email_address != "" AND $password != "")
-	{
-		$res = $db->pdoQuery("SELECT * FROM tbl_users WHERE email = ? AND password = ? ",
-	    array($email_address,$password))->results();
+	extract($_REQUEST);
+	$object = new Controller($module,$token);
+	$data = $object->getHTML($status,$keyword,$date,$page_rec,'y');
 
-		if(count($res)>0)
-		{
-			if($res[0]['status']=="d")	
-			{
-				$responce = array('status'=> 0,'message'=> "Your account has been deactivated. Please contact administrator.");
-				echo json_encode($responce); exit;
-			} else {
-
-				$_SESSION["userid"]    = $res[0]['id'];
-				$_SESSION["name"]      = $res[0]['first_name'];
-				
-				$msgType = $_SESSION["msgType"] = disMessage(array('type'=>'suc','var'=> "You have been successfully registered and logged in."));
-	            $responce = array('status'=> 1);
-	            echo json_encode($responce); exit;
-			}
-		}
-		else
-		{
-			$responce = array('status'=> 0,'message'=> "Username and password wrong.");
-			echo json_encode($responce); exit;
-		}
-	} 
-	else 
-	{
-		$responce = array('status'=> 0,'message'=> "Username and password wrong.");
-		echo json_encode($responce); exit;
-	}	
 } else 
 {
 	$object = new Controller($module,$token);

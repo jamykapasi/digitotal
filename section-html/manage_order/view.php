@@ -3,29 +3,27 @@
 <div class="row">
 <div class="operation4">
 
-   <div id="datepicker" class="input-group col-lg-3 date date_manage" data-date-format="dd-mm-yyyy">
+   <div id="datepicker" class="input-group col-lg-3 date" data-date-format="dd-mm-yyyy">
       <input class="form-control filter1" id="created_date" name="created_date" type="text" placeholder="Filter by [Date]" />
       <span class="input-group-addon calendar"><i class="glyphicon glyphicon-calendar"></i></span>
    </div>
-   <div class="filter2 col-lg-3">
+   <div class="col-lg-2">
       <select name="filter" id="managefilter">
          <option value="">Status</option>
          <option value="p">Pending</option>
          <option value="c">Completed</option>
       </select>
    </div>
-   <div class="input-group search_cust3 col-lg-3">
-      <div class="input-group-btn search-panel">
-         <button type="button" class="btn btn-default dropdown-toggle searchbtn" data-toggle="dropdown">
-         <span id="search_concept">Search by</span> <i class="fas fa-caret-down caret_style"></i></span>
-         </button>
-         <ul class="dropdown-menu scrollable-dropdown" role="menu">
-            <li><a href="#">Automotive Accesories</a></li>
-            <li><a href="#">Cell Phone Accesories</a></li>
-            <li><a href="#">Computer Accesories</a></li>
-            <li><a href="#">Health and Personal Care</a></li>
-         </ul>
-      </div>
+
+   <div class="col-lg-2">
+      <select name="category" id="category">
+         <option value="">Category</option>
+         %HTML%
+      </select>
+   </div>
+   
+   <div class="input-group col-lg-3">
+      
       <input type="hidden" name="search_param" value="all"
          id="search_param">
       <input type="text" class="form-control search3" name="search" id="search" placeholder="Search">
@@ -37,7 +35,7 @@
    </div>
 
    <div class=" ship1 col-lg-3">
-      <button class="btn1">SHIP</button>
+      <button class="btn1" data-toggle="modal" data-target="#SelectAddressModalCenter">SHIP</button>
       <button class="btn1">CANCEL</button>
    </div>
 </div>
@@ -48,6 +46,7 @@
       <option value="10" selected>10</option>
       <option value="20">20</option>
       <option value="30">30</option>
+      <option value="all">All</option>
    </select>
    <label class="show">Result</label>
    <div class="pagination1 pagination:number active"></div>
@@ -66,8 +65,10 @@
    </svg>
 </div>
 <!------------------code for table ----------------------- -->
-<table id="t01" class="table2 table-style  manage-table col-lg-10">
-</table>
+<div class="manage-order-content">
+    <table id="t01" class="table2 table-style  manage-table col-lg-10">
+    </table>
+</div>
 <div>
    <div class="modal fade edit-record-modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -115,6 +116,166 @@
       </div>
    </div>
 </div>
+
+
+<!-- Adress Select Modal  -->
+    <div class="modal fade edit-record-modal select-address-modal" id="SelectAddressModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="modal-header border-0">
+                        <span class="cross-circle1 close ms-auto" data-dismiss="modal">
+                            <a href="#" class="cross-icon"> 
+                            <i class="fas fa-times-circle"></i></a>
+                        </span>
+                    </div>
+                    <h3 class="modal-title text-center w-100 m-0">SELECT PICKUP ADDRESS</h3>
+                    <div class="row custfields style2 " style="margin-top: 5%;">
+                        <label class="col-4" style="font-size:0.9rem;font-weight: 500;">Add New Address?</label>
+                        <button class="btn2 btn-next update-btn btn-hv col-4" data-dismiss="modal" data-toggle="modal" data-target="#SelectModalCenter" style="    padding: 5px; width: 18%;margin: -5px 10px 0px auto;">SELECT</button>
+                            <div style="display: flex; padding: 10px 15px 60px 15px; border: 1px solid #9ce1d0;margin: 2% 0% 0% 0%; align-items: flex-start;">
+                                <span class="checkmark">
+                            <input type="radio" id="4" class="pickup_address" name="pickup_address" style="margin: 10px -23px 0px 3px;" value="4">
+                            </span><label for="4" class="custinput placeholder col-2" style="margin-left: 20px !important;padding-top:5px;    cursor: pointer;">Address4</label>
+                            <label class="placeholder col-2" style="margin: 5px 2px 2px 8px !important;">+918128430482</label>
+                            	
+                            <a href="#editAddressModalCenter?id=4" class="edt-btn view" id="editAddress" data-id="4" data-dismiss="modal" data-toggle="modal" data-target="#editAddressModalCenter" style="margin-left: auto; padding-left: 10px;">EDIT | </a>
+                            <a href="javascript:void()" data-id="4" id="deleteAddress" style="padding-left: 5px;" class="text-danger view"> REMOVE</a>
+                        </div>
+                        <p style="    position: relative; width: calc(100% - 40px); top: -44px; left: 10px; font-size: 14px; margin-bottom: 0;" class="placeholder">20 Near PostOffice, Fedra Road, Limbdi, Limbdi, 363421</p><div style="display: flex; padding: 10px 15px 60px 15px; border: 1px solid #9ce1d0;margin: 2% 0% 0% 0%; align-items: flex-start;">
+                            <span class="checkmark">
+                            <input type="radio" id="5" class="pickup_address" name="pickup_address" style="margin: 10px -23px 0px 3px;" value="5">
+                            </span><label for="5" class="custinput placeholder col-2" style="margin-left: 20px !important;padding-top:5px;    cursor: pointer;">Address5</label>
+                            <label class="placeholder col-2" style="margin: 5px 2px 2px 8px !important;">+918457968545</label>
+                            	<button class="btn2 btn-next update-btn btn-hv dft-btn col-2" style="margin: 0 10px 0px auto;">DEFAULT</button>
+                            <a href="#editAddressModalCenter?id=5" class="edt-btn view" id="editAddress" data-id="5" data-dismiss="modal" data-toggle="modal" data-target="#editAddressModalCenter" style="margin-left: auto; padding-left: 10px;">EDIT | </a>
+                            <a href="javascript:void()" data-id="5" id="deleteAddress" style="padding-left: 5px;" class="text-danger view"> REMOVE</a>
+                        </div>
+                        <p style="    position: relative; width: calc(100% - 40px); top: -44px; left: 10px; font-size: 14px; margin-bottom: 0;" class="placeholder">20, naroda road, new naroda, new naroda, 363521</p>
+                        
+                        <div>
+                            <label class="cod">
+                            <input type="radio" name="payment_method" value="c">COD</label>
+                            <label class="cod">
+                            <input type="radio" name="payment_method" value="p">Prepaid</label>
+                        </div>
+                        
+                        <button class="btn2 btn-next update-btn btn-hv col-4" data-dismiss="modal" data-toggle="modal" data-target="" style="width: 18%;margin: 20px auto 0px auto;">Done</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Add New Adreess Modal -->
+    <div class="modal fade edit-record-modal" id="SelectModalCenter" tabindex="-1" role="dialog" aria-labelledby="SelectModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <span class="cross-circle1 close ms-auto" data-dismiss="modal">
+                        <a href="#" class="cross-icon"> 
+                        <i class="fas fa-times-circle"></i></a>
+                    </span>
+                </div>
+                <form class="addAddress" id="addAddress" action="{SITE_URL}create_order" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <h5 class="modal-title" >ADD NEW PICKUP ADDRESS</h5>
+                            <div class="customer-details-content">
+                                <div class="row">
+                                     <div class="col col-12 col-md-6">
+                                         <input type="text" id="name" name="name" class="form-control" placeholder="Full Name*">
+                                     </div>
+                                     <div class="col col-12 col-md-6">
+                                         <input type="text" id="phone_no" name="phone_no" class="form-control" placeholder="Phone*">
+                                     </div>
+                                     <div class="col col-12 col-md-12">
+                                         <input type="text" class="form-control" id="flat_no" name="flat_no" placeholder="Flat No.& Building Name*">
+                                     </div>
+                                     <div class="col col-12 col-md-12">
+                                         <input type="text" class="form-control" id="locality" name="locality" placeholder="Road, Locality">
+                                     </div>
+                                     <div class="col col-12 col-md-12">
+                                         <input type="text" class="form-control" id="landmark" name="landmark" placeholder="Landmark*">
+                                     </div>
+                                     <div class="col col-12 col-md-6">
+                                         <input type="text" class="form-control" id="Pincode" name="pincode" placeholder="Pincode*">
+                                     </div>
+                                     <div class="col col-12 col-md-6">
+                                         <input type="text" class="form-control" id="area" name="area" placeholder="Area*">
+                                     </div>
+                                     <div class="col col-12 col-md-6">
+                                         <input type="checkbox"  id="SaveDefault"  name="default_address" style="margin-left: -30px;">
+                                         <label for="SaveDefault">Save as default address</label>
+                                     </div>
+                                     <div class="col col-12 col-md-12">
+                                        <input type="hidden" name="action" value="AddNewAddress">
+                                        <button class="btn2" type="submit"  id="submitAddress" name="submitAddress">SAVE</button>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>    
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Adreess Modal -->
+    <div class="modal fade edit-record-modal " id="editAddressModalCenter" tabindex="-1" role="dialog" aria-labelledby="editAddressModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <span class="cross-circle1 close ms-auto" data-dismiss="modal">
+                        <a href="#" class="cross-icon"> 
+                        <i class="fas fa-times-circle"></i></a>
+                    </span>
+                </div>
+                <form class="editAddress" id="editAddress" action="{SITE_URL}create_order" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <h5 class="modal-title" >EDIT PICKUP ADDRESS</h5>
+                            <div class="customer-details-content">
+                                <div class="row">
+                                     <div class="col col-12 col-md-6">
+                                         <input type="text" name="name" id="editName" class="form-control" placeholder="Full Name*">
+                                     </div>
+                                     <div class="col col-12 col-md-6">
+                                         <input type="text" name="phone_no" id="editPhone_no" class="form-control" placeholder="Phone*">
+                                     </div>
+                                     <div class="col col-12 col-md-12">
+                                         <input type="text" name="flat_no" id="editFlat_no" class="form-control" placeholder="Flat No.& Building Name*">
+                                     </div>
+                                     <div class="col col-12 col-md-12">
+                                         <input type="text" name="locality" id="editLocality" class="form-control" placeholder="Road, Locality">
+                                     </div>
+                                     <div class="col col-12 col-md-12">
+                                         <input type="text" name="landmark" id="editLandmark" class="form-control" placeholder="Landmark*">
+                                     </div>
+                                     <div class="col col-12 col-md-6">
+                                         <input type="text" name="pincode" id="editPincode" class="form-control" placeholder="Pincode*">
+                                     </div>
+                                     <div class="col col-12 col-md-6">
+                                         <input type="text" name="area" id="editArea" class="form-control" placeholder="Area*">
+                                     </div>
+                                     <div class="col col-12 col-md-6">
+                                         <input type="checkbox" name="editDefault_address" id="default_address" placeholder="Area*" id="SaveDefault" style="margin-left: -30px;">
+                                         <label for="SaveDefault">Save as default address</label>
+                                     </div>
+                                     <div class="col col-12 col-md-12">
+                                        <input type="hidden" name="id" id="editAddress_id">
+                                        <input type="hidden" name="action" value="editAddress">
+                                        <button class="btn2" type="submit"  id="editAddress" name="editAddress">SAVE</button>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    
 <script>
    $(function () {
        $("#datepicker").datepicker({ 
@@ -195,6 +356,7 @@
       var status = $('#managefilter').val();
       var keyword = $('#search').val();
       var page_rec = $('#page_rec').val();
+      var category = $('#category').val();
 
       if(viewall == 'viewall'){
          var page_rec = 0;
@@ -204,7 +366,7 @@
            type:"POST",
            dataType : 'json',
            url: window.location,
-           data : {"action":"getRecord",'date':date,'status':status,'keyword':keyword,'page_rec':page_rec},
+           data : {"action":"getRecord",'date':date,'status':status,'keyword':keyword,'category':category,'page_rec':page_rec},
            success: function(res)
            {  
              $('.manage-table').html(res.userTable);
@@ -213,20 +375,21 @@
              //ProductOrderPagination(res.total_page, page);
            }
        });
-
-         $('#created_date,#managefilter,#page_rec').on('change', function(){
-           //alert();
-           loadRecord();
-         });
-
-         $('#search').on('keyup', function(){
-           //alert();
-           loadRecord();
-         });
-         
-         $('document').on('click','#viewall', function(){
-           //alert();
-           loadRecord('all');
-         });
      }
+
+
+     $('#created_date,#managefilter,#page_rec,#category').on('change', function(){
+      //alert();
+      loadRecord();
+   });
+
+   $('#search').on('keyup', function(){
+      //alert();
+      loadRecord();
+   });
+   
+   $('#product_category').on('click', function(){
+      alert();
+      loadRecord();
+   });
 </script>

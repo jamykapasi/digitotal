@@ -8,11 +8,28 @@ class Controller extends Home {
 		$this->module = $module;
 	}
 
-	function getHTML() {
+	function getHTML($status='',$keyword='',$date='',$page_rec=10,$api='') {
+
+		$where = '';
+		if($status != ''){
+			$where .= 'AND status = "'.$status.'"';
+		}
+
+		if($keyword != ''){
+			$where .= 'AND (courier_name LIKE "%'.$keyword.'%" or product_name LIKE "%'.$keyword.'%")';
+		}
+
+		if($date != ''){
+			$where .= 'AND DATE_FORMAT(created, "%d-%m-%Y") = "'.$date.'"';
+		}
+
+		if($page_rec > 0){
+			$limit = ' LIMIT '.$page_rec.'';
+		}
 		
 		$disputeFound = $disputeAction ="";
 
-		$disputeFoundRes = $this->db->pdoQuery("SELECT * FROM tbl_weight_discrepancy  WHERE status='d' ")->results();
+		$disputeFoundRes = $this->db->pdoQuery("SELECT * FROM tbl_weight_discrepancy  WHERE status='d' ".$where." $limit")->results();
 
 		foreach ($disputeFoundRes as $key => $value) {
 
@@ -52,7 +69,7 @@ class Controller extends Home {
               </tr>';
 		}
 		
-		$disputeActionRes = $this->db->pdoQuery("SELECT * FROM tbl_weight_discrepancy WHERE status='a'")->results();
+		$disputeActionRes = $this->db->pdoQuery("SELECT * FROM tbl_weight_discrepancy WHERE status='a' ".$where." $limit")->results();
 
 		foreach ($disputeActionRes as $key => $value) {
 
@@ -87,12 +104,26 @@ class Controller extends Home {
               </tr>';
 		}
 
-		$mainHTML =  DIR_TMPL . "weight_discrepancy/view.php";
-		$array = array(
-			"%DISPUTEFOUND%"  => $disputeFound,
-			"%DISPUTEACTION%" => $disputeAction,
-  		);
-		return get_view($mainHTML,$array);
+		if($api == 'y'){
+			
+			$data['disputeFound'] = $disputeFound;
+			$data['disputeAction'] = $disputeAction;
+			
+			echo json_encode($data);   
+			exit;
+
+		}else{
+			
+			$mainHTML =  DIR_TMPL . "weight_discrepancy/view.php";
+			$array = array(
+				"%DISPUTEFOUND%"  => $disputeFound,
+				"%DISPUTEACTION%" => $disputeAction,
+			);
+			return get_view($mainHTML,$array);
+
+		}
+
+		
 	}
 	
 	

@@ -42,7 +42,7 @@
               <label class="form-check-label label-text" for="prepaid">Prepaid</label>
             </div>
           </div>
-          <button type="button" class="btn btn-primary btn-connect ms-4" id="calculte">CALCULATE</button> <br>
+          <button type="button" class="btn btn-primary btn-connect ms-4" id="calculte" style="background-color: #001D61;">CALCULATE</button> <br>
           <div class="col-md-3 " id="finalCalculte" style="padding: 15px 30px; width: 100%">
                 
           </div>
@@ -57,7 +57,7 @@
                   </div>
                   <div class="col">
                     <input type="hidden" name="action" value="downloadPincode">
-                    <button type="submit" name="dwnpincode" value="pincodeDownload" class="btn btn-primary btn-connect mt-2">DOWNLOAD</button> <br>
+                    <button type="submit" name="dwnpincode" value="pincodeDownload" class="btn btn-primary btn-connect mt-2" style="background-color: #001D61;">DOWNLOAD</button> <br>
                     <!-- <input type="text" class="form-control" placeholder="Drop Pin Code"> -->
                   </div>
                 </div>

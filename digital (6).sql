@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2021 at 10:55 AM
+-- Generation Time: Nov 19, 2021 at 02:49 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.23
 
@@ -73228,6 +73228,27 @@ INSERT INTO `tbl_courier_pincode` (`id`, `courier_partner_id`, `pincode`, `creat
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_courier_priority`
+--
+
+CREATE TABLE `tbl_courier_priority` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `courier_priority_id` int(11) NOT NULL,
+  `priority_type` enum('c','r') NOT NULL,
+  `created` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_courier_priority`
+--
+
+INSERT INTO `tbl_courier_priority` (`id`, `user_id`, `courier_priority_id`, `priority_type`, `created`) VALUES
+(3, 56, 2, 'c', '2021-11-19 17:39:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_email_html`
 --
 
@@ -73619,6 +73640,13 @@ ALTER TABLE `tbl_courier_pincode`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_courier_priority`
+--
+ALTER TABLE `tbl_courier_priority`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `courier_priority_id` (`courier_priority_id`);
+
+--
 -- Indexes for table `tbl_email_html`
 --
 ALTER TABLE `tbl_email_html`
@@ -73708,6 +73736,12 @@ ALTER TABLE `tbl_courier_pincode`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72858;
 
 --
+-- AUTO_INCREMENT for table `tbl_courier_priority`
+--
+ALTER TABLE `tbl_courier_priority`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `tbl_email_html`
 --
 ALTER TABLE `tbl_email_html`
@@ -73729,7 +73763,7 @@ ALTER TABLE `tbl_order`
 -- AUTO_INCREMENT for table `tbl_pickup_address`
 --
 ALTER TABLE `tbl_pickup_address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_setting`

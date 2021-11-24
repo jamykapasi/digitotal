@@ -10,25 +10,23 @@ if (isset($_POST["submitAddForm"]) && $_SERVER["REQUEST_METHOD"] == "POST")
    	
    	if (isset($_POST["action"]) && $_POST["action"] == "addWeightDiscrepancy") 
    	{	
-   		$orderRes = $db->pdoQuery("SELECT * FROM tbl_order WHERE 1=1 AND id=".$_POST['id']." ORDER BY id DESC LIMIT 1 ")->result();
+   		$orderRes = $db->pdoQuery("SELECT * FROM tbl_order WHERE id='".$_POST['id']."' ")->result();
 
-		$shipingRateRes = $db->pdoQuery("SELECT * FROM tbl_shipping_rate WHERE 1=1 AND id=".$orderRes['courier_partner']." ORDER BY id DESC LIMIT 1 ")->result();
+		$shipingRateRes = $db->pdoQuery("SELECT * FROM tbl_shipping_rate WHERE id='".$orderRes['courier_partner']."' ")->result();
 
-		$pickupAddress = $db->pdoQuery("SELECT * FROM tbl_pickup_address WHERE 1=1 AND id=".$orderRes['pickup_address_id']." ORDER BY id DESC LIMIT 1 ")->result();
-		
-		$string = explode(" ",$pickupAddress['address']);
+		$pickupAddress = $db->pdoQuery("SELECT * FROM tbl_pickup_address WHERE id='".$orderRes['pickup_address_id']."' ")->result();
 		
 		$shiping_rate = $finalPrice ='';
 
-		if (substr($orderRes['customer_pincode'], 0, 3) == substr($string[2], 0, 3)) 
-		{
+		if (substr($orderRes['customer_pincode'], 0, 3) == substr($pickupAddress['pincode'], 0, 3)) 
+		{	
 			$shiping_rate = $shipingRateRes['within_city'];
 		}
-		if (substr($orderRes['customer_pincode'], 0, 3) !== substr($string[2], 0, 3)) 
+		if (substr($orderRes['customer_pincode'], 0, 3) !== substr($pickupAddress['pincode'], 0, 3)) 
 		{
 			$shiping_rate = $shipingRateRes['within_zone'];
 		}
-		if (substr($orderRes['customer_pincode'], 0, 1) !== substr($string[2], 0, 1)) 
+		if (substr($orderRes['customer_pincode'], 0, 1) !== substr($pickupAddress['pincode'], 0, 1)) 
 		{
 			$shiping_rate = $shipingRateRes['rest_of_india'];
 		}
@@ -43,7 +41,7 @@ if (isset($_POST["submitAddForm"]) && $_SERVER["REQUEST_METHOD"] == "POST")
 
 		$db->update("tbl_order",$update_depute,array('id'=>$_POST['id']));
 
-		$userRes = $db->pdoQuery("SELECT wallet_balance FROM tbl_users WHERE 1=1 AND id=".$orderRes['user_id']." ORDER BY id DESC LIMIT 1 ")->result();
+		$userRes = $db->pdoQuery("SELECT wallet_balance FROM tbl_users WHERE id='".$orderRes['user_id']."' ")->result();
 		
 		$deputeChrged = $userRes['wallet_balance'] - $shiping_rate_price;
 
@@ -76,7 +74,7 @@ if (isset($_POST["submitAddForm"]) && $_SERVER["REQUEST_METHOD"] == "POST")
 
 	    $last_id = $db->insert("tbl_weight_discrepancy",$insert_array)->getlastInsertId();
 
-		$_SESSION["toastr_message"] = disMessage(array('type' => 'suc', 'var' => 'Courier Partner has been insert successfully.'));
+		$_SESSION["toastr_message"] = disMessage(array('type' => 'suc', 'var' => 'Weight Discrepancy  has been added successfully.'));
     	redirectPage(SITE_ADM_MOD . $module);
    	}    
 }
