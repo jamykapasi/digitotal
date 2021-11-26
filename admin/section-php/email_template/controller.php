@@ -88,9 +88,9 @@ class Controller extends Home {
         extract($this->searchArray);
         $chr = str_replace(array('_', '%'), array('\_', '\%'), $chr);
         
-        $whereCond = ' WHERE 1=1 ';
+        $whereCond = ' WHERE 1=1 AND status ="a" ';
         if (isset($chr) && $chr != '') {
-            $whereCond .= " AND html_name LIKE '%" . $chr . "%' ";
+            $whereCond .= " AND html_name LIKE '%" . $chr . "%' OR subject_name LIKE '%" . $chr . "%'";
                              
         }
         if (isset($sort))
@@ -99,8 +99,10 @@ class Controller extends Home {
             $sorting = 'id DESC';
 
        
-      $status_ids = "a" ;
-        $qrySel = $this->db->pdoQuery("SELECT  * FROM $this->table WHERE status = '".$status_ids."'")->results();
+        $status_ids = "a" ;
+        
+         $qrySel = $this->db->pdoQuery("SELECT  * FROM $this->table ".$whereCond." ORDER BY " .$sorting." limit " .$offset." ," .$rows."")->results();
+
         $totalRow = count($qrySel);
 
         foreach ($qrySel as $fetchRes) 

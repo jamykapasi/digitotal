@@ -30,7 +30,7 @@
             </span>
         </div>
       </div>
-      <div class="second-row col-lg-10" style="align-items: center; height:50px;">
+      <div class="second-row col-lg-10" style="height:80px;">
         <label class="show">Show</label>
         <select name="page_rec" id="page_rec">
             <option value="10" selected>10</option>
@@ -118,17 +118,17 @@
             </tr>
             <tr class="final cod-final">
                <td class="final"><label class="final-label">Net Payable:</label><br>
-                  <span class="final-sublabel">(Shipment Charges - COD Collected)</span>
+                  <span class="final-sublabel">(Shipment Charges + COD Collected)</span>
                </td>
                <td class="final"><input type="text" name="shipment-charges" class="input-final" value="%NETPAYABLE%" disabled></td>
             </tr>
             <tr class="final cod-final">
                <td class="final"><label class="final-label">Weight Dispute(if any):</label></td>
-               <td class="final"><input type="text" name="shipment-charges" class="input-final"  value="%DIPUTE%" disabled></td>
+               <td class="final"><input type="text" name="shipment-charges" class="input-final"  value="₹ 2000" disabled></td>
             </tr>
             <tr class="final cod-final">
                <td class="final"><label class="total-label">Total Payment after weight Dispute:</label></td>
-               <td class="final"><input type="text" name="shipment-charges" class="input-final ship-charges" value="%TOTAL_PAYMENT%" disabled></td>
+               <td class="final"><input type="text" name="shipment-charges" class="input-final ship-charges" value="₹ 78,000" disabled></td>
             </tr>
          </table>
       </div>
@@ -271,7 +271,7 @@
             var status = $('#managefilter').val();
             var keyword = $('#search').val();
             var page_rec = $('#page_rec').val();
-            
+
             $.ajax({
                 type:"POST",
                 dataType : 'json',

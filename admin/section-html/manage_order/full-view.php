@@ -21,15 +21,15 @@
                         <div class="col-sm-8">#ORDERID#</div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-4 col-form-label"><b>Coustomer Name</b> : </label>
+                        <label class="col-sm-4 col-form-label"><b>Customer Name</b> : </label>
                         <div class="col-sm-8">#COUSTOMER_NAME#</div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-4 col-form-label"><b>Coustomer Phone</b> : </label>
+                        <label class="col-sm-4 col-form-label"><b>Customer Phone</b> : </label>
                         <div class="col-sm-8">#COUSTOMER_PHONE#</div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-4 col-form-label"><b>Coustomer Address</b> : </label>
+                        <label class="col-sm-4 col-form-label"><b>Customer Address</b> : </label>
                         <div class="col-sm-8">#COUSTOMER_ADDRESS#</div>
                     </div>
                     <div class="form-group row">
@@ -44,12 +44,12 @@
                         <label class="col-sm-4 col-form-label"><b>Product QTY</b> : </label>
                         <div class="col-sm-8">#PRODUCT_QTY#</div>
                     </div>
-                    <!-- <div class="form-group row">
-                        <label class="col-sm-4 col-form-label"><b>Courier Partner</b> : </label>
-                        <div class="col-sm-8">#COURIER_PARTNER#</div>
-                    </div> -->
                     <div class="form-group row">
-                        <label class="col-sm-4 col-form-label"><b>Shippment Charge</b> : </label>
+                        <label class="col-sm-4 col-form-label"><b>Pickup Address</b> : </label>
+                        <div class="col-sm-8">#PICKUP_ADDRESS#</div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label"><b>Shipment Charge</b> : </label>
                         <div class="col-sm-8">#SHIPPMENT_CHARGE#</div>
                     </div>
                     <div class="form-group row">

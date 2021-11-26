@@ -42,7 +42,6 @@ if(isset($_POST['action']) AND $_POST['action']=="shippingRateCalculate")
 		
 		$shiping_rate_price = $shiping_rate * $rate; 
 
-		
 		if ($_POST['payment_method'] == 'COD') 
 		{
 			$ratePrice = $shiping_rate_price + $shipingRateRes['cod'];
@@ -68,7 +67,7 @@ if(isset($_POST['action']) AND $_POST['action']=="submitOrderForm")
 
 		$cod = ($product_price / 100) * 2;
 
-		if ($payment_method == 'c') 
+		if ($product_price <= 5000) 
 		{	
 			if ($cod > $cod_charges) 
 			{
@@ -84,6 +83,8 @@ if(isset($_POST['action']) AND $_POST['action']=="submitOrderForm")
 			$cod_charges = "0.00";
 		}
 
+		$total_payable = $cod_charges + $unit_price;
+		
 		$userBalance = $db->pdoQuery("SELECT wallet_balance FROM tbl_users WHERE id='".$sessUserId."' " )->result();
 
 		$wallet_balance = $userBalance['wallet_balance'] - $shippment_charge;
@@ -94,6 +95,12 @@ if(isset($_POST['action']) AND $_POST['action']=="submitOrderForm")
 
 		$db->update("tbl_users",$update_array,array("id"=>$sessUserId));
 
+		$name = time();
+	    $target_dir = DIR_UPD."Product_image/";
+	    $target_file = $target_dir .$name."_".$_FILES["product_image"]["name"];
+	    move_uploaded_file($_FILES["product_image"]["tmp_name"], $target_file);
+
+	    
 		$insert_array = array(
 			"user_id"		   => $sessUserId,	
 			"customer_name"    => $customer_name,
@@ -108,20 +115,26 @@ if(isset($_POST['action']) AND $_POST['action']=="submitOrderForm")
 		    "product_qty"      => $product_qty,
 		    "product_sku"      => $product_sku,
 		    "product_category_id" => $product_category_id,
+		    "product_image" 	  =>$name."_".$_FILES["product_image"]["name"],
 		    "payment_method"      => $payment_method,
 		    "pickup_address_id"   => $pickup_address_id,
 		    "ship_pack_weight"    => $ship_pack_weight,
 		    "shippment_charge"	  => $shippment_charge,
-		    "cod_charges"		  => $cod_charges,	
+		    "cod_charges"		  => $cod_charges,
+		    "unit_price"		  => $unit_price,
+		    "total_payable"		  => $total_payable,	
 		    "total_price"		  => $total_price,	
 		    "volumetric_cm_1"     => $volumetric_cm_1,
 		    "volumetric_cm_2"     => $volumetric_cm_2,
 		    "volumetric_cm_3"     => $volumetric_cm_3,
 		    "courier_partner"     => $courier_partner,
-		    "pickup_date"         => date($pickup_date),
+		    "pickup_date"         => date('Y-m-d', strtotime($pickup_date)),
 		    "created"             => created(),
 		);
 
+		echo "<pre>";
+		print_r($insert_array);
+		exit();
 		$last_emp_code = $db->pdoQuery("SELECT order_id FROM tbl_order WHERE 1=1 ORDER BY id DESC LIMIT 1 ")->result();
 	  	
 	  	$last_id = $db->insert("tbl_order",$insert_array)->getLastInsertId();

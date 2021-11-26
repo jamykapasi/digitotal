@@ -60,7 +60,7 @@
     </div>   
 </form>
 <script type="text/javascript">
-    
+     
      $(document).on('submit', '#frmCont', function (e) {
             
             $("#frmCont").validate({
@@ -68,22 +68,26 @@
                 errorClass: 'help-block',
                 errorElement: 'span',
                 rules: {
-                    // order_id:{required:true},
                     product_name:{required:true},
                     product_qty:{required:true,},
                     courier_name:{required:true},
                     enterd_weight:{required:true},
                     charged_weight:{required:true},
-                    proff:{required:true,accept: "jpg|jpeg|png|ico|bmp"},
+                    proof:{
+                        required:true,
+                        extension:'jpg|jpeg|png|ico|bmp'
+                    },
                 },
                 messages: {
-                    // order_id:{required:"Please  enter  pincode."},
                     product_name:{required:"Please  enter product name."},
                     product_qty:{required:"Please enter product QTY."},
                     courier_name:{required:"Please enter shiping details."},
                     enterd_weight:{required:"Please enter enterd weight."},
                     charged_weight:{required:"Please enter charged weight."},
-                    proff:{required:"Please enter discrepancy proof."},
+                    proof:{
+                        required:"Please select file.",
+                        extension:"Please select valid file"
+                    },
                 },
                 highlight: function (element) {
                     $(element).closest('.form-group').addClass('has-error');
@@ -105,6 +109,53 @@
                 return false;
             }
         });
+
+     // $(document).on('submit', '#frmCont', function (e) {
+            
+     //        $("#frmCont").validate({
+     //            ignore: [],
+     //            errorClass: 'help-block',
+     //            errorElement: 'span',
+     //            rules: {
+     //                // order_id:{required:true},
+     //                product_name:{required:true},
+     //                product_qty:{required:true,},
+     //                courier_name:{required:true},
+     //                enterd_weight:{required:true},
+     //                charged_weight:{required:true},
+     //                proff:{required:true,
+     //                    accept: "jpg|jpeg|png|ico|bmp"
+     //                },
+     //            },
+     //            messages: {
+     //                // order_id:{required:"Please  enter  pincode."},
+     //                product_name:{required:"Please  enter product name."},
+     //                product_qty:{required:"Please enter product QTY."},
+     //                courier_name:{required:"Please enter shiping details."},
+     //                enterd_weight:{required:"Please enter enterd weight."},
+     //                charged_weight:{required:"Please enter charged weight."},
+     //                proff:{required:"Please enter discrepancy proof."},
+     //            },
+     //            highlight: function (element) {
+     //                $(element).closest('.form-group').addClass('has-error');
+     //            },
+     //            unhighlight: function (element) {
+     //                $(element).closest('.form-group').removeClass('has-error');
+     //            },
+     //            errorPlacement: function (error, element) {
+     //                if (element.attr("data-error-container")) {
+     //                    error.appendTo(element.attr("data-error-container"));
+     //                } else {
+     //                    error.insertAfter(element);
+     //                }
+     //            }
+     //        });
+     //        if ($("#frmCont").valid()) {
+     //            return true;
+     //        } else {
+     //            return false;
+     //        }
+     //    });
    
         // $("#birthdate").datepicker({
         //     autoclose: true,

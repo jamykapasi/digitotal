@@ -57,24 +57,14 @@
             }
         }
     </style>
-  	
+    
 
-<div class="col py-3 content" id="content">	     
-	<h3 class="main-heading">MANAGE CATEGORIES</h3>
-	<div class="row">
-		<div class="operation4" style="margin:0% 2%;">
-	 		<div class="input-group search-cate col-lg-5" style="width: 40%;">
-                <div class="input-group-btn search-panel" style="width: 150px;">
-                    <button type="button" class="btn btn-default dropdown-toggle searchbtn" data-toggle="dropdown" style="padding-top: 5px;">
-                        <span id="search_concept">Search by</span><i class="fas fa-chevron-circle-down caret_style"></i>
-                    </button>
-                    <ul class="dropdown-menu scrollable-dropdown" role="menu">
-                        <li><a href="#">Order ID</a></li>
-                        <li><a href="#">Customer Name</a></li>
-                        <li><a href="#">Order Date & Time</a></li>
-                        <li><a href="#">Customer Details</a></li>
-                    </ul>
-                </div>
+<div class="col py-3 content" id="content">      
+    <h3 class="main-heading">MANAGE CATEGORIES</h3>
+    <div class="row">
+        <div class="operation4" style="margin:0% 2%;">
+            <div class="input-group search-cate col-lg-5" style="width: 40%;">
+                
                 <input type="hidden" name="search_param" value="all" id="search_param">
                 <input type="text" class="form-control search3" name="x" id="search" style="margin: 0;">
                 <span class="input-group-btn">
@@ -82,54 +72,56 @@
                         <span class="glyphicon glyphicon-search"><i class="fas fa-search search_icon_style"></i></span>
                     </button>
                 </span>
-   			</div>
-		<script>
-		 	$(document).ready(function(e){
-	      		$('.search-panel .dropdown-menu').find('a').click(function(e) {
-    				e.preventDefault();
-    				var param = $(this).attr("href").replace("#","");
-    				var concept = $(this).text();
-    				$('.search-panel span#search_concept').text(concept);
-    				
-				$('.input-group #search_param').val(param);
-				});
-	      		$('.search-panel1 .dropdown-menu').find('a').click(function(e) {
-    				e.preventDefault();
+            </div>
+        <script>
+            $(document).ready(function(e){
+                $('.search-panel .dropdown-menu').find('a').click(function(e) {
+                    e.preventDefault();
+                    var param = $(this).attr("href").replace("#","");
+                    var concept = $(this).text();
+                    $('.search-panel span#search_concept').text(concept);
+                    
+                $('.input-group #search_param').val(param);
+                });
+                $('.search-panel1 .dropdown-menu').find('a').click(function(e) {
+                    e.preventDefault();
 
-    				var param1 = $(this).attr("href").replace("#","");
-    				var concept1 = $(this).text();
-    				$('.search-panel1 span#status').text(concept1);
-				
-    				$('.input-group #search_param1').val(param1);
-    		   		
-    	      		});
-	      	    });
-    			var a = document.getElementsByTagName('a').item(0);
-    			$(a).on('keyup', function(evt){
-    			console.log(evt);
-    			if(evt.keycode === 13){
+                    var param1 = $(this).attr("href").replace("#","");
+                    var concept1 = $(this).text();
+                    $('.search-panel1 span#status').text(concept1);
+                
+                    $('.input-group #search_param1').val(param1);
+                    
+                    });
+                });
+                var a = document.getElementsByTagName('a').item(0);
+                $(a).on('keyup', function(evt){
+                console.log(evt);
+                if(evt.keycode === 13){
         
-    			alert('search?');
-    			} 
-			}); 
-		</script>
-			
+                alert('search?');
+                } 
+            }); 
+        </script>
+            
         <div id="table_box_bootstrap1" class="table_box_bootstrap1"></div>
-			<div class=" ship2 col-lg-3">
-				<button class="btn1 btn-hv" id="myBtn" name="action1" value="update1" onclick="myModal()">ADD CATEGORY</button>
-			</div>
-		</div>
+            <div class=" ship2 col-lg-3">
+                <button class="btn1 btn-hv" id="myBtn" name="action1" value="update1" onclick="myModal()">ADD CATEGORY</button>
+            </div>
+        </div>
 
 <!-----second main div start ---->
-<!--	<div id="table_box_bootstrap"></div>-->
-	
-	<!------------------code for table ----------------------- -->
+<!--    <div id="table_box_bootstrap"></div>-->
+    
+    <!------------------code for table ----------------------- -->
         <table  class="table2 table-style col-lg-10"style="width:40% !important;margin:0% 4% !important;">
           <tr class="row1">
             <th class=" table-style table-heading">CATEGORY NAME</th>
             <th class=" table-style table-heading">OPERATIONS</th>
           </tr>
+          <tbody id="html">
             %HTML%
+          </tbody>
         </table>
 <script>
 var box = paginator({
@@ -264,31 +256,7 @@ function paginator(config) {
                 }, false);
                 return li;
             }
-        } else {
-            make_button = function (symbol, index, config, disabled, active) {
-                var button = document.createElement("button");
-                button.innerHTML = symbol;
-                button.addEventListener("click", function (event) {
-                    event.preventDefault();
-                    if (this.disabled != true) {
-                        config.page = index;
-                        paginator(config);
-                    }
-                    return false;
-                }, false);
-                if (disabled) {
-                    button.disabled = true;
-                    button.style.visibility ="hidden";
-                    var i =document.getElementsByClassName("pagination");
-
-                  
-                }
-                if (active) {
-                    button.className = config.active_class;
-                }
-                return button;
-            }
-        }
+        } 
 
         // make page button collection
         var page_box = document.createElement(config.box_mode == "list"?"ul":"div");
@@ -334,12 +302,10 @@ function paginator(config) {
     if (!(typeof config.page_options == "boolean" && !config.page_options)) {
         if (typeof config.page_options == "undefined") {
             config.page_options = [
-                { value: 5,  text: '5'   },
                 { value: 10, text: '10'  },
                 { value: 20, text: '20'  },
-                { value: 50, text: '50'  },
-                { value: 100,text: '100' },
-                { value: 0,  text: 'All' }
+                { value: 50, text: '30'  },
+                { value: 5000,  text: 'All' }
             ];
         }
         var options = config.page_options;
@@ -368,7 +334,7 @@ function paginator(config) {
     // status message
     var stat = document.createElement("span");
     stat.className = "stats";
-    stat.innerHTML = "Result ";
+    stat.innerHTML = " ";
     
     dvRecords.appendChild(stat);
 
@@ -392,7 +358,7 @@ function paginator(config) {
     <!-- <h2>Modal Header</h2>-->
     </div>
     <div class="modal-body">
-        <form action="{SITE_URL}product_category" name="category" method="post" id="category" class="category">
+        <form action="{SITE_URL}product_category" name="category" method="post" id="category" class="category"  style="width: 600px;">
             <div class="popup" style="margin-top:5%;">
                 <div class=" custfields">
                     <label class="col-4 " style="font-size:0.9rem;font-weight: 500;display: inline-block;">Category Name</label>
@@ -402,7 +368,7 @@ function paginator(config) {
                     <div class="text-center mt-4">
                         <input type="hidden" name="action" value="category">
                         <button class="btn2 btn-next submit-btn btn-hv" type="submit" id="submit" name="submit">SUBMIT</button>
-                        <button id="cancel" class="btn2 btn-next submit-btn btn-hv" >CANCEL</button>
+                        <button type="button" id="cancel" class="btn2 btn-next submit-btn btn-hv" >CANCEL</button>
                     </div>
                 </div>
             </div>
@@ -430,7 +396,7 @@ function paginator(config) {
                         <input type="hidden" name="action" value="editCategory">
                         <input type="hidden" id="cat_id" name="id" value="">
                         <button class="btn2 btn-next submit-btn btn-hv" type="submit" id="edit" name="edit">EDIT</button>
-                        <button id="canceledit" class="btn2 btn-next submit-btn btn-hv" >CANCEL</button>
+                        <button type="button" id="canceledit" class="btn2 btn-next submit-btn btn-hv" >CANCEL</button>
                     </div>
                 </div>
             </div>
@@ -590,5 +556,33 @@ window.onclick = function(event) {
               }
             },
         }); 
+    });
+
+
+    function loadRecord()
+    {   
+        var search = $('#search').val();
+        var page_rec = $('.records').val();
+        
+        $.ajax({
+            type:"POST",
+            dataType : 'json',
+            url: window.location,
+            data : {"action":"getRecord",'search':search,'page_rec':page_rec},
+            success: function(res)
+            {  
+                $('#html').html(res.html);
+            }
+        });
+    }
+
+    $('.records').on('change', function(){
+        //alert();
+        loadRecord();
+    });
+
+    $('#search').on('keyup', function(){
+        //alert();
+        loadRecord();
     });
 </script>

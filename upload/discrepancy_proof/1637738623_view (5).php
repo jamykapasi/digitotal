@@ -15,69 +15,32 @@
       </select>
    </div>
 
-    <div class="col-lg-4" style="display: flex;">
-        <div class="input-group-btn search-panel search-by-panel" style="border-bottom: cyan solid 2px !important;  margin: 0 !important;">
-            <button type="button" class="btn btn-default dropdown-toggle searchbtn" data-toggle="dropdown" style="height: 100%;background-color: #fff;">
-                <span id="search_concept">Search by</span>
-            </button>
-            <ul class="dropdown-menu scrollable-dropdown" role="menu" style="margin: 0;">
-            <li><a href="#">Order ID</a></li>
-            <li><a href="#">Customer Name</a></li>
-            <li><a href="#">Order Date & Time</a></li>
-            <li><a href="#">Customer Details</a></li>
-          </ul>
-        </div>
-        <div class="input-group" style="width: 100%; border-bottom: cyan solid 2px !important;">
+   <div class="col-lg-2">
+      <select name="category" id="category">
+         <option value="">Category</option>
+         %HTML%
+      </select>
+   </div>
+   
+   <div class="input-group col-lg-3">
       
-          <input type="hidden" name="search_param" value="all"
-             id="search_param">
-          <input type="text" class="form-control search3" name="search" id="search" placeholder="Search">
-          <span class="input-group-btn">
-          <button class="btn btn-default search_icon" type="button">
-          <span class="glyphicon glyphicon-search"></span>
-          </button>
-          </span>
-       </div>
-    </div>
-
-    <script>
-        $(document).ready(function(e){
-            $('.search-panel .dropdown-menu').find('a').click(function(e) {
-            e.preventDefault();
-            var param = $(this).attr("href").replace("#","");
-            var concept = $(this).text();
-            $('.search-panel span#search_concept').text(concept);
-            
-            $('.input-group #search_param').val(param);
-            });
-            $('.search-panel1 .dropdown-menu').find('a').click(function(e) {
-            e.preventDefault();
-
-            var param1 = $(this).attr("href").replace("#","");
-            var concept1 = $(this).text();
-            $('.search-panel1 span#status').text(concept1);
-            
-            $('.input-group #search_param1').val(param1);
-            
-            });
-        });
-        var a = document.getElementsByTagName('a').item(0);
-        $(a).on('keyup', function(evt){
-        console.log(evt);
-        if(evt.keycode === 13){
-
-        alert('search?');
-        } 
-        }); 
-    </script>
+      <input type="hidden" name="search_param" value="all"
+         id="search_param">
+      <input type="text" class="form-control search3" name="search" id="search" placeholder="Search">
+      <span class="input-group-btn">
+      <button class="btn btn-default search_icon" type="button">
+      <span class="glyphicon glyphicon-search"></span>
+      </button>
+      </span>
+   </div>
 
    <div class=" ship1 col-lg-3">
-      <button class="btn1" data-toggle="modal" id="orderShip" data-target="#SelectAddressModalCenter">SHIP</button>
+      <button class="btn1" data-toggle="modal" data-target="#SelectAddressModalCenter">SHIP</button>
       <button class="btn1">CANCEL</button>
    </div>
 </div>
 <!-----second main div start ---->
-<div class="second-row col-lg-10" style="align-items: center;">
+<div class="second-row col-lg-10">
    <label class="show">Show</label>
    <select name="page_rec" id="page_rec">
       <option value="10" selected>10</option>
@@ -166,24 +129,39 @@
                             <i class="fas fa-times-circle"></i></a>
                         </span>
                     </div>
-                    <form class="selectAddress" id="selectAddress" action="{SITE_URL}manage_order" method="post" enctype="multipart/form-data">
-                        <h3 class="modal-title text-center w-100 m-0">SELECT PICKUP ADDRESS</h3>
-                        <div class="row custfields style2 " style="margin-top: 5%;">
-                            <label class="col-4" style="font-size:0.9rem;font-weight: 500;">Add New Address?</label>
-                            <button class="btn2 btn-next update-btn btn-hv col-4" data-dismiss="modal" data-toggle="modal" data-target="#SelectModalCenter" style="    padding: 5px; width: 18%;margin: -5px 10px 0px auto;">SELECT</button>
-                             %ADDRESS%
-                            <div>
-                                <label class="cod">
-                                <input type="radio" class="cod" name="payment_method" value="c" required>COD</label>
-                                <label class="prepaid">
-                                <input type="radio" class="prepaid" name="payment_method" value="p" required>Prepaid</label>
-                            </div>
-                            <input type="hidden" name="ids[]" id="ids" value="">
-                            <input type="hidden" name="order_id" id="order_id" value="">
-                            <input type="hidden" name="action" value="orderShip">
-                            <button type="submit" class="btn2 btn-next update-btn btn-hv col-4" style="width: 18%;margin: 20px auto 0px auto;" name="submitAddress">DONE</button>
+                    <h3 class="modal-title text-center w-100 m-0">SELECT PICKUP ADDRESS</h3>
+                    <div class="row custfields style2 " style="margin-top: 5%;">
+                        <label class="col-4" style="font-size:0.9rem;font-weight: 500;">Add New Address?</label>
+                        <button class="btn2 btn-next update-btn btn-hv col-4" data-dismiss="modal" data-toggle="modal" data-target="#SelectModalCenter" style="    padding: 5px; width: 18%;margin: -5px 10px 0px auto;">SELECT</button>
+                            <div style="display: flex; padding: 10px 15px 60px 15px; border: 1px solid #9ce1d0;margin: 2% 0% 0% 0%; align-items: flex-start;">
+                                <span class="checkmark">
+                            <input type="radio" id="4" class="pickup_address" name="pickup_address" style="margin: 10px -23px 0px 3px;" value="4">
+                            </span><label for="4" class="custinput placeholder col-2" style="margin-left: 20px !important;padding-top:5px;    cursor: pointer;">Address4</label>
+                            <label class="placeholder col-2" style="margin: 5px 2px 2px 8px !important;">+918128430482</label>
+                            	
+                            <a href="#editAddressModalCenter?id=4" class="edt-btn view" id="editAddress" data-id="4" data-dismiss="modal" data-toggle="modal" data-target="#editAddressModalCenter" style="margin-left: auto; padding-left: 10px;">EDIT | </a>
+                            <a href="javascript:void()" data-id="4" id="deleteAddress" style="padding-left: 5px;" class="text-danger view"> REMOVE</a>
                         </div>
-                    </form>
+                        <p style="    position: relative; width: calc(100% - 40px); top: -44px; left: 10px; font-size: 14px; margin-bottom: 0;" class="placeholder">20 Near PostOffice, Fedra Road, Limbdi, Limbdi, 363421</p><div style="display: flex; padding: 10px 15px 60px 15px; border: 1px solid #9ce1d0;margin: 2% 0% 0% 0%; align-items: flex-start;">
+                            <span class="checkmark">
+                            <input type="radio" id="5" class="pickup_address" name="pickup_address" style="margin: 10px -23px 0px 3px;" value="5">
+                            </span><label for="5" class="custinput placeholder col-2" style="margin-left: 20px !important;padding-top:5px;    cursor: pointer;">Address5</label>
+                            <label class="placeholder col-2" style="margin: 5px 2px 2px 8px !important;">+918457968545</label>
+                            	<button class="btn2 btn-next update-btn btn-hv dft-btn col-2" style="margin: 0 10px 0px auto;">DEFAULT</button>
+                            <a href="#editAddressModalCenter?id=5" class="edt-btn view" id="editAddress" data-id="5" data-dismiss="modal" data-toggle="modal" data-target="#editAddressModalCenter" style="margin-left: auto; padding-left: 10px;">EDIT | </a>
+                            <a href="javascript:void()" data-id="5" id="deleteAddress" style="padding-left: 5px;" class="text-danger view"> REMOVE</a>
+                        </div>
+                        <p style="    position: relative; width: calc(100% - 40px); top: -44px; left: 10px; font-size: 14px; margin-bottom: 0;" class="placeholder">20, naroda road, new naroda, new naroda, 363521</p>
+                        
+                        <div>
+                            <label class="cod">
+                            <input type="radio" name="payment_method" value="c">COD</label>
+                            <label class="cod">
+                            <input type="radio" name="payment_method" value="p">Prepaid</label>
+                        </div>
+                        
+                        <button class="btn2 btn-next update-btn btn-hv col-4" data-dismiss="modal" data-toggle="modal" data-target="" style="width: 18%;margin: 20px auto 0px auto;">Done</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -325,7 +303,7 @@
              $("#customer_id").val(res.customer_id);
            }
        });
-    });
+   });
    
     $(document).on("click","#deleteOrder",function() {
        var id = $(this).data('id');
@@ -351,62 +329,17 @@
          }); 
     });
    
-    $(document).on("click","#orderShip",function() {
-      var myCheckboxes = new Array();
-
-        $("input:checked").each(function() {
-           myCheckboxes.push($(this).attr('data-id'));
-        });
-
-        $.ajax({
-           type:"POST",
-           dataType : 'json',
-           url: window.location,
-           data : {"action":"orderTotal",myCheckboxes},
-           success: function(response)
-           {
-                if(response.status == 1)
-                { 
-                  if (response.total >= 5000) 
-                  {
-                    $('.cod').hide();
-                    $('#ids').val(response.orderid);
-                  }
-                  else
-                  {
-                    $('#ids').val(response.orderid);
-                  }  
-                } 
-                else 
-                {
-                  window.location = "{SITE_URL}manage_order";
-                }
-           }
-       });
-    });
-
     $(document).on("click","#ship",function() {
        var id = $(this).data('id');
-
+   
        $.ajax({
            type:"POST",
            dataType : 'json',
            url: window.location,
            data : {"action":"changeStatus",id},
-           success: function(response)
+           success: function(res)
            {
-                if(response.status == 1)
-                { 
-                  if (response.total >= 5000) 
-                  {
-                    $('.cod').hide();
-                    $('#order_id').val(response.id);
-                  }
-                  else
-                  {
-                    $('#order_id').val(response.id);
-                  } 
-                } 
+            window.location = "{SITE_URL}manage_order";
            }
        }); 
     });
@@ -443,6 +376,8 @@
            }
        });
      }
+
+
      $('#created_date,#managefilter,#page_rec,#category').on('change', function(){
       //alert();
       loadRecord();
@@ -454,7 +389,7 @@
    });
    
    $('#product_category').on('click', function(){
-      //alert();
+      alert();
       loadRecord();
    });
 </script>

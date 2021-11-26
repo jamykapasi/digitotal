@@ -83,11 +83,13 @@
             {       
                 if(res.status == 1)
                 { 
-                  window.location.reload();
+                  window.location.reload(); 
+                  toastr['success'](res.message);
+                  // window.location ="<?php echo DIR_ADMIN_TMPL ?>shipping_rate/full-view.php";
                 } 
                 else 
                 {
-                    toastr['error'](response.message);
+                    toastr['error'](res.message);
                 }
             },
         }); 

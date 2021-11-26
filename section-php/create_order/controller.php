@@ -24,7 +24,7 @@ class Controller extends Home {
 			$option.= "<option value='".$value['id']."'>".$value['category_name']."</option>";
 		}
 
-		$addresRes = $this->db->pdoQuery("SELECT * FROM  tbl_pickup_address WHERE status = 'a' ")->results();
+		$addresRes = $this->db->pdoQuery("SELECT * FROM tbl_pickup_address WHERE user_id='".$this->sessUserId."' AND status='a' ")->results();
 
 		foreach ($addresRes as $key => $value) {
 

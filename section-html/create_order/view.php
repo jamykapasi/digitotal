@@ -20,7 +20,7 @@
     <div class="head1">
          <h2 class="heading col-lg-7" style="letter-spacing: 2px; width: 38%;">CREATE NEW ORDERS</h2>
             <div class="create-order-file">
-                <input type="file" class="form-control" name="file" id="file" accept=".csv">
+                <input type="file" class="form-control" name="file" id="file" accept=".xlsx, .xls, .csv">
                 <button class="btn2 bulk col-lg-1 bulkUpload" id="btnFile" >BULK UPLOAD</button>
                 <span class="selected-file-name"></span>
             </div>
@@ -29,7 +29,7 @@
     </form>
     <div class="container col-lg-8">
         <div class="form-style form-popup">
-            <form action="{SITE_URL}create_order" name="registerForm" method="post" id="registerForm" class="registerForm">
+            <form action="{SITE_URL}create_order" name="registerForm" method="post" id="registerForm" class="registerForm" enctype="multipart/form-data">
               <input type="hidden" name="action" value="submitOrderForm">
               <h4 class="part1">1.Create Order</h4>
               <h4 class="heading sub-heading">CUSTOMER DETAILS</h4>
@@ -52,7 +52,6 @@
                     
                 </tr>
 
-
                 <tr><td class="for-column"><h4 class="heading order-details sub-heading">ORDER DETAILS</h4></td></tr>
                 <tr>
                     <td class="for-column"><input type="text" name="product_name" id="product_name" class="input" placeholder="Product Name*" required/></td>
@@ -67,7 +66,9 @@
                          #OPTION# 
                         </select>
                     </td>
-                    
+
+                    <td class="for-column"><label class="payment-label">Product Image*</label><input type="file" name="product_image" id="product_image" class="input" placeholder="Product Image*" required/></td>
+
                     <td class="for-column"><label class="payment-label">Payment Mode*</label><input type="radio" name="payment_method" value="c"><label class="cod">COD</label>
                     <input type="radio" name="payment_method" value="p"><label class="cod">Prepaid</label>
                     </td>
@@ -173,6 +174,7 @@
                     <td><label class="summary">Qty:</label><input type="text" id="summary_product_qty" class="input2" name="Qty1" value="N/A"disabled></td>
                 </tr>
                 <tr><td><input type="hidden" name="shippment_charge" id="shippment_charge" value=""></td></tr>
+                <tr><td><input type="hidden" name="unit_price" id="unit_price" value=""></td></tr>
                 <tr><td><input type="hidden" name="cod_charges" id="cod_charges" value=""></td></tr>
                 <tr><td><input type="hidden" name="pickup_address_id" id="pickup_address_id" value=""></td></tr>
                 <tr><td><input type="hidden" name="total_price" id="total_price" value=""></td></tr>
@@ -341,7 +343,7 @@
       var ship_pack_weight = $("#ship_pack_weight").val();
       var pickup_address   = $("input[name='pickup_address']:checked").val();
       var courier_partner  = $('#courier_partner').val();
-      var payment_method_val   = $("input[name='payment_method']:checked").val();
+      var payment_method_val = $("input[name='payment_method']:checked").val();
       
       var payment_method = payment_method_val == 'c' ? "COD" : "Prepaid";
         
@@ -358,6 +360,7 @@
               $("#cod_charges").val(res.codCharges);
               $("#total_price").val(res.totalPrice);
               $("#pickup_address_id").val(res.pickup_address_id);
+              $("#unit_price").val(res.unitPrice);
               $("#summary_order_total").val("₹ "+(res.totalPrice)+" /");
             }
         });
@@ -371,17 +374,23 @@
 
   });
 
-  $(document).on("submit",".bulkFile",function(){
+  $(document).on("submit",".bulkFile",function(e){
 
       $(".bulkFile").validate({
         ignore: [],
         errorClass: 'help-block',
         errorElement: 'span',
         rules: {
-          file:{required:true},
+          file:{
+            required:true, 
+            extension: ".xls|.csv"
+          },         
         },
         messages: {
-          file:{required:"Please  enter  File."},
+          file:{
+              required:"Please select csv file.",
+              extension:"Please upload valid file"
+          },
         },
         highlight: function (element) {
             $(element).closest('form-check-input').addClass('has-error');
@@ -391,16 +400,16 @@
         },
         errorPlacement: function (error, element) {
           if(element.attr('id') == 'file'){
-              error.insertAfter(element.closest('.form-check-input'));
+              error.insertAfter(element.closest('form-check-input'));
           }else{
-              error.insertAfter(element.closest('.form-check-input'));
+              error.insertAfter(element.closest('form-check-input'));
           }
         }
       });
       if ($(".bulkFile").valid()) {
-          return true;
+        return true;
       } else {
-          return false;
+        return false;
       }
   });
 

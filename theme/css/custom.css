@@ -2921,7 +2921,7 @@ body.notification-content {
 }
 
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$  style for pagination $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-@media	 only screen and (max-width: 760px),
+@media   only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px) {
     .notification-content .box1 ul.pagination {
         position: relative !important;
@@ -3090,6 +3090,7 @@ body.notification-content {
 }
 
 /* ******************************************   Notification Style2.css  End   ********************************** */
+
 
 /* ******************************************   Custom Css By Har...  Start   ********************************** */
 .create-order-file {
@@ -3268,6 +3269,19 @@ body.notification-content {
 }
 .select-address-modal span {
     margin-right: unset;
+}
+.operation4 select {
+    height: 100%;
+    width: 100% !important;
+    display: block;
+    margin: 0;
+}
+.dropdown-menu a {
+    color: #000;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 0 10px;
+    font-weight: 400;
 }
 @media (min-width: 992px) {
     .modal-lg,
