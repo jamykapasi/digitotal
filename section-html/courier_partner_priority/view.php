@@ -12,7 +12,7 @@
               </div>
 
               <div class="col-md-2 form-check form-check-inline ms-5 checkbox-2">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" %CHECKED% value="custom">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" %CHECK% value="custom">
                 <label class="form-check-label no-space-break custom-prio-label" for="inlineRadio2">Custom Priority</label>
                 <p class="sub-text-radio">Drag & drop cards to set your own priority <br><br><br></p>
               </div>

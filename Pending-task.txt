@@ -1,0 +1,29 @@
+Pending tasks
+1. Adding a new category from the seller’s side (done)
+2. Manage order - showing results in 10,20,30 (done)
+3. Manage order - select all option 
+4. Unique seller ID to be generated on login register (done).
+5. Channel integration / Multiple 
+6. Recharge amount of min 500 (done)
+7. Manage order filter not working 
+8. Weight discrepancy -  filter not working
+9. Weight discrepancy admin side - SP Name missing in the order (done).
+10. Order section missing in the backend to fetch the weight discrepancy from (done).
+11. Bulk upload no validation on type of files 
+12. When selecting a file for bulk upload, nothing shows that it is getting uploaded (shipping rate) (done).
+13. Credit summary - filter not working
+14. Working of credit summary page?  - if the orders are not being shipped in manage order page, how are they showing in credit summary, if no recharge option is done how is it showing in prepaid section? (done)
+15. Calculation in credit summary final value is wrong, how are the COD and shipping rates calculated?I (done)
+16. Need a date filter for credit summary final page
+17. Need a date filter for reporting page
+18. Report page - order report file has ambiguous value for date 
+19. Report page - channel type missing in order report
+20. Report page - payment type only initials are shown for prepaid or COD 
+21. report page - payment report is showing same as order report, it should have the report for prepaid values and COD and both together like credits summary
+22. Manage order - channel integration, payment, customer details filter also not working
+
+23. Courier partner not working as per the functionality
+
+24. Backend to have all orders and customer details(done)
+
+

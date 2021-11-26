@@ -22,17 +22,28 @@ class Controller extends Home {
 		{
 			$check ='';
 		}
-
+            
 		if ($userRes['courier_priority'] == 'recommendation') 
 		{
-			$check ='checked';
+			$checked ='checked';
 		}
 		else
 		{
-			$check ='';
+			$checked ='';
 		}
 
-		$res = $this->db->pdoQuery("SELECT * FROM tbl_shipping_rate WHERE 1=1 ORDER BY id DESC")->results();
+		$priorityIDS = $this->db->pdoQuery("SELECT GROUP_CONCAT(courier_priority_id) as ids FROM tbl_courier_priority WHERE user_id='".$this->sessUserId."' ")->result();
+    
+    $priority_id  = $priorityIDS['ids'];
+   	
+   	$priority_id_array = explode(",",$priority_id);
+
+   	$priority_ids= implode(",",$priority_id_array);
+
+		$res = $this->db->pdoQuery("SELECT courier.* 
+		FROM tbl_shipping_rate as courier
+		LEFT JOIN tbl_courier_priority as priority ON courier.id=priority.courier_priority_id 
+		WHERE courier.status='a' AND courier.id NOT IN($priority_ids)")->results();
 
 		foreach ($res as $key => $value) 
 		{
@@ -64,7 +75,8 @@ class Controller extends Home {
 		$array = array(
 			"%HTML%"     => $html,
 			"%PRIORITY%" => $priority,
-			"%CHECKED%"  => $check,
+			"%CHECK%"    => $check,
+			"%CHECKED%"  => $checked
  		);
 		return get_view($mainHTML,$array);
 	}

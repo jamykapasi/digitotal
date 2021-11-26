@@ -28,7 +28,7 @@
       </span>
    </div>
    </div>
-   <div class="second-row col-lg-10" style="height:80px;">
+   <div class="second-row col-lg-10" style="align-items: center; height:50px;">
    <label class="show">Show</label>
    <select name="page_rec" id="page_rec">
       <option value="10" selected>10</option>

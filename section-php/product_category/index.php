@@ -1,4 +1,5 @@
 <?php
+
 $reqAuth = true;
 $module = 'product_category';
 require_once "../../include/config.php";
@@ -54,6 +55,15 @@ if(isset($_POST['action']) AND $_POST['action']=="editCategory")
 	$msgType = $_SESSION["msgType"] = disMessage(array('type'=>'suc','var'=> "Category Updated successfully."));
 
 	redirectPage(SITE_URL."product_category");
+}
+
+if (isset($_POST['action']) AND $_POST['action'] == 'getRecord') 
+{
+   
+	extract($_REQUEST);
+	$object = new Controller($module,$token);
+	$data = $object->getHTML($search,$page_rec,'y');
+
 }
 
 if(isset($_POST['action']) AND $_POST['action']=="deleteCategory") 

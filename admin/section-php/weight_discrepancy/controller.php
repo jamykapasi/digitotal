@@ -120,9 +120,12 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
         extract($this->searchArray);
         $chr = str_replace(array('_', '%'), array('\_', '\%'), $chr);
         
-        $whereCond = ' WHERE 1=1 ';
+        $whereCond = ' WHERE 1=1';
         if (isset($chr) && $chr != '') {
-            $whereCond .= " AND product_name LIKE '%" . $chr . "%' ";            
+            $whereCond .= " AND tbl_weight_discrepancy.product_name LIKE '%" . $chr . "%' 
+            OR tbl_weight_discrepancy.courier_name LIKE '%" . $chr . "%' 
+            OR tbl_users.first_name LIKE '%" . $chr . "%' 
+            OR tbl_users.last_name LIKE '%" . $chr . "%'";       
         }
         if (isset($sort))
             $sorting = $sort . ' ' . $order;
@@ -131,15 +134,13 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
         
         $status_ids = "a" ;
         
-        // $qrySel = $this->db->pdoQuery("SELECT  tbl_weight_discrepancy.* , tbl_order.customer_name  FROM tbl_weight_discrepancy
-        // LEFT JOIN tbl_order ON tbl_weight_discrepancy.order_id = tbl_order.order_id ")->results();
-
-        $qrySel = $this->db->pdoQuery("SELECT tbl_weight_discrepancy.* , tbl_order.customer_name  
-        FROM tbl_weight_discrepancy
-        LEFT JOIN tbl_order ON tbl_weight_discrepancy.order_id = tbl_order.order_id
+        $qrySel = $this->db->pdoQuery("SELECT tbl_weight_discrepancy.*,tbl_order.customer_name,tbl_users.first_name,last_name
+        FROM tbl_weight_discrepancy 
+        LEFT JOIN tbl_order ON tbl_order.order_id=tbl_weight_discrepancy.order_id
+        LEFT JOIN tbl_users ON tbl_order.user_id=tbl_users.id 
         ".$whereCond." ORDER BY " .$sorting." limit " .$offset." ," .$rows."")->results();
-        
-           $totalRow = count($qrySel);
+
+        $totalRow = count($qrySel);
 
             foreach ($qrySel as $fetchRes) 
             {
@@ -159,13 +160,14 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
                     $discrepancy_proof = '<img src="'.SITE_UPD.'/discrepancy_proof/'.$fetchRes['proof'].'" width="50" height="50">';
                 }
 
+                $username = $fetchRes['first_name'].' '.$fetchRes['last_name'];
                 $final_array = array(
                     $fetchRes['id'],
                     date('d M Y h:i a',strtotime($fetchRes['created'])),
                     date('d M Y h:i a',strtotime($fetchRes['order_date_time'])),
                     $fetchRes['product_name'],
                     $fetchRes['courier_name'],
-                    $fetchRes['customer_name'],
+                    $username,
                     $fetchRes['enterd_weight']."kg",
                     $fetchRes['charged_weight']."kg",
                     $discrepancy_proof,

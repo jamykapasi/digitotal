@@ -69,6 +69,7 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
             "#SHIPPMENT_CHARGE#",
             "#COD_CHARGE#",
             "#TOTAL_PRICE#",
+            "#PICKUP_ADDRESS#",
             "#CREATED_DATE#",
         );
 
@@ -78,6 +79,13 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
         }else{
             $cod = '0.00';
         }
+        
+        $pickupAddressRes =$this->db->pdoQuery("SELECT * FROM tbl_pickup_address WHERE id='".$this->pickup_address_id."' AND user_id='".$this->user_id."' ")->result();
+
+        $pickupAddress = array($pickupAddressRes['flat_no'],$pickupAddressRes['locality'],$pickupAddressRes['landmark'],$pickupAddressRes['pincode'],$pickupAddressRes['area']);
+        
+        $address =implode(',', $pickupAddress);
+        
         $fields_replace = array(
             ORDER_FORMAT.$this->order_id,
             $this->customer_name,
@@ -89,6 +97,8 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
             $this->shippment_charge,
             $cod,
             $this->total_price,
+            $address,
+            
             getDateFormat($this->created,'y'),
         );
         $content=str_replace($fields,$fields_replace,$main_content);
@@ -149,9 +159,9 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
         
         $whereCond = ' WHERE 1=1 ';
         if (isset($chr) && $chr != '') {
-            $whereCond .= " AND order_id LIKE '%" . $chr . "%' OR customer_name LIKE '%" . $chr . "%' OR product_name LIKE '%" . $chr . "%' ";
-                             
+            $whereCond .= " AND order_id LIKE '%" . $chr . "%' OR customer_name LIKE '%" . $chr . "%' OR tbl_shipping_rate.courier_partner LIKE '%" . $chr . "%' OR product_name LIKE '%" . $chr . "%' OR payment_method LIKE '%" . $chr . "%' ";
         }
+
         if (isset($sort))
             $sorting = $sort . ' ' . $order;
         else
@@ -161,18 +171,19 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
         
         // $qrySel = $this->db->pdoQuery("SELECT  * FROM $this->table WHERE 1=1 ORDER BY id DESC ")->results();
 
-        $qrySel = $this->db->pdoQuery("SELECT  tbl_order.* , tbl_shipping_rate.courier_partner  
+        $qrySel = $this->db->pdoQuery("SELECT  tbl_order.*,tbl_shipping_rate.courier_partner  
         FROM tbl_order
         LEFT JOIN tbl_shipping_rate ON tbl_order.courier_partner = tbl_shipping_rate.id
+        LEFT JOIN tbl_users ON tbl_order.user_id = tbl_users.id
         ".$whereCond." ORDER BY " .$sorting." limit " .$offset." ," .$rows."")->results();
-            
+
             $totalRow = count($qrySel);
 
             foreach ($qrySel as $fetchRes) 
             {
                 $status = ($fetchRes['status'] == "c") ? "checked" : "";
                 $payment_method = $fetchRes['payment_method'] == 'c' ? "COD" : "Prepaid";
-                $order_status = $fetchRes['status'] == 'c' ? "Confirm" : "Panding";
+                $order_status = $fetchRes['status'] == 'c' ? "Confirm" : "Pending";
 
                 $operation = '';
                             

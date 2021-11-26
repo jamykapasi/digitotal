@@ -124,25 +124,25 @@ public function __construct($module, $id = 0, $objPost = NULL, $searchArray = ar
     }
     public function dataGrid() 
     {
-            $content = $operation = $whereCond = $totalRow = NULL;
-            $result = $tmp_rows = $row_data = array();
-            extract($this->searchArray);
-            $chr = str_replace(array('_', '%'), array('\_', '\%'), $chr);
-            
-            $whereCond = ' WHERE 1=1 ';
-            if (isset($chr) && $chr != '') {
-                $whereCond .= " AND first_name LIKE '%" . $chr . "%' OR 
-                                     LIKE '%" . $chr . "%'  ";
-                                 
-            }
-            if (isset($sort))
-                $sorting = $sort . ' ' . $order;
-            else
-                $sorting = 'id DESC';
+        $content = $operation = $whereCond = $totalRow = NULL;
+        $result = $tmp_rows = $row_data = array();
+        extract($this->searchArray);
+        $chr = str_replace(array('_', '%'), array('\_', '\%'), $chr);
+        
+        $whereCond = ' WHERE 1=1';
+        if (isset($chr) && $chr != '') {
+            $whereCond .= " AND id LIKE '%" . $chr . "%' OR company_name LIKE '%" . $chr . "%' OR first_name LIKE '%" . $chr . "%' OR last_name LIKE '%" . $chr . "%' OR email LIKE '%" . $chr . "%' OR mobile_no LIKE '%" . $chr . "%' OR created LIKE '%" . $chr . "%'  ";
+                             
+        }
+        if (isset($sort))
+            $sorting = $sort . ' ' . $order;
+        else
+            $sorting = 'id DESC';
         
         $status_ids = "a" ;
         
-        $qrySel = $this->db->pdoQuery("SELECT  * FROM $this->table WHERE 1=1 ORDER BY id DESC ")->results();
+        $qrySel = $this->db->pdoQuery("SELECT  * FROM $this->table ".$whereCond." ORDER BY " .$sorting." limit " .$offset." ," .$rows."")->results();
+        
            $totalRow = count($qrySel);
 
             foreach ($qrySel as $fetchRes) 

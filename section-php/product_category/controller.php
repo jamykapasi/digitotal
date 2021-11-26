@@ -8,10 +8,20 @@ class Controller extends Home {
 		$this->module = $module;
 	}
 
-	function getHTML() {
+	function getHTML($search='',$page_rec='',$api='') {
 		
-		$html = "";
-		$categoryRes = $this->db->pdoQuery("SELECT * FROM tbl_category WHERE 1=1 ORDER BY id DESC ")->results();
+		$html =$limit = "";
+
+		$where = '';
+		if($search != ''){
+			$where .= 'AND category_name LIKE "%'.$search.'%"';
+		}
+
+		if($page_rec > 0){
+			$limit = ' LIMIT '.$page_rec.'';
+		}
+
+		$categoryRes = $this->db->pdoQuery("SELECT * FROM tbl_category WHERE 1=1 ".$where." ORDER BY id DESC ".$limit."")->results();
 
 		foreach ($categoryRes as $key => $value) 
 		{
@@ -25,11 +35,22 @@ class Controller extends Home {
                   </tr>';
 		}
 
-		$mainHTML =  DIR_TMPL . "product_category/view.php";
-		$array = array(
-			"%HTML%" => $html,
- 		);
-		return get_view($mainHTML,$array);
+
+		if($api == 'y'){
+			
+			$data['html'] = $html;
+			
+			echo json_encode($data);   
+			exit;
+
+		}else{
+
+			$mainHTML =  DIR_TMPL . "product_category/view.php";
+			$array = array(
+				"%HTML%" => $html,
+			);
+			return get_view($mainHTML,$array);
+		}
 	}
 	
 	

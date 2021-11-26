@@ -14,7 +14,7 @@
             </div>
         </div> 
         <div class="col-md-offset-3 col-md-9">
-            <button type="submit" name="uploadCSV" class="btn" id="uploadCSV" accept=".csv">Submit</button>
+            <button type="submit" name="uploadCSV" class="btn" id="uploadCSV">Submit</button>
             &nbsp;&nbsp;&nbsp;
             <button type="button" name="cn" class="btn btn-toggler" id="cn">Cancel</button>
         </div>

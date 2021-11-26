@@ -121,7 +121,7 @@ if(isset($_POST['action']) AND $_POST['action']=="deletePincode")
 if (isset($_POST['action']) AND $_POST['action'] == 'getRecord') 
 {
 	extract($_REQUEST);
-
+	
 	if($page==0) { 
 		$page = 1;
 	} 
@@ -129,12 +129,18 @@ if (isset($_POST['action']) AND $_POST['action'] == 'getRecord')
 	if($limit == ""){ 
 		$limit = 16;
 	}
+
+	$where = '';
+	if($query != ''){
+		$where .= 'AND (pincode LIKE "%'.$query.'%")';
+	}
+
 	$totalRow = 0;
 	@$offset = ($page - 1) * $limit;	
 
 	$pincode ='';
 
-	$pincodeRes = $db->pdoQuery("SELECT * FROM tbl_courier_pincode WHERE courier_partner_id='4' LIMIT $offset,$limit ")->results();
+	$pincodeRes = $db->pdoQuery("SELECT * FROM tbl_courier_pincode WHERE courier_partner_id='4' ".$where." LIMIT $offset,$limit ")->results();
 
 	$totalRowRes = $db->pdoQuery("SELECT * FROM tbl_courier_pincode WHERE courier_partner_id='4' ")->results();
 

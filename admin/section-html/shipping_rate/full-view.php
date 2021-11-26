@@ -76,6 +76,7 @@
                             </tr>
                         </tbody>
                     </table> -->
+                    
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label"><b>COURIER PARTNER</b> : </label>
                         <div class="col-sm-8">#COURIER_PARTNER#</div>
@@ -109,6 +110,14 @@
                         <label class="col-sm-4 col-form-label"><b>CREATED AT</b> : </label>
                         <div class="col-sm-8">#CREATED_DATE#</div>
                     </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label"></label>
+                        <div class="col-sm-8">
+                            <input type="search" id="pincode" class="col-sm-4 col-form-label" placeholder="Search Pincode" aria-label="Search" />
+                        </div>
+                    </div>
+
                     <div class="form-group row">
                         <div class="pincode-content">
                         <label class="col-sm-4 col-form-label"><b>PINCODE</b> : </label>
@@ -118,7 +127,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-4 col-form-label"><b>demo</b> : </label>
+                        <label class="col-sm-4 col-form-label"><b></b>  </label>
                         <div class="col-sm-8">
                             <div class ="ProductOrderPagination"> <nav aria-label="Page navigation"> </nav>
                             </div>
@@ -136,19 +145,18 @@
         loadRecord(1);
     });
 
-    function loadRecord(page)
+    function loadRecord(page,query)
     {   
-
         var id = $(this).data('id');
-
+        var query = $('#pincode').val();
+        
         $.ajax({
             type:"POST",
             dataType : 'json',
             url: window.location,
-            data : {"action":"getRecord","page" : page ,"limit":10},
+            data : {"action":"getRecord","page" : page ,"limit":10,"query":query},
             success: function(res)
             {  
-
                 $( "html, body" ).animate({ scrollTop:0 },'slow');
 
                 $('.html_data').append("");
@@ -182,4 +190,9 @@
             loadRecord(num); 
         });  
     }
+
+    $('#pincode').on("keyup", function(query){
+      loadRecord(query);
+    });
+
 </script>
